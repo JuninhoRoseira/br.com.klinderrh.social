@@ -1,0 +1,26 @@
+﻿<div class="col-md-6 col-md-offset-3">
+    <form rule="form" name="userForm" ng-submit="authUser(user)" novalidate>
+        <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+        <h2>Login de usuário</h2>
+        <div class="form-group" ng-class="{ 'has-error': userForm.nome.$dirty && userForm.nome.$error.required }">
+            <label>Nome</label>
+            <input type="text" name="nome" ng-model="user.nome" ng-minlength="3" required />
+            <div class="help-block" ng-messages="userForm.nome.$error">
+                <p ng-message="minlength">Your name is too short.</p>
+                <p ng-message="required">Your name is required.</p>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': userForm.senha.$dirty && userForm.senha.required }">
+            <label>Senha</label>
+            <input type="text" name="senha" ng-model="user.senha" ng-minlength="6" required />
+            <div class="help-block" ng-messages="userForm.senha.$error">
+                <p ng-message="minlength">Password is too short.</p>
+                <p ng-message="required">Password is required.</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-default" ng-disabled="userForm.$invalid">Acessar</button>
+        </div>
+
+    </form>
+</div>

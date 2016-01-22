@@ -1,0 +1,49 @@
+﻿<div class="row">
+    <table class="table">
+        <tr>
+            <th colspan="2">Manhã</th>
+            <th colspan="2">Tarde</th>
+            <th colspan="2">Noite</th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>Inicio</th>
+            <th>Termino</th>
+            <th>Inicio</th>
+            <th>Termino</th>
+            <th>Inicio</th>
+            <th>Termino</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr ng-repeat="row in rows" ng-click="habilitaEdicao(row)">
+            <td class="col-sm-1">
+                <span ng-hide="row.editing">{{row.inicio1}}</span>
+                <input type="text" ng-model="row.inicio1" ng-show="row.editing" />
+            </td>
+            <td class="col-sm-1">
+                <span ng-hide="row.editing">{{row.termino1}}</span>
+                <input type="text" ng-model="row.termino1" ng-show="row.editing" />
+            </td>
+            <td class="col-sm-1">
+                <span ng-hide="row.editing">{{row.inicio2}}</span>
+                <input type="text" ng-model="row.inicio2" ng-show="row.editing" />
+            </td>
+            <td class="col-sm-1">
+                <span ng-hide="row.editing">{{row.termino2}}</span>
+                <input type="text" ng-model="row.termino2" ng-show="row.editing" />
+            </td>
+            <td class="col-sm-1">
+                <span ng-hide="row.editing">{{row.inicio3}}</span>
+                <input type="text" ng-model="row.inicio3" ng-show="row.editing" />
+            </td>
+            <td class="col-sm-1">
+                <span ng-hide="row.editing">{{row.termino3}}</span>
+                <input type="text" ng-model="row.termino3" ng-show="row.editing" />
+            </td>
+            <td class="col-sm-4">
+                <button type="button" class="btn btn-primary" ng-show="row.editing" ng-click="salvaEdicao($event, row)">Salvar</button>
+                <button type="button" class="btn btn-danger" ng-show="row.editing" ng-click="cancelaEdicao($event, row)">Cancelar</button>
+            </td>
+        </tr>
+    </table>
+</div>

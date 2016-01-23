@@ -17,9 +17,9 @@ namespace br.com.klinderrh.social.dominio.entidades
 			UnidadeFederativa = unidadeFederativa;
 		}
 
-		public string Nome { get; }
-		public string UnidadeFederativa { get; }
-		public string Pais { get; }
+		public string Nome { get; private set; }
+		public string UnidadeFederativa { get; private set; }
+		public string Pais { get; private set; }
 
 	}
 

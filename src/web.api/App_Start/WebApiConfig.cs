@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
-using br.com.klinderrh.social.infra.ioc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 

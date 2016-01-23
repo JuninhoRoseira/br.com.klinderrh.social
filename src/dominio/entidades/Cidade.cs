@@ -11,9 +11,9 @@ namespace br.com.klinderrh.social.dominio.entidades
 			Estado = estado;
 		}
 
-		public string Nome { get; }
-		public string Sigla { get; }
-		public Estado Estado { get; }
+		public string Nome { get; private set; }
+		public string Sigla { get; private set; }
+		public Estado Estado { get; private set; }
 
 	}
 

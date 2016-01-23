@@ -8,23 +8,20 @@ namespace br.com.klinderrh.social.dominio.entidades
 	{
 		protected Contato() { }
 
-		public Contato(string nome, string telefone, string email) : this()
+		public Contato(string telefone, string email) : this()
 		{
-			Nome = nome;
 			Telefone = telefone;
 			Email = email;
 		}
 
 		public void Validar()
 		{
-			Assertions<NullReferenceException>.IsNotNullOrEmpty(Nome, string.Format(Messages.NotBeEmpty, "Nome"));
 			Assertions<NullReferenceException>.IsNotNullOrEmpty(Telefone, string.Format(Messages.NotBeEmpty, "Telefone"));
 			Assertions<NullReferenceException>.IsNotNullOrEmpty(Email, string.Format(Messages.NotBeEmpty, "Email"));
 		}
 
-		public string Nome { get; }
-		public string Telefone { get; }
-		public string Email { get; }
+		public string Telefone { get; private set; }
+		public string Email { get; private set; }
 
 	}
 

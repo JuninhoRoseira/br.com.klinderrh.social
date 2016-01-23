@@ -38,12 +38,16 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="entidades\Cargo.cs" />
     <Compile Include="entidades\Cidade.cs" />
+    <Compile Include="entidades\Colaborador.cs" />
     <Compile Include="entidades\Contato.cs" />
+    <Compile Include="entidades\Departamento.cs" />
     <Compile Include="entidades\Empresa.cs" />
     <Compile Include="entidades\Endereco.cs" />
     <Compile Include="entidades\EntidadeBase.cs" />
     <Compile Include="entidades\Estado.cs" />
+    <Compile Include="entidades\Pessoa.cs" />
     <Compile Include="entidades\Usuario.cs" />
     <Compile Include="objetosdevalor\Paises.cs" />
     <Compile Include="objetosdevalor\TipoDeEndereco.cs" />

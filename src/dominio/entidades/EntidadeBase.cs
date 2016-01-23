@@ -14,8 +14,8 @@ namespace br.com.klinderrh.social.dominio.entidades
 			Ativo = true;
 		}
 
-		public int Codigo { get; }
-		public DateTime DataDeCadastro { get; }
+		public int Codigo { get; private set; }
+		public DateTime DataDeCadastro { get; private set; }
 		public bool Ativo { get; set; }
 
 		public string ToJson()

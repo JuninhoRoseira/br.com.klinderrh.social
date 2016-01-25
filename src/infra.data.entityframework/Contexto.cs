@@ -25,8 +25,12 @@ namespace br.com.klinderrh.social.infra.data.entityframework
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
+			modelBuilder.Configurations.Add(new EstadoMap());
+			modelBuilder.Configurations.Add(new CidadeMap());
 			modelBuilder.Configurations.Add(new UsuarioMap());
 			modelBuilder.Configurations.Add(new CargoMap());
+			modelBuilder.Configurations.Add(new ContatoMap());
+			modelBuilder.Configurations.Add(new DepartamentoMap());
 
 			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 			modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
@@ -39,6 +43,10 @@ namespace br.com.klinderrh.social.infra.data.entityframework
 
 		public IDbSet<Usuario> Usuarios { get; set; }
 		public IDbSet<Cargo> Cargos { get; set; }
+		public IDbSet<Cidade> Cidades { get; set; }
+		public IDbSet<Estado> Estados { get; set; }
+		public IDbSet<Contato> Contatos { get; set; }
+		public IDbSet<Departamento> Departamentos { get; set; }
 
 	}
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace br.com.klinderrh.social.dominio.entidades
 {
-	public class Colaborador : Pessoa
+	public class Colaborador : EntidadeBase
 	{
 
 		protected Colaborador()
@@ -16,6 +16,7 @@ namespace br.com.klinderrh.social.dominio.entidades
 
 		public string NumeroInscricao { get; set; }
 
+		public Pessoa Pessoa { get; set; }
 		public Empresa Empresa { get; set; }
 		public Departamento Departamento { get; set; }
 		public Cargo Cargo { get; set; }

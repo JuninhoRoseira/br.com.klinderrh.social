@@ -40,6 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexto.cs" />
+    <Compile Include="mapeamentos\CargoMap.cs" />
+    <Compile Include="mapeamentos\CidadeMap.cs" />
+    <Compile Include="mapeamentos\ContatoMap.cs" />
+    <Compile Include="mapeamentos\DepartamentoMap.cs" />
+    <Compile Include="mapeamentos\EstadoMap.cs" />
     <Compile Include="mapeamentos\MapeamentoBase.cs" />
     <Compile Include="Migrations\201601201231597_Inicial.cs" />
     <Compile Include="Migrations\201601201231597_Inicial.Designer.cs">

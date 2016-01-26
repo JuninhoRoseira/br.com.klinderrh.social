@@ -40,7 +40,7 @@
   <ItemGroup>
     <Compile Include="entidades\Cargo.cs" />
     <Compile Include="entidades\Cidade.cs" />
-    <Compile Include="entidades\Colaborador.cs" />
+    <Compile Include="entidades\Funcionario.cs" />
     <Compile Include="entidades\Contato.cs" />
     <Compile Include="entidades\Departamento.cs" />
     <Compile Include="entidades\Empresa.cs" />

@@ -12,7 +12,12 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 			Property(d => d.Sigla).HasMaxLength(10).IsOptional();
 			Property(d => d.Descricao).HasMaxLength(500).IsOptional();
 
+			HasOptional(d => d.DepartamentoPai)
+				.WithMany(d => d.DepartamentosFilho)
+				.HasForeignKey(d => d.CodigoDoDepartamentoPai);
+
 		}
 
 	}
+
 }

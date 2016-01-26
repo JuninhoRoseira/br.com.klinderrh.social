@@ -1,4 +1,5 @@
-﻿using br.com.klinderrh.social.dominio.objetosdevalor;
+﻿using System.Collections.Generic;
+using br.com.klinderrh.social.dominio.objetosdevalor;
 
 namespace br.com.klinderrh.social.dominio.entidades
 {
@@ -8,12 +9,17 @@ namespace br.com.klinderrh.social.dominio.entidades
 		{
 			TipoDeEndereco = TipoDeEndereco.Residencial;
 		}
+
 		public TipoDeEndereco TipoDeEndereco { get; set; }
 		public string Logradouro { get; set; }
 		public string Numero { get; set; }
 		public string Complemento { get; set; }
 		public string CEP { get; set; }
 		public string Bairro { get; set; }
-		public Cidade Cidade { get; set; }
+
+		public int CodigoDaCidade { get; set; }
+		public virtual Cidade Cidade { get; set; }
+
 	}
+
 }

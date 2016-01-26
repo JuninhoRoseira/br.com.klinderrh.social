@@ -17,6 +17,7 @@ namespace br.com.klinderrh.social.dominio.entidades
 		public string CPF { get; set; }
 		public DateTime DataDeNascimento { get; set; }
 
+		public int? CodigoDoUsuario { get; set; }
 		public Usuario Usuario { get; set; }
 
 		public ICollection<Contato> Contatos { get; set; }

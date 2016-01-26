@@ -8,9 +8,17 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 		{
 			ToTable("Usuario");
 
-			Property(u => u.Senha).HasMaxLength(100).IsRequired();
-			Property(u => u.Nome).HasMaxLength(50).IsRequired().HasColumnAnnotation("Index", NovoIndice("IX_Usuario_Nome"));
-			Property(u => u.Email).HasMaxLength(50).IsRequired();
+			Property(u => u.Senha)
+				.HasMaxLength(100)
+				.IsRequired();
+			Property(u => u.Nome)
+				.HasMaxLength(50)
+				.IsRequired()
+				.HasColumnAnnotation("Index", NovoIndiceUnico("IX_Usuario_Nome"));
+			Property(u => u.Email)
+				.HasMaxLength(50)
+				.IsRequired()
+				.HasColumnAnnotation("Index", NovoIndiceUnico("IX_Usuario_Email"));
 
 		}
 

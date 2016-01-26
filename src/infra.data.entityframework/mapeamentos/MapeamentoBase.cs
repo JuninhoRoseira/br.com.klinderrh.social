@@ -22,6 +22,14 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 			return new IndexAnnotation(new IndexAttribute(nomeDoIndice));
 		}
 
+		protected IndexAnnotation NovoIndiceUnico(string nomeDoIndice)
+		{
+			return new IndexAnnotation(new IndexAttribute(nomeDoIndice)
+			{
+				IsUnique = true
+			});
+		}
+
 	}
 
 }

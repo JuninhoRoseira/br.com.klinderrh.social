@@ -8,11 +8,12 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 		{
 			ToTable("Estado");
 
-			Property(e => e.Nome).HasMaxLength(50).IsRequired().HasColumnAnnotation("Index", NovoIndice("IX_Estado_Nome"));
-			Property(e => e.Pais).HasMaxLength(10).IsOptional();
+			Property(e => e.Nome).HasMaxLength(100).IsRequired().HasColumnAnnotation("Index", NovoIndice("IX_Estado_Nome"));
 			Property(e => e.UnidadeFederativa).HasMaxLength(2).IsRequired();
+			Property(e => e.Pais).HasMaxLength(50).IsOptional();
 
 		}
 
 	}
+
 }

@@ -13,7 +13,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201601201231597_Inicial"; }
+            get { return "201601262040259_Inicial"; }
         }
         
         string IMigrationMetadata.Source

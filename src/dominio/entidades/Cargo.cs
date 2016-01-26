@@ -1,10 +1,10 @@
-﻿namespace br.com.klinderrh.social.dominio.entidades
+﻿using System.Collections.Generic;
+
+namespace br.com.klinderrh.social.dominio.entidades
 {
 	public class Cargo : EntidadeBase
 	{
-		protected Cargo()
-		{
-		}
+		protected Cargo() { }
 
 		public Cargo(string nome)
 		{

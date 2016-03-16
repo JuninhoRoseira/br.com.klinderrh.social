@@ -40,7 +40,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework.repositorios
 
 		public T ObterPorCodigo(int codigo)
 		{
-			throw new NotImplementedException();
+			return _dbSet.FirstOrDefault(s => s.Codigo == codigo);
 		}
 
 		public IQueryable<T> ObterPor(Expression<Func<T, bool>> condicao = null,

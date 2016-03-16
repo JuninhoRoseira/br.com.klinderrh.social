@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using br.com.klinderrh.social.infra.comum;
 using br.com.klinderrh.social.infra.recursos;
@@ -28,6 +27,7 @@ namespace br.com.klinderrh.social.dominio.entidades
 		public string Nome { get; private set; }
 		public string Email { get; private set; }
 		public string Senha { get; private set; }
+		public bool Valido { get; set; }
 
 		public void Validar()
 		{

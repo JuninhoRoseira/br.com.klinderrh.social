@@ -11,47 +11,68 @@ namespace br.com.klinderrh.social.infra.data.entityframework
 	{
 
 		private readonly DbContext _contexto;
-		private DbContextTransaction _transaction;
-		private bool _disposed;
+		private DbContextTransaction _transacao;
 		private Hashtable _repositories;
+
+		private bool TransacaoAtiva => (_transacao != null);
 
 		public UnidadeDeTrabalho(DbContext contexto)
 		{
 			_contexto = contexto;
 		}
 
-		protected virtual void Dispose(bool disposing)
+		private void DisposeTransaction()
 		{
-			if (!_disposed)
-			{
-				if (disposing)
-				{
-					_contexto.Dispose();
-				}
-			}
-			_disposed = true;
+			_transacao.Dispose();
+
+			_transacao = null;
+
 		}
 
-		public void Dispose()
+		public bool IniciarTransacao()
 		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
+			if (TransacaoAtiva)
+				return false;
+
+			_transacao = _contexto.Database.BeginTransaction();
+
+			return true;
+
+		}
+
+		public void EfetivarTransacao(bool executar)
+		{
+			if (!TransacaoAtiva)
+				throw new NullReferenceException("Nenhuma transação ativa no momento.");
+
+			if (executar)
+			{
+				_transacao.Commit();
+
+				DisposeTransaction();
+
+			}
+
+		}
+
+		public void DescartarTransacao(bool executar)
+		{
+			if (!TransacaoAtiva)
+				throw new NullReferenceException("Nenhuma transação ativa no momento.");
+
+			if (executar)
+			{
+				_transacao.Rollback();
+
+				DisposeTransaction();
+
+			}
+
 		}
 
 		public void Salvar()
 		{
 			_contexto.SaveChanges();
-			_transaction.Commit();
-		}
-
-		public void IniciarTransacao()
-		{
-			_transaction = _contexto.Database.BeginTransaction();
-		}
-
-		public void DescartarTransacao()
-		{
-			_transaction.Rollback();
 		}
 
 		public IRepositorioGenerico<T> ObterRepositorio<T>() where T : EntidadeBase

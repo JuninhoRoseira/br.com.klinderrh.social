@@ -54,9 +54,9 @@
     <Compile Include="mapeamentos\EstadoMap.cs" />
     <Compile Include="mapeamentos\MapeamentoBase.cs" />
     <Compile Include="mapeamentos\PessoaMap.cs" />
-    <Compile Include="Migrations\201601262040259_Inicial.cs" />
-    <Compile Include="Migrations\201601262040259_Inicial.Designer.cs">
-      <DependentUpon>201601262040259_Inicial.cs</DependentUpon>
+    <Compile Include="Migrations\201602252325108_Inicial.cs" />
+    <Compile Include="Migrations\201602252325108_Inicial.Designer.cs">
+      <DependentUpon>201602252325108_Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,8 +80,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201601262040259_Inicial.resx">
-      <DependentUpon>201601262040259_Inicial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602252325108_Inicial.resx">
+      <DependentUpon>201602252325108_Inicial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

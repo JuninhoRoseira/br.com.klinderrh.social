@@ -18,70 +18,84 @@ namespace br.com.klinderrh.social.aplicacao
 
 		public Usuario Registrar(string nome, string email, string senha, string confirmacaoDaSenha)
 		{
-			using (var unidadeDeTrabalho = _unidadeDeTrabalhoFabrica.Criar())
+			var unidadeDeTrabalho = _unidadeDeTrabalhoFabrica.Criar();
+			var transacaoAbertaAqui = false;
+
+			try
 			{
-				try
-				{
-					unidadeDeTrabalho.IniciarTransacao();
+				transacaoAbertaAqui = unidadeDeTrabalho.IniciarTransacao();
 
-					var usuario = new Usuario(nome, email);
+				var usuario = new Usuario(nome, email);
 
-					usuario.AtribuirSenha(senha, confirmacaoDaSenha);
-					usuario.Validar();
+				usuario.AtribuirSenha(senha, confirmacaoDaSenha);
+				usuario.Validar();
 
-					var repositorioDeUsuario = unidadeDeTrabalho.ObterRepositorio<Usuario>();
+				usuario.Valido = false; // Todos os usuários precisam confirmar seu cadastro para poderem acessar o sistema.
 
-					repositorioDeUsuario.Incluir(usuario);
+				var repositorioDeUsuario = unidadeDeTrabalho.ObterRepositorio<Usuario>();
 
-					return usuario;
+				repositorioDeUsuario.Incluir(usuario);
 
-				}
-				catch (Exception ex)
-				{
-					unidadeDeTrabalho.DescartarTransacao();
+				unidadeDeTrabalho.Salvar();
 
-					EmailHelper.EnviarEmail("juninhoroseira@gmail.com", "Erro", ex.GetBaseException().ToString());
+				return usuario;
 
-					throw new Exception("Erro ao tentar registrar este usuário.");
+			}
+			catch (Exception ex)
+			{
+				unidadeDeTrabalho.DescartarTransacao(transacaoAbertaAqui);
 
-				}
-				finally
-				{
-					unidadeDeTrabalho.Salvar();
-				}
+				EmailHelper.EnviarEmail("juninhoroseira@gmail.com", "Erro", ex.GetBaseException().ToString());
 
+				throw new Exception("Erro ao tentar registrar este usuário.");
+
+			}
+			finally
+			{
+				unidadeDeTrabalho.EfetivarTransacao(transacaoAbertaAqui);
+				_unidadeDeTrabalhoFabrica.Destruir(transacaoAbertaAqui);
 			}
 
 		}
 
 		public Usuario Autenticar(string email, string senha)
 		{
-			using (var unidadeDeTrabalho = _unidadeDeTrabalhoFabrica.Criar())
+			var unidadeDeTrabalho = _unidadeDeTrabalhoFabrica.Criar();
+			var transacaoAbertaAqui = false;
+
+			try
 			{
-				try
+				transacaoAbertaAqui = unidadeDeTrabalho.IniciarTransacao();
+
+				var repositorioDeUsuario = unidadeDeTrabalho.ObterRepositorio<Usuario>();
+
+				var usuario = repositorioDeUsuario.ObterPor(u => u.Email == email).FirstOrDefault();
+
+				if (usuario != null)
 				{
-					var repositorioDeUsuario = unidadeDeTrabalho.ObterRepositorio<Usuario>();
-					var usuario = repositorioDeUsuario.ObterPor(u => u.Email == email).FirstOrDefault();
+					usuario.VerificarSenha(senha);
 
-					if (usuario != null)
-					{
-						usuario.VerificarSenha(senha);
-
-						return usuario;
-
-					}
+					return usuario;
 
 				}
-				catch (Exception ex)
-				{
-					EmailHelper.EnviarEmail("juninhoroseira@gmail.com", "Erro", ex.GetBaseException().ToString());
-
-					throw new Exception("Erro ao tentar autenticar este usuário.");
-				}
-
-				return null;
 
 			}
+			catch (Exception ex)
+			{
+				unidadeDeTrabalho.DescartarTransacao(transacaoAbertaAqui);
+
+				EmailHelper.EnviarEmail("juninhoroseira@gmail.com", "Erro", ex.GetBaseException().ToString());
+
+				throw new Exception("Erro ao tentar autenticar este usuário.");
+
+			}
+			finally
+			{
+				unidadeDeTrabalho.EfetivarTransacao(transacaoAbertaAqui);
+				_unidadeDeTrabalhoFabrica.Destruir(transacaoAbertaAqui);
+			}
+
+			return null;
 
 		}
 

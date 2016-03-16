@@ -49,6 +49,8 @@
     <Compile Include="entidades\Estado.cs" />
     <Compile Include="entidades\Pessoa.cs" />
     <Compile Include="entidades\Usuario.cs" />
+    <Compile Include="objetosdetransporte\FuncionarioModelo.cs" />
+    <Compile Include="objetosdetransporte\UsuarioModelo.cs" />
     <Compile Include="objetosdevalor\Paises.cs" />
     <Compile Include="objetosdevalor\TipoDeEndereco.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

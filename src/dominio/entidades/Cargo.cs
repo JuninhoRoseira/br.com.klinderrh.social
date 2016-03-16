@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace br.com.klinderrh.social.dominio.entidades
+﻿namespace br.com.klinderrh.social.dominio.entidades
 {
 	public class Cargo : EntidadeBase
 	{
@@ -8,7 +6,7 @@ namespace br.com.klinderrh.social.dominio.entidades
 
 		public Cargo(string nome)
 		{
-			Nome = Nome;
+			Nome = nome;
 		}
 
 		public string Nome { get; private set; }

@@ -1,7 +1,9 @@
 ﻿(function() {
     'use strict';
 
-    app.directive('appNavigator', function() {
+    angular
+		.module("klinderrh.web.ui")
+		.directive('appNavigator', function () {
         return {
             replace: true,
             restrict: 'A',

@@ -3,7 +3,9 @@
 
     var serviceUrl = "http://localhost:64449/api/apontamentos/";
 
-    app.controller('HomeCtrl', ['$scope', '$http', HomeCtrl]);
+    angular
+		.module("klinderrh.web.ui")
+		.controller('HomeCtrl', ['$scope', '$http', HomeCtrl]);
 
     function HomeCtrl($scope, $http) {
         $scope.rows = [];

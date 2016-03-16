@@ -1,33 +1,41 @@
 ﻿(function() {
-    'use strict';
+	'use strict';
 
-    var serviceUrl = "http://localhost:22149/api/";
+	var serviceUrl = "http://localhost:22149/api/";
 
-    app.controller('LoginCtrl', ['$scope', '$http', '$rootScope', '$location', LoginCtrl]);
+	angular
+		.module("klinderrh.web.ui")
+		.controller('LoginCtrl', ['$scope', '$http', '$rootScope', '$location', LoginCtrl]);
 
-    function LoginCtrl($scope, $http, $rootScope, $location) {
-        $rootScope.loggedUser = null;
+	function LoginCtrl($scope, $http, $rootScope, $location) {
+		$scope.authUser = function(user) {
+			$rootScope.loggedUser = null;
 
-        $scope.authUser = function(user) {
-            var data = "grant_type=password&username=" + user.nome + "&password=" + user.senha;
-            //var deferred = $q.defer();
-            var headers = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
+			var data = "grant_type=password&username=" + user.nome + "&password=" + user.senha;
+			var headers = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
 
-            $http.
-                post(serviceUrl + 'auth', data, headers).
-                success(function(response) {
-                    $rootScope.loggedUser = response;
+			$http
+				.post(serviceUrl + 'auth', data, headers)
+				.success(function(response) {
+					storage.setObject('authorizationData',
+					{
+						token: response.access_token,
+						userName: user.nome
+					});
 
-                    $location.path("/");
+					$rootScope.loggedUser = storage.getObject('authorizationData');
 
-                }).
-                error(function(error) {
-                    console.log(error);
-                });
+					$location.path("/");
 
-        }
+				})
+				.error(function(error) {
+					console.log(error);
+
+				});
+
+		}
 
 
-    }
+	}
 
 })();

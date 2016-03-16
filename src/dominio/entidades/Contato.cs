@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using br.com.klinderrh.social.infra.comum;
 using br.com.klinderrh.social.infra.recursos;
 

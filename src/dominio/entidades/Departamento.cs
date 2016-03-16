@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace br.com.klinderrh.social.dominio.entidades
 {
@@ -11,8 +10,13 @@ namespace br.com.klinderrh.social.dominio.entidades
 			DepartamentosFilho = new List<Departamento>();
 		}
 
-		public string Sigla { get; set; }
-		public string Nome { get; set; }
+		public Departamento(string nome)
+		{
+			Nome = nome;
+		}
+
+		public string Nome { get; private set; }
+		public string Sigla { get;  set; }
 		public string Descricao { get; set; }
 
 		public int? CodigoDoDepartamentoPai { get; set; }

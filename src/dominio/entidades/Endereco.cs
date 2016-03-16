@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using br.com.klinderrh.social.dominio.objetosdevalor;
+﻿using br.com.klinderrh.social.dominio.objetosdevalor;
 
 namespace br.com.klinderrh.social.dominio.entidades
 {

@@ -19,6 +19,8 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 				.HasMaxLength(50)
 				.IsRequired()
 				.HasColumnAnnotation("Index", NovoIndiceUnico("IX_Usuario_Email"));
+			Property(u => u.Valido)
+				.IsOptional();
 
 		}
 

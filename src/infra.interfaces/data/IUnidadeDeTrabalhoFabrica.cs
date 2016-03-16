@@ -3,5 +3,6 @@
 	public interface IUnidadeDeTrabalhoFabrica
 	{
 		IUnidadeDeTrabalho Criar();
+		void Destruir(bool executar);
 	}
 }

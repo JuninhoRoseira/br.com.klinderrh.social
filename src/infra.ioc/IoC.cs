@@ -38,6 +38,8 @@ namespace br.com.klinderrh.social.infra.ioc
 		public override void Load()
 		{
 			Bind<IUsuarioAplicacao>().To<UsuarioAplicacao>();
+			Bind<IPessoaAplicacao>().To<PessoaAplicacao>();
+			Bind<IFuncionarioAplicacao>().To<FuncionarioAplicacao>();
 		}
 	}
 

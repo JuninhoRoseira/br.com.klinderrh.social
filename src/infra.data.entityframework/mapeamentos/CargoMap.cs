@@ -15,4 +15,5 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 		}
 
 	}
+
 }

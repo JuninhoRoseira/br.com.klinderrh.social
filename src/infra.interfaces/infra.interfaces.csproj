@@ -34,7 +34,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="aplicacao\IUsuarioAplicacao.cs" />
+    <Compile Include="aplicacao\IAplicacao.cs" />
     <Compile Include="data\IRepositorioDeGravacao.cs" />
     <Compile Include="data\IRepositorioDeLeitura.cs" />
     <Compile Include="data\IRepositorioGenerico.cs" />

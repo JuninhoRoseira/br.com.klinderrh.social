@@ -1,7 +1,9 @@
 ﻿(function() {
     'use strict';
 
-    app.controller('AboutCtrl', ['$scope', AboutCtrl]);
+    angular
+		.module("klinderrh.web.ui")
+		.controller('AboutCtrl', ['$scope', AboutCtrl]);
 
     function AboutCtrl($scope) {
         

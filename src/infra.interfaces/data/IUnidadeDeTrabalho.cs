@@ -3,11 +3,12 @@ using br.com.klinderrh.social.dominio.entidades;
 
 namespace br.com.klinderrh.social.infra.interfaces.data
 {
-	public interface IUnidadeDeTrabalho : IDisposable
+	public interface IUnidadeDeTrabalho // : IDisposable
 	{
-		void IniciarTransacao();
+		bool IniciarTransacao();
+		void EfetivarTransacao(bool executar);
+		void DescartarTransacao(bool executar);
 		void Salvar();
-		void DescartarTransacao();
 		IRepositorioGenerico<T> ObterRepositorio<T>() where T : EntidadeBase;
 	}
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using br.com.klinderrh.social.dominio.entidades;
 
@@ -53,14 +54,43 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
 			context.SaveChanges();
 
 			var estado = context.Estados.FirstOrDefault(e => e.UnidadeFederativa == "SP");
-			
-			context.Cidades.Add(new Cidade("Campinas", "CPS", estado.Codigo));
-			context.Cidades.Add(new Cidade("São Paulo", "SPA", estado.Codigo));
+
+			if (estado != null)
+			{
+				context.Cidades.Add(new Cidade("Campinas", "CPS", estado.Codigo));
+				context.Cidades.Add(new Cidade("São Paulo", "SPA", estado.Codigo));
+			}
 
 			estado = context.Estados.FirstOrDefault(e => e.UnidadeFederativa == "RJ");
 
-			context.Cidades.Add(new Cidade("Rio de Janeiro", "RJN", estado.Codigo));
-			context.Cidades.Add(new Cidade("Paraty", "PAR", estado.Codigo));
+			if (estado != null)
+			{
+				context.Cidades.Add(new Cidade("Rio de Janeiro", "RJN", estado.Codigo));
+				context.Cidades.Add(new Cidade("Paraty", "PAR", estado.Codigo));
+			}
+
+			context.SaveChanges();
+
+			context.Empresas.Add(new Empresa("Klinder RH", "Klinder RH", "132456", "987654")
+			{
+				DataDeAdesao = DateTime.Now
+			});
+
+			context.SaveChanges();
+
+			context.Departamentos.Add(new Departamento("Presidência")
+			{
+				Descricao = "Presidência",
+				Sigla = "PRES"
+			});
+
+			context.SaveChanges();
+
+			context.Cargos.Add(new Cargo("Diretor Presidente")
+			{
+				Descricao = "Diretor Presidente",
+				Sigla = "DIRPRES"
+			});
 
 			context.SaveChanges();
 

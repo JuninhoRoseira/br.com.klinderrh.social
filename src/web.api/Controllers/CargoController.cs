@@ -44,6 +44,29 @@ namespace br.com.klinderrh.social.web.api.Controllers
 
 		}
 
+		[Authorize]
+		[HttpPut]
+		[Route(RotaPadrao)]
+		public HttpResponseMessage PutCargo(CargoModelo cargo)
+		{
+
+			if (cargo == null)
+				return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+			try
+			{
+				_cargoAplicacao.Modificar(cargo);
+
+				return Request.CreateResponse(HttpStatusCode.OK, "Cargo modificado com sucesso.");
+
+			}
+			catch (Exception ex)
+			{
+				return Request.CreateResponse(HttpStatusCode.InternalServerError, "Falha ao modificar cargo.");
+			}
+
+		}
+
 	}
 
 }

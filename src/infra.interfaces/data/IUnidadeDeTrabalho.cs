@@ -1,4 +1,3 @@
-using System;
 using br.com.klinderrh.social.dominio.entidades;
 
 namespace br.com.klinderrh.social.infra.interfaces.data

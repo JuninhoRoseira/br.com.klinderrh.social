@@ -1,5 +1,4 @@
-﻿using System;
-using br.com.klinderrh.social.dominio.entidades;
+﻿using br.com.klinderrh.social.dominio.entidades;
 using br.com.klinderrh.social.dominio.objetosdetransporte;
 
 namespace br.com.klinderrh.social.infra.interfaces.aplicacao
@@ -24,6 +23,7 @@ namespace br.com.klinderrh.social.infra.interfaces.aplicacao
 	public interface ICargoAplicacao
 	{
 		Cargo Adicionar(CargoModelo cargo);
+		void Modificar(CargoModelo cargo);
 	}
 
 }

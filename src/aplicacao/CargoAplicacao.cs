@@ -55,6 +55,44 @@ namespace br.com.klinderrh.social.aplicacao
 
 		}
 
+		public void Modificar(CargoModelo cargo)
+		{
+			var transacaoAbertaAqui = false;
+
+			try
+			{
+				transacaoAbertaAqui = _unidadeDeTrabalho.IniciarTransacao();
+
+				int codigo;
+
+				int.TryParse(cargo.Codigo, out codigo);
+
+				var repositorioDeCargos = _unidadeDeTrabalho.ObterRepositorio<Cargo>();
+				var cargoAlterado = repositorioDeCargos.ObterPorCodigo(codigo);
+
+				if (cargoAlterado == null) return;
+
+				cargoAlterado.AlterarDados(cargo.Nome, cargo.Sigla, cargo.Descricao);
+
+				_unidadeDeTrabalho.Salvar();
+
+			}
+			catch (Exception ex)
+			{
+				_unidadeDeTrabalho.DescartarTransacao(transacaoAbertaAqui);
+
+				EmailHelper.EnviarEmail("juninhoroseira@gmail.com", "Erro", ex.GetBaseException().ToString());
+
+				throw new Exception("Erro ao tentar modificar este cargo.");
+
+			}
+			finally
+			{
+				_unidadeDeTrabalho.EfetivarTransacao(transacaoAbertaAqui);
+			}
+
+		}
+
 	}
 
 }

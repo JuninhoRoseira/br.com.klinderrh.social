@@ -1,7 +1,6 @@
 namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
+	using System.Data.Entity.Migrations;
     
     public partial class Inicial : DbMigration
     {

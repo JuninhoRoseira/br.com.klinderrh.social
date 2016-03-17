@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using br.com.klinderrh.social.dominio.entidades;
+using br.com.klinderrh.social.dominio.objetosdetransporte;
 using br.com.klinderrh.social.infra.comunicacao;
 using br.com.klinderrh.social.infra.interfaces.aplicacao;
 using br.com.klinderrh.social.infra.interfaces.data;
@@ -9,41 +10,40 @@ namespace br.com.klinderrh.social.aplicacao
 {
 	public class UsuarioAplicacao : IUsuarioAplicacao
 	{
-		private readonly IUnidadeDeTrabalhoFabrica _unidadeDeTrabalhoFabrica;
+		private readonly IUnidadeDeTrabalho _unidadeDeTrabalho;
 
-		public UsuarioAplicacao(IUnidadeDeTrabalhoFabrica unidadeDeTrabalhoFabrica)
+		public UsuarioAplicacao(IUnidadeDeTrabalho unidadeDeTrabalho)
 		{
-			_unidadeDeTrabalhoFabrica = unidadeDeTrabalhoFabrica;
+			_unidadeDeTrabalho = unidadeDeTrabalho;
 		}
 
-		public Usuario Registrar(string nome, string email, string senha, string confirmacaoDaSenha)
+		public Usuario Registrar(UsuarioModelo usuario)
 		{
-			var unidadeDeTrabalho = _unidadeDeTrabalhoFabrica.Criar();
 			var transacaoAbertaAqui = false;
 
 			try
 			{
-				transacaoAbertaAqui = unidadeDeTrabalho.IniciarTransacao();
+				transacaoAbertaAqui = _unidadeDeTrabalho.IniciarTransacao();
 
-				var usuario = new Usuario(nome, email);
+				var usuarioNovo = new Usuario(usuario.Nome, usuario.Email);
 
-				usuario.AtribuirSenha(senha, confirmacaoDaSenha);
-				usuario.Validar();
+				usuarioNovo.AtribuirSenha(usuario.Senha, usuario.ConfirmacaoDaSenha);
+				usuarioNovo.Validar();
 
-				usuario.Valido = false; // Todos os usuários precisam confirmar seu cadastro para poderem acessar o sistema.
+				usuarioNovo.Valido = false; // Todos os usuários precisam confirmar seu cadastro para poderem acessar o sistema.
 
-				var repositorioDeUsuario = unidadeDeTrabalho.ObterRepositorio<Usuario>();
+				var repositorioDeUsuario = _unidadeDeTrabalho.ObterRepositorio<Usuario>();
 
-				repositorioDeUsuario.Incluir(usuario);
+				repositorioDeUsuario.Incluir(usuarioNovo);
 
-				unidadeDeTrabalho.Salvar();
+				_unidadeDeTrabalho.Salvar();
 
-				return usuario;
+				return usuarioNovo;
 
 			}
 			catch (Exception ex)
 			{
-				unidadeDeTrabalho.DescartarTransacao(transacaoAbertaAqui);
+				_unidadeDeTrabalho.DescartarTransacao(transacaoAbertaAqui);
 
 				EmailHelper.EnviarEmail("juninhoroseira@gmail.com", "Erro", ex.GetBaseException().ToString());
 
@@ -52,37 +52,35 @@ namespace br.com.klinderrh.social.aplicacao
 			}
 			finally
 			{
-				unidadeDeTrabalho.EfetivarTransacao(transacaoAbertaAqui);
-				_unidadeDeTrabalhoFabrica.Destruir(transacaoAbertaAqui);
+				_unidadeDeTrabalho.EfetivarTransacao(transacaoAbertaAqui);
 			}
 
 		}
 
-		public Usuario Autenticar(string email, string senha)
+		public Usuario Autenticar(UsuarioModelo usuario)
 		{
-			var unidadeDeTrabalho = _unidadeDeTrabalhoFabrica.Criar();
 			var transacaoAbertaAqui = false;
 
 			try
 			{
-				transacaoAbertaAqui = unidadeDeTrabalho.IniciarTransacao();
+				transacaoAbertaAqui = _unidadeDeTrabalho.IniciarTransacao();
 
-				var repositorioDeUsuario = unidadeDeTrabalho.ObterRepositorio<Usuario>();
+				var repositorioDeUsuario = _unidadeDeTrabalho.ObterRepositorio<Usuario>();
 
-				var usuario = repositorioDeUsuario.ObterPor(u => u.Email == email).FirstOrDefault();
+				var usuarioAutenticado = repositorioDeUsuario.ObterPor(u => u.Email == usuario.Email).FirstOrDefault();
 
-				if (usuario != null)
+				if (usuarioAutenticado != null)
 				{
-					usuario.VerificarSenha(senha);
+					usuarioAutenticado.VerificarSenha(usuario.Senha);
 
-					return usuario;
+					return usuarioAutenticado;
 
 				}
 
 			}
 			catch (Exception ex)
 			{
-				unidadeDeTrabalho.DescartarTransacao(transacaoAbertaAqui);
+				_unidadeDeTrabalho.DescartarTransacao(transacaoAbertaAqui);
 
 				EmailHelper.EnviarEmail("juninhoroseira@gmail.com", "Erro", ex.GetBaseException().ToString());
 
@@ -91,8 +89,7 @@ namespace br.com.klinderrh.social.aplicacao
 			}
 			finally
 			{
-				unidadeDeTrabalho.EfetivarTransacao(transacaoAbertaAqui);
-				_unidadeDeTrabalhoFabrica.Destruir(transacaoAbertaAqui);
+				_unidadeDeTrabalho.EfetivarTransacao(transacaoAbertaAqui);
 			}
 
 			return null;

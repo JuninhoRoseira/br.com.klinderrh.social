@@ -31,11 +31,13 @@ namespace br.com.klinderrh.social.web.api.Controllers
 
 			try
 			{
-				var novoUsuario = _usuarioAplicacao.Registrar(
-					usuario.Nome,
-					usuario.Email,
-					usuario.Senha,
-					usuario.ConfirmacaoDaSenha);
+				var novoUsuario = _usuarioAplicacao.Registrar(new UsuarioModelo
+				{
+					Nome = usuario.Nome,
+					Email = usuario.Email,
+					Senha = usuario.Senha,
+					ConfirmacaoDaSenha = usuario.ConfirmacaoDaSenha
+				});
 
 				return Request.CreateResponse(HttpStatusCode.Created, novoUsuario);
 

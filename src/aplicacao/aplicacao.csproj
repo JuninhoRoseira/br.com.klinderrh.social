@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorizationServerProvider.cs" />
+    <Compile Include="CargoAplicacao.cs" />
     <Compile Include="FuncionarioAplicacao.cs" />
     <Compile Include="PessoaAplicacao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -7,8 +7,8 @@ namespace br.com.klinderrh.social.infra.interfaces.aplicacao
 
 	public interface IUsuarioAplicacao
 	{
-		Usuario Registrar(string nome, string email, string senha, string confirmacaoDaSenha);
-		Usuario Autenticar(string email, string senha);
+		Usuario Registrar(UsuarioModelo usuario);
+		Usuario Autenticar(UsuarioModelo usuario);
 	}
 
 	public interface IFuncionarioAplicacao
@@ -18,7 +18,12 @@ namespace br.com.klinderrh.social.infra.interfaces.aplicacao
 
 	public interface IPessoaAplicacao
 	{
-		Pessoa Adicionar(string nome, string rg, string cpf, DateTime dataDeNascimento, int codigoDoUsuario);
+		Pessoa Adicionar(PessoaModelo pessoa);
+	}
+
+	public interface ICargoAplicacao
+	{
+		Cargo Adicionar(CargoModelo cargo);
 	}
 
 }

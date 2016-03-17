@@ -86,11 +86,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
 
 			context.SaveChanges();
 
-			context.Cargos.Add(new Cargo("Diretor Presidente")
-			{
-				Descricao = "Diretor Presidente",
-				Sigla = "DIRPRES"
-			});
+			context.Cargos.Add(new Cargo("Diretor Presidente", "DIRPRES", "Diretor Presidente"));
 
 			context.SaveChanges();
 

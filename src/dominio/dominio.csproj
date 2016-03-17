@@ -49,7 +49,10 @@
     <Compile Include="entidades\Estado.cs" />
     <Compile Include="entidades\Pessoa.cs" />
     <Compile Include="entidades\Usuario.cs" />
+    <Compile Include="objetosdetransporte\CargoModelo.cs" />
     <Compile Include="objetosdetransporte\FuncionarioModelo.cs" />
+    <Compile Include="objetosdevalor\NivelDoCargo.cs" />
+    <Compile Include="objetosdetransporte\PessoaModelo.cs" />
     <Compile Include="objetosdetransporte\UsuarioModelo.cs" />
     <Compile Include="objetosdevalor\Paises.cs" />
     <Compile Include="objetosdevalor\TipoDeEndereco.cs" />

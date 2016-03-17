@@ -10,23 +10,15 @@ namespace br.com.klinderrh.social.infra.data.entityframework
 	public class UnidadeDeTrabalho : IUnidadeDeTrabalho
 	{
 
-		private readonly DbContext _contexto;
+		private readonly Contexto _contexto;
 		private DbContextTransaction _transacao;
 		private Hashtable _repositories;
-
+		
 		private bool TransacaoAtiva => (_transacao != null);
 
-		public UnidadeDeTrabalho(DbContext contexto)
+		public UnidadeDeTrabalho(Contexto contexto)
 		{
 			_contexto = contexto;
-		}
-
-		private void DisposeTransaction()
-		{
-			_transacao.Dispose();
-
-			_transacao = null;
-
 		}
 
 		public bool IniciarTransacao()
@@ -45,13 +37,11 @@ namespace br.com.klinderrh.social.infra.data.entityframework
 			if (!TransacaoAtiva)
 				throw new NullReferenceException("Nenhuma transação ativa no momento.");
 
-			if (executar)
-			{
-				_transacao.Commit();
+			if (!executar) return;
 
-				DisposeTransaction();
+			_transacao.Commit();
 
-			}
+			LiberarTransacao();
 
 		}
 
@@ -60,19 +50,26 @@ namespace br.com.klinderrh.social.infra.data.entityframework
 			if (!TransacaoAtiva)
 				throw new NullReferenceException("Nenhuma transação ativa no momento.");
 
-			if (executar)
-			{
-				_transacao.Rollback();
+			if (!executar) return;
 
-				DisposeTransaction();
+			_transacao.Rollback();
 
-			}
+			LiberarTransacao();
 
 		}
 
 		public void Salvar()
 		{
 			_contexto.SaveChanges();
+		}
+
+		private void LiberarTransacao()
+		{
+			_transacao.Dispose();
+
+			_transacao = null;
+			_repositories = null;
+
 		}
 
 		public IRepositorioGenerico<T> ObterRepositorio<T>() where T : EntidadeBase
@@ -86,11 +83,11 @@ namespace br.com.klinderrh.social.infra.data.entityframework
 			{
 				var repositoryType = typeof(RepositorioGenerico<>);
 
-				var repositoryInstance =
-					Activator.CreateInstance(repositoryType
-						.MakeGenericType(typeof(T)), _contexto);
+				var repositoryInstance = Activator.CreateInstance(
+					repositoryType.MakeGenericType(typeof(T)), _contexto);
 
 				_repositories.Add(type, repositoryInstance);
+
 			}
 
 			return (IRepositorioGenerico<T>)_repositories[type];

@@ -1,5 +1,6 @@
 ﻿using System;
 using br.com.klinderrh.social.dominio.entidades;
+using br.com.klinderrh.social.dominio.objetosdetransporte;
 using br.com.klinderrh.social.infra.comunicacao;
 using br.com.klinderrh.social.infra.interfaces.aplicacao;
 using br.com.klinderrh.social.infra.interfaces.data;
@@ -8,47 +9,58 @@ namespace br.com.klinderrh.social.aplicacao
 {
 	public class PessoaAplicacao : IPessoaAplicacao
 	{
-		private readonly IUnidadeDeTrabalhoFabrica _unidadeDeTrabalhoFabrica;
+		private readonly IUnidadeDeTrabalho _unidadeDeTrabalho;
+		private readonly IUsuarioAplicacao _usuarioAplicacao;
 
-		public PessoaAplicacao(IUnidadeDeTrabalhoFabrica unidadeDeTrabalhoFabrica)
+		public PessoaAplicacao(IUnidadeDeTrabalho unidadeDeTrabalho, IUsuarioAplicacao usuarioAplicacao)
 		{
-			_unidadeDeTrabalhoFabrica = unidadeDeTrabalhoFabrica;
+			_unidadeDeTrabalho = unidadeDeTrabalho;
+			_usuarioAplicacao = usuarioAplicacao;
 		}
 
-		public Pessoa Adicionar(string nome, string rg, string cpf, DateTime dataDeNascimento, int codigoDoUsuario)
+		public Pessoa Adicionar(PessoaModelo pessoa)
 		{
-			var unidadeDeTrabalho = _unidadeDeTrabalhoFabrica.Criar();
 			var transacaoAbertaAqui = false;
 
 			try
 			{
-				transacaoAbertaAqui = unidadeDeTrabalho.IniciarTransacao();
+				transacaoAbertaAqui = _unidadeDeTrabalho.IniciarTransacao();
 
-				var repositorioDeUsuario = unidadeDeTrabalho.ObterRepositorio<Usuario>();
-				var usuario = repositorioDeUsuario.ObterPorCodigo(codigoDoUsuario);
-				var pessoa = new Pessoa(
-					nome,
-					rg,
-					cpf,
-					dataDeNascimento);
+				const string senhaPadrao = "Klinder@RH123"; //TODO: Depois colocar no web.config
 
-				if (usuario != null)
+				var novoUsuario = _usuarioAplicacao.Registrar(new UsuarioModelo
 				{
-					pessoa.Usuario = usuario;
-				}
+					Nome = pessoa.Nome,
+					Email = pessoa.Email,
+					Senha = senhaPadrao,
+					ConfirmacaoDaSenha = senhaPadrao
+				});
+				
+				DateTime dataDeNascimento;
 
-				var repositorioDeFuncionario = unidadeDeTrabalho.ObterRepositorio<Pessoa>();
+				DateTime.TryParse(pessoa.DataDeNascimento, out dataDeNascimento);
 
-				repositorioDeFuncionario.Incluir(pessoa);
+				var novaPessoa = new Pessoa(
+					pessoa.Nome,
+					pessoa.RG,
+					pessoa.CPF,
+					dataDeNascimento)
+				{
+					Usuario = novoUsuario
+				};
+				
+				var repositorioDePessoa = _unidadeDeTrabalho.ObterRepositorio<Pessoa>();
 
-				unidadeDeTrabalho.Salvar();
+				repositorioDePessoa.Incluir(novaPessoa);
 
-				return pessoa;
+				_unidadeDeTrabalho.Salvar();
+
+				return novaPessoa;
 
 			}
 			catch (Exception ex)
 			{
-				unidadeDeTrabalho.DescartarTransacao(transacaoAbertaAqui);
+				_unidadeDeTrabalho.DescartarTransacao(transacaoAbertaAqui);
 
 				EmailHelper.EnviarEmail("juninhoroseira@gmail.com", "Erro", ex.GetBaseException().ToString());
 
@@ -57,8 +69,7 @@ namespace br.com.klinderrh.social.aplicacao
 			}
 			finally
 			{
-				unidadeDeTrabalho.EfetivarTransacao(transacaoAbertaAqui);
-				_unidadeDeTrabalhoFabrica.Destruir(transacaoAbertaAqui);
+				_unidadeDeTrabalho.EfetivarTransacao(transacaoAbertaAqui);
 			}
 
 		}

@@ -39,7 +39,6 @@
     <Compile Include="data\IRepositorioDeLeitura.cs" />
     <Compile Include="data\IRepositorioGenerico.cs" />
     <Compile Include="data\IUnidadeDeTrabalho.cs" />
-    <Compile Include="data\IUnidadeDeTrabalhoFabrica.cs" />
     <Compile Include="IAuthorizationServerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -63,7 +63,6 @@
     <Compile Include="mapeamentos\UsuarioMap.cs" />
     <Compile Include="repositorios\RepositorioGenerico.cs" />
     <Compile Include="UnidadeDeTrabalho.cs" />
-    <Compile Include="UnidadeDeTrabalhoFabrica.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\dominio\dominio.csproj">

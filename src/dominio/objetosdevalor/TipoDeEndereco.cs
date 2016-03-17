@@ -2,10 +2,10 @@
 {
 	public enum TipoDeEndereco
 	{
-		Residencial,
-		Correspondencia,
-		Entrega,
-		Comercial,
-		Outros
+		Residencial = 0,
+		Correspondencia = 1,
+		Entrega = 2,
+		Comercial = 3,
+		Outros = 4
 	}
 }

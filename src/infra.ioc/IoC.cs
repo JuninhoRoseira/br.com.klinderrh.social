@@ -28,7 +28,8 @@ namespace br.com.klinderrh.social.infra.ioc
 	{
 		public override void Load()
 		{
-			Bind<IUnidadeDeTrabalhoFabrica>().To<UnidadeDeTrabalhoFabrica>().InRequestScope();
+			Bind<Contexto>().ToSelf().InSingletonScope();
+			Bind<IUnidadeDeTrabalho>().To<UnidadeDeTrabalho>().InRequestScope();
 			Bind<IAuthorizationServerProvider>().To<AuthorizationServerProvider>();
 		}
 	}
@@ -40,6 +41,7 @@ namespace br.com.klinderrh.social.infra.ioc
 			Bind<IUsuarioAplicacao>().To<UsuarioAplicacao>();
 			Bind<IPessoaAplicacao>().To<PessoaAplicacao>();
 			Bind<IFuncionarioAplicacao>().To<FuncionarioAplicacao>();
+			Bind<ICargoAplicacao>().To<CargoAplicacao>();
 		}
 	}
 

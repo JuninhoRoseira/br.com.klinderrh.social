@@ -9,60 +9,57 @@ namespace br.com.klinderrh.social.aplicacao
 {
 	public class FuncionarioAplicacao : IFuncionarioAplicacao
 	{
-		private readonly IUnidadeDeTrabalhoFabrica _unidadeDeTrabalhoFabrica;
-		private readonly IUsuarioAplicacao _usuarioAplicacao;
+		private readonly IUnidadeDeTrabalho _unidadeDeTrabalho;
 		private readonly IPessoaAplicacao _pessoaAplicacao;
 
-		public FuncionarioAplicacao(IUnidadeDeTrabalhoFabrica unidadeDeTrabalhoFabrica, IUsuarioAplicacao usuarioAplicacao, IPessoaAplicacao pessoaAplicacao)
+		public FuncionarioAplicacao(IUnidadeDeTrabalho unidadeDeTrabalho, IPessoaAplicacao pessoaAplicacao)
 		{
-			_unidadeDeTrabalhoFabrica = unidadeDeTrabalhoFabrica;
-			_usuarioAplicacao = usuarioAplicacao;
+			_unidadeDeTrabalho = unidadeDeTrabalho;
 			_pessoaAplicacao = pessoaAplicacao;
 		}
 
 		public Funcionario Adicionar(FuncionarioModelo funcionarioModelo)
 		{
-			var unidadeDeTrabalho = _unidadeDeTrabalhoFabrica.Criar();
 			var transacaoAbertaAqui = false;
 
 			try
 			{
-				transacaoAbertaAqui = unidadeDeTrabalho.IniciarTransacao();
+				transacaoAbertaAqui = _unidadeDeTrabalho.IniciarTransacao();
 
-				const string senhaPadrao = "Klinder@RH123"; //TODO: Depois colocar no web.config
+				var pessoaNova = _pessoaAplicacao.Adicionar(new PessoaModelo
+				{
+					Nome = funcionarioModelo.Nome,
+					Email = funcionarioModelo.Email,
+					RG = funcionarioModelo.RG,
+					CPF = funcionarioModelo.CPF,
+					DataDeNascimento = funcionarioModelo.DataDeNascimento
+				});
 
-				var usuarioNovo = _usuarioAplicacao.Registrar(
-					funcionarioModelo.Nome,
-					funcionarioModelo.Email,
-					senhaPadrao,
-					senhaPadrao);
-				
-				var pessoaNova = _pessoaAplicacao.Adicionar(
-					funcionarioModelo.Nome,
-					funcionarioModelo.RG,
-					funcionarioModelo.CPF,
-					Convert.ToDateTime(funcionarioModelo.DataDeNascimento),
-					usuarioNovo.Codigo);
+				int codigoDaEmpresa, codigoDoDepartamento, codigoDoCargo;
+
+				int.TryParse(funcionarioModelo.CodigoDaEmpresa, out codigoDaEmpresa);
+				int.TryParse(funcionarioModelo.CodigoDoDepartamento, out codigoDoDepartamento);
+				int.TryParse(funcionarioModelo.CodigoDoCargo, out codigoDoCargo);
 
 				var funcionario = new Funcionario(
 					funcionarioModelo.Matricula,
 					pessoaNova.Codigo,
-					int.Parse(funcionarioModelo.CodigoDaEmpresa),
-					int.Parse(funcionarioModelo.CodigoDoDepartamento),
-					int.Parse(funcionarioModelo.CodigoDoCargo));
+					codigoDaEmpresa,
+					codigoDoDepartamento,
+					codigoDoCargo);
 
-				var repositorioDeFuncionarios = unidadeDeTrabalho.ObterRepositorio<Funcionario>();
+				var repositorioDeFuncionarios = _unidadeDeTrabalho.ObterRepositorio<Funcionario>();
 
 				repositorioDeFuncionarios.Incluir(funcionario);
 
-				unidadeDeTrabalho.Salvar();
+				_unidadeDeTrabalho.Salvar();
 
 				return funcionario;
 
 			}
 			catch (Exception ex)
 			{
-				unidadeDeTrabalho.DescartarTransacao(transacaoAbertaAqui);
+				_unidadeDeTrabalho.DescartarTransacao(transacaoAbertaAqui);
 
 				EmailHelper.EnviarEmail("juninhoroseira@gmail.com", "Erro", ex.GetBaseException().ToString());
 
@@ -71,8 +68,7 @@ namespace br.com.klinderrh.social.aplicacao
 			}
 			finally
 			{
-				unidadeDeTrabalho.EfetivarTransacao(transacaoAbertaAqui);
-				_unidadeDeTrabalhoFabrica.Destruir(transacaoAbertaAqui);
+				_unidadeDeTrabalho.EfetivarTransacao(transacaoAbertaAqui);
 			}
 
 		}

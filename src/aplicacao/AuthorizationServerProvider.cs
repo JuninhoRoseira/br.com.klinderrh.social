@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using br.com.klinderrh.social.dominio.entidades;
+using br.com.klinderrh.social.dominio.objetosdetransporte;
 using br.com.klinderrh.social.infra.interfaces;
 using br.com.klinderrh.social.infra.interfaces.aplicacao;
 using Microsoft.Owin.Security;
@@ -33,7 +34,11 @@ namespace br.com.klinderrh.social.aplicacao
 			try
 			{
 				//user = await userManager.FindAsync(context.UserName, context.Password);
-				user = _usuarioAplicacao.Autenticar(context.UserName, context.Password);
+				user = _usuarioAplicacao.Autenticar(new UsuarioModelo
+				{
+					Email = context.UserName,
+					Senha = context.Password
+				});
 			}
 			catch
 			{

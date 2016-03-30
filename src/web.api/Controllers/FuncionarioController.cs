@@ -9,11 +9,10 @@ using br.com.klinderrh.social.infra.interfaces.aplicacao;
 namespace br.com.klinderrh.social.web.api.Controllers
 {
 
-	[EnableCors(origins: "*", headers: "*", methods: "*")]
-	[RoutePrefix("api")]
+	[EnableCors("*", "*", "*")]
+	[RoutePrefix("funcionarios")]
 	public class FuncionarioController : ApiController
 	{
-		private const string RotaPadrao = "Funcionarios";
 		private readonly IFuncionarioAplicacao _funcionarioAplicacao;
 
 		public FuncionarioController(IFuncionarioAplicacao funcionarioAplicacao)
@@ -22,9 +21,8 @@ namespace br.com.klinderrh.social.web.api.Controllers
 		}
 
 		[Authorize]
-		[HttpPost]
-		[Route(RotaPadrao)]
-		public HttpResponseMessage PostFuncionario(FuncionarioModelo funcionario)
+		[Route]
+		public HttpResponseMessage Post(FuncionarioModelo funcionario)
 		{
 
 			if (funcionario == null)

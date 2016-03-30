@@ -8,12 +8,10 @@ using br.com.klinderrh.social.infra.interfaces.aplicacao;
 
 namespace br.com.klinderrh.social.web.api.Controllers
 {
-	[EnableCors(origins: "*", headers: "*", methods: "*")]
-	[RoutePrefix("api")]
+	[EnableCors("*", "*", "*")]
+	[RoutePrefix("auth")]
 	public class AutenticacaoController : ApiController
 	{
-		private const string RotaPadrao = "Auth";
-
 		private readonly IUsuarioAplicacao _usuarioAplicacao;
 
 		public AutenticacaoController(IUsuarioAplicacao usuarioAplicacao)
@@ -21,11 +19,9 @@ namespace br.com.klinderrh.social.web.api.Controllers
 			_usuarioAplicacao = usuarioAplicacao;
 		}
 
-		[HttpPost]
-		[Route(RotaPadrao + "/RegistrarUsuario")]
-		public HttpResponseMessage RegistrarUsuario(UsuarioModelo usuario)
+		[Route]
+		public HttpResponseMessage Post(UsuarioModelo usuario)
 		{
-
 			if (usuario == null)
 				return Request.CreateResponse(HttpStatusCode.BadRequest);
 

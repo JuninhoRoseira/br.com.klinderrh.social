@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
+using System.Web.Http.Controllers;
+using System.Web.Http.Routing;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -26,15 +28,36 @@ namespace br.com.klinderrh.social.web.api
 			settings.ContractResolver = new CamelCasePropertyNamesContractResolver(); // Serialize with camelCase formatter for JSON.
 			
 			// Web API routes
-			config.MapHttpAttributeRoutes();
+			config.MapHttpAttributeRoutes(new CentralizedPrefixProvider("api"));
 
-            config.Routes.MapHttpRoute(
+			config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
 
 			config.EnableCors();
+
+		}
+
+	}
+
+	public class CentralizedPrefixProvider : DefaultDirectRouteProvider
+	{
+		private readonly string _centralizedPrefix;
+
+		public CentralizedPrefixProvider(string centralizedPrefix)
+		{
+			_centralizedPrefix = centralizedPrefix;
+		}
+
+		protected override string GetRoutePrefix(HttpControllerDescriptor controllerDescriptor)
+		{
+			var existingPrefix = base.GetRoutePrefix(controllerDescriptor);
+
+			return existingPrefix == null 
+				? _centralizedPrefix 
+				: $"{_centralizedPrefix}/{existingPrefix}";
 
 		}
 

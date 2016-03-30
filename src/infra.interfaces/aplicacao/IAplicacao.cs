@@ -1,4 +1,5 @@
-﻿using br.com.klinderrh.social.dominio.entidades;
+﻿using System.Collections.Generic;
+using br.com.klinderrh.social.dominio.entidades;
 using br.com.klinderrh.social.dominio.objetosdetransporte;
 
 namespace br.com.klinderrh.social.infra.interfaces.aplicacao
@@ -24,6 +25,11 @@ namespace br.com.klinderrh.social.infra.interfaces.aplicacao
 	{
 		Cargo Adicionar(CargoModelo cargo);
 		void Modificar(CargoModelo cargo);
+		void Excluir(int codigoo);
+		List<Cargo> ObterTodos();
+		List<Cargo> ObterTodosOsAtivos();
+		List<Cargo> ProcurarCargosPorTexto(string textoDaBusca);
+		Cargo ObterPorCodigo(int codigo);
 	}
 
 }

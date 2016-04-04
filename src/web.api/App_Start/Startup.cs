@@ -21,7 +21,7 @@ namespace br.com.klinderrh.social.web.api
 			dependencyResolver.Load(Assembly.GetExecutingAssembly());
 
 			// Configure Web API for self-host. 
-			var config = new HttpConfiguration()
+			var config = new HttpConfiguration
 			{
 				DependencyResolver = dependencyResolver
 			};

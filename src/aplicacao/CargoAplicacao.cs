@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using br.com.klinderrh.social.dominio.entidades;
 using br.com.klinderrh.social.dominio.objetosdetransporte;
+using br.com.klinderrh.social.dominio.objetosdevalor;
 using br.com.klinderrh.social.infra.comunicacao;
 using br.com.klinderrh.social.infra.interfaces.aplicacao;
 using br.com.klinderrh.social.infra.interfaces.data;
@@ -27,10 +28,13 @@ namespace br.com.klinderrh.social.aplicacao
 			{
 				transacaoAbertaAqui = _unidadeDeTrabalho.IniciarTransacao();
 
+				var nivelDoCargo = (NivelDoCargo) cargo.Nivel;
+
 				var cargoNovo = new Cargo(
 					cargo.Nome,
 					cargo.Sigla,
-					cargo.Descricao);
+					cargo.Descricao,
+					nivelDoCargo);
 
 				var repositorioDeCargos = _unidadeDeTrabalho.ObterRepositorio<Cargo>();
 
@@ -74,7 +78,9 @@ namespace br.com.klinderrh.social.aplicacao
 
 				if (cargoAlterado == null) return;
 
-				cargoAlterado.AlterarDados(cargo.Nome, cargo.Sigla, cargo.Descricao);
+				var nivelDoCargo = (NivelDoCargo)cargo.Nivel;
+
+				cargoAlterado.AlterarDados(cargo.Nome, cargo.Sigla, cargo.Descricao, nivelDoCargo);
 
 				_unidadeDeTrabalho.Salvar();
 
@@ -252,6 +258,36 @@ namespace br.com.klinderrh.social.aplicacao
 				_unidadeDeTrabalho.EfetivarTransacao(transacaoAbertaAqui);
 			}
 		}
+
+		public List<NivelDoCargoEnum> ObterNiveis()
+		{
+			var transacaoAbertaAqui = false;
+
+			try
+			{
+				transacaoAbertaAqui = _unidadeDeTrabalho.IniciarTransacao();
+
+				var repositorioDeCargos = _unidadeDeTrabalho.ObterRepositorioDeEnums<NivelDoCargoEnum>();
+				var niveis = repositorioDeCargos.ObterPor();
+
+				return new List<NivelDoCargoEnum>(niveis);
+
+			}
+			catch (Exception ex)
+			{
+				_unidadeDeTrabalho.DescartarTransacao(transacaoAbertaAqui);
+
+				EmailHelper.EnviarEmail("juninhoroseira@gmail.com", "Erro", ex.GetBaseException().ToString());
+
+				throw new Exception("Erro ao tentar obter a lista de níveis dos cargos.");
+
+			}
+			finally
+			{
+				_unidadeDeTrabalho.EfetivarTransacao(transacaoAbertaAqui);
+			}
+
+		} 
 
 	}
 

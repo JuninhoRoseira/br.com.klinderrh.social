@@ -1,11 +1,16 @@
 ﻿<h1>Cadastro de Cargos</h1>
+<button type="button" class="btn btn-info" ng-click="cargoCtrl.adicionar()">
+	Novo Cargo
+</button>
 <table class="table table-hover">
 	<thead>
 		<tr>
 			<th>#</th>
 			<th>Nome</th>
+			<th>Nível</th>
 			<th>Sigla</th>
 			<th>Descrição</th>
+			<th>&nbsp;</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -17,10 +22,19 @@
 				{{cargo.nome}}
 			</td>
 			<td>
+				{{cargoCtrl.obterNomeDoNivel(cargo.nivel)}}
+			</td>
+			<td>
 				{{cargo.sigla}}
 			</td>
 			<td>
 				{{cargo.descricao}}
+			</td>
+			<td>
+				<button type="button" class="btn-sm btn-danger" ng-click="cargoCtrl.excluir($event, cargo.codigo)">
+					<i class="fa fa-trash"></i>
+					Excluir
+				</button>
 			</td>
 		</tr>
 	</tbody>

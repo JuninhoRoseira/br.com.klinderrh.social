@@ -47,14 +47,16 @@
     <Compile Include="entidades\Endereco.cs" />
     <Compile Include="entidades\EntidadeBase.cs" />
     <Compile Include="entidades\Estado.cs" />
+    <Compile Include="entidades\NivelDoCargoEnum.cs" />
+    <Compile Include="entidades\Pais.cs" />
     <Compile Include="entidades\Pessoa.cs" />
+    <Compile Include="entidades\TipoDeEnderecoEnum.cs" />
     <Compile Include="entidades\Usuario.cs" />
     <Compile Include="objetosdetransporte\CargoModelo.cs" />
     <Compile Include="objetosdetransporte\FuncionarioModelo.cs" />
     <Compile Include="objetosdevalor\NivelDoCargo.cs" />
     <Compile Include="objetosdetransporte\PessoaModelo.cs" />
     <Compile Include="objetosdetransporte\UsuarioModelo.cs" />
-    <Compile Include="objetosdevalor\Paises.cs" />
     <Compile Include="objetosdevalor\TipoDeEndereco.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

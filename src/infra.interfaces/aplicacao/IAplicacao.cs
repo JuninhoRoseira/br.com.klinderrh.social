@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using br.com.klinderrh.social.dominio.entidades;
 using br.com.klinderrh.social.dominio.objetosdetransporte;
+using br.com.klinderrh.social.dominio.objetosdevalor;
 
 namespace br.com.klinderrh.social.infra.interfaces.aplicacao
 {
@@ -30,6 +31,7 @@ namespace br.com.klinderrh.social.infra.interfaces.aplicacao
 		List<Cargo> ObterTodosOsAtivos();
 		List<Cargo> ProcurarCargosPorTexto(string textoDaBusca);
 		Cargo ObterPorCodigo(int codigo);
+		List<NivelDoCargoEnum> ObterNiveis();
 	}
 
 }

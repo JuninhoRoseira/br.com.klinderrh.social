@@ -9,5 +9,6 @@ namespace br.com.klinderrh.social.infra.interfaces.data
 		void DescartarTransacao(bool executar);
 		void Salvar();
 		IRepositorioGenerico<T> ObterRepositorio<T>() where T : EntidadeBase;
+		IRepositorioGenericoDeEnums<T> ObterRepositorioDeEnums<T>() where T : class;
 	}
 }

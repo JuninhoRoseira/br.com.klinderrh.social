@@ -94,6 +94,28 @@ namespace br.com.klinderrh.social.infra.data.entityframework
 
 		}
 
+		public IRepositorioGenericoDeEnums<T> ObterRepositorioDeEnums<T>() where T : class
+		{
+			if (_repositories == null)
+				_repositories = new Hashtable();
+
+			var type = typeof(T).Name;
+
+			if (!_repositories.ContainsKey(type))
+			{
+				var repositoryType = typeof(RepositorioGenericoDeEnums<>);
+
+				var repositoryInstance = Activator.CreateInstance(
+					repositoryType.MakeGenericType(typeof(T)), _contexto);
+
+				_repositories.Add(type, repositoryInstance);
+
+			}
+
+			return (IRepositorioGenericoDeEnums<T>)_repositories[type];
+
+		}
+
 	}
 
 }

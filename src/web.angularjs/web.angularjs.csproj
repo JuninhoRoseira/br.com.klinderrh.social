@@ -57,6 +57,7 @@
     <Content Include="App\Directives\Popup\Alert.html" />
     <Content Include="App\Modules\About\About.html" />
     <TypeScriptCompile Include="App\Directives\Popup\PopupDirective.ts" />
+    <TypeScriptCompile Include="App\Enums\Enums.ts" />
     <TypeScriptCompile Include="App\Modules\About\AboutController.ts" />
     <Content Include="App\Modules\Cadastros\Cargos\CargoForm.html" />
     <Content Include="App\Modules\Cadastros\Cargos\CargoLista.html" />

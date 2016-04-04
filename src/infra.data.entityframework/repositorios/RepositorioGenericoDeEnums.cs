@@ -2,45 +2,19 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using br.com.klinderrh.social.dominio.entidades;
 using br.com.klinderrh.social.infra.interfaces.data;
 
 namespace br.com.klinderrh.social.infra.data.entityframework.repositorios
 {
-	public class RepositorioGenerico<T> : IRepositorioGenerico<T> where T : EntidadeBase
+	public class RepositorioGenericoDeEnums<T> : IRepositorioGenericoDeEnums<T> where T : class
 	{
 		private readonly DbContext _contexto;
 		private readonly DbSet<T> _dbSet;
 
-		public RepositorioGenerico(DbContext contexto)
+		public RepositorioGenericoDeEnums(DbContext contexto)
 		{
 			_contexto = contexto;
 			_dbSet = _contexto.Set<T>();
-		}
-
-		public void Incluir(T entidade)
-		{
-			_dbSet.Add(entidade);
-		}
-
-		public void Alterar(T entidade)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Excluir(T entidade)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void ExcluirPor(Func<T, bool> condicao)
-		{
-			throw new NotImplementedException();
-		}
-
-		public T ObterPorCodigo(int codigo)
-		{
-			return _dbSet.FirstOrDefault(s => s.Codigo == codigo);
 		}
 
 		public IQueryable<T> ObterPor(Expression<Func<T, bool>> condicao = null,

@@ -10,7 +10,10 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 
 			Property(e => e.Nome).HasMaxLength(100).IsRequired().HasColumnAnnotation("Index", NovoIndice("IX_Estado_Nome"));
 			Property(e => e.UnidadeFederativa).HasMaxLength(2).IsRequired();
-			Property(e => e.Pais).HasMaxLength(50).IsOptional();
+
+			HasRequired(e => e.Pais)
+				.WithMany(p => p.Estados)
+				.HasForeignKey(e => e.CodigoDoPais);
 
 		}
 

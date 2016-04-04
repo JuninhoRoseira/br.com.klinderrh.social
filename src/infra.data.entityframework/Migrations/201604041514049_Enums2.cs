@@ -3,7 +3,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Inicial : DbMigration
+    public partial class Enums2 : DbMigration
     {
         public override void Up()
         {
@@ -15,6 +15,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
                         Nome = c.String(nullable: false, maxLength: 100, unicode: false),
                         Sigla = c.String(maxLength: 10, unicode: false),
                         Descricao = c.String(maxLength: 1000, unicode: false),
+                        CodigoDoNivelDoCargo = c.Int(nullable: false),
                         DataDeCadastro = c.DateTime(),
                         Ativo = c.Boolean(nullable: false),
                     })
@@ -44,12 +45,26 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
                         Codigo = c.Int(nullable: false, identity: true),
                         Nome = c.String(nullable: false, maxLength: 100, unicode: false),
                         UnidadeFederativa = c.String(nullable: false, maxLength: 2, unicode: false),
-                        Pais = c.String(maxLength: 50, unicode: false),
+                        CodigoDoPais = c.Int(nullable: false),
                         DataDeCadastro = c.DateTime(),
                         Ativo = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Codigo)
-                .Index(t => t.Nome, name: "IX_Estado_Nome");
+                .ForeignKey("dbo.Pais", t => t.CodigoDoPais)
+                .Index(t => t.Nome, name: "IX_Estado_Nome")
+                .Index(t => t.CodigoDoPais);
+            
+            CreateTable(
+                "dbo.Pais",
+                c => new
+                    {
+                        Codigo = c.Int(nullable: false, identity: true),
+                        Nome = c.String(nullable: false, maxLength: 100, unicode: false),
+                        DataDeCadastro = c.DateTime(),
+                        Ativo = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Codigo)
+                .Index(t => t.Nome, name: "IX_Pais_Nome");
             
             CreateTable(
                 "dbo.Funcionario",
@@ -80,8 +95,8 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
                 c => new
                     {
                         Codigo = c.Int(nullable: false, identity: true),
-                        Sigla = c.String(maxLength: 10, unicode: false),
                         Nome = c.String(nullable: false, maxLength: 50, unicode: false),
+                        Sigla = c.String(maxLength: 10, unicode: false),
                         Descricao = c.String(maxLength: 500, unicode: false),
                         CodigoDoDepartamentoPai = c.Int(),
                         DataDeCadastro = c.DateTime(),
@@ -144,7 +159,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
                 c => new
                     {
                         Codigo = c.Int(nullable: false, identity: true),
-                        TipoDeEndereco = c.Int(nullable: false),
+                        CodigoDoTipoDeEndereco = c.Int(nullable: false),
                         Logradouro = c.String(maxLength: 50, unicode: false),
                         Numero = c.String(maxLength: 50, unicode: false),
                         Complemento = c.String(maxLength: 50, unicode: false),
@@ -166,12 +181,31 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
                         Nome = c.String(nullable: false, maxLength: 50, unicode: false),
                         Email = c.String(nullable: false, maxLength: 50, unicode: false),
                         Senha = c.String(nullable: false, maxLength: 100, unicode: false),
+                        Valido = c.Boolean(),
                         DataDeCadastro = c.DateTime(),
                         Ativo = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Codigo)
                 .Index(t => t.Nome, unique: true, name: "IX_Usuario_Nome")
                 .Index(t => t.Email, unique: true, name: "IX_Usuario_Email");
+            
+            CreateTable(
+                "dbo.NivelDoCargoEnum",
+                c => new
+                    {
+                        Codigo = c.Int(nullable: false),
+                        Nome = c.String(nullable: false, maxLength: 100, unicode: false),
+                    })
+                .PrimaryKey(t => t.Codigo);
+            
+            CreateTable(
+                "dbo.TipoDeEnderecoEnum",
+                c => new
+                    {
+                        Codigo = c.Int(nullable: false),
+                        Nome = c.String(nullable: false, maxLength: 100, unicode: false),
+                    })
+                .PrimaryKey(t => t.Codigo);
             
             CreateTable(
                 "dbo.PessoasXContatos",
@@ -245,6 +279,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
             DropForeignKey("dbo.Departamento", "CodigoDoDepartamentoPai", "dbo.Departamento");
             DropForeignKey("dbo.Funcionario", "CodigoDoCargo", "dbo.Cargo");
             DropForeignKey("dbo.Cidade", "CodigoDoEstado", "dbo.Estado");
+            DropForeignKey("dbo.Estado", "CodigoDoPais", "dbo.Pais");
             DropIndex("dbo.EmpresasXEnderecos", new[] { "CodigoDoEndereco" });
             DropIndex("dbo.EmpresasXEnderecos", new[] { "CodigoDaEmpresa" });
             DropIndex("dbo.EmpresasXContatos", new[] { "CodigoDoContato" });
@@ -267,6 +302,8 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
             DropIndex("dbo.Funcionario", new[] { "CodigoDaEmpresa" });
             DropIndex("dbo.Funcionario", new[] { "CodigoDaPessoa" });
             DropIndex("dbo.Funcionario", "IX_Funcionario_Matricula");
+            DropIndex("dbo.Pais", "IX_Pais_Nome");
+            DropIndex("dbo.Estado", new[] { "CodigoDoPais" });
             DropIndex("dbo.Estado", "IX_Estado_Nome");
             DropIndex("dbo.Cidade", new[] { "CodigoDoEstado" });
             DropIndex("dbo.Cidade", "IX_Cidade_Nome");
@@ -275,6 +312,8 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
             DropTable("dbo.EmpresasXContatos");
             DropTable("dbo.PessoasXEnderecos");
             DropTable("dbo.PessoasXContatos");
+            DropTable("dbo.TipoDeEnderecoEnum");
+            DropTable("dbo.NivelDoCargoEnum");
             DropTable("dbo.Usuario");
             DropTable("dbo.Endereco");
             DropTable("dbo.Contato");
@@ -282,6 +321,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
             DropTable("dbo.Empresa");
             DropTable("dbo.Departamento");
             DropTable("dbo.Funcionario");
+            DropTable("dbo.Pais");
             DropTable("dbo.Estado");
             DropTable("dbo.Cidade");
             DropTable("dbo.Cargo");

@@ -2,16 +2,17 @@
 {
 	public enum NivelDoCargo
 	{
-		Nenhum = 0,
-		Estagiario = 1,
-		Trainee = 2,
-		Junior = 3,
-		Pleno = 4,
-		Senior = 5,
-		CoordenadorChefe = 6,
-		Gerente = 7,
-		Superintendente = 8,
-		Diretor = 9,
-		Presidente = 10
+		Nenhum = 1,
+		Estagiario = 2,
+		Trainee = 3,
+		Junior = 4,
+		Pleno = 5,
+		Senior = 6,
+		CoordenadorChefe = 7,
+		Gerente = 8,
+		Superintendente = 9,
+		Diretor = 10,
+		Presidente = 11
 	}
+
 }

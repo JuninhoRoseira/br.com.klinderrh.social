@@ -74,6 +74,24 @@ namespace br.com.klinderrh.social.web.api.Controllers
 		}
 
 		[Authorize]
+		[Route("ObterNiveis")]
+		public HttpResponseMessage GetObterNiveis()
+		{
+			try
+			{
+				var niveis = _cargoAplicacao.ObterNiveis();
+
+				return Request.CreateResponse(HttpStatusCode.OK, niveis);
+
+			}
+			catch (Exception ex)
+			{
+				return Request.CreateResponse(HttpStatusCode.InternalServerError, "Falha ao obter cargo.");
+			}
+
+		}
+
+		[Authorize]
 		[Route]
 		public HttpResponseMessage Post(CargoModelo cargo)
 		{

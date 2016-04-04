@@ -38,6 +38,7 @@
     <Compile Include="data\IRepositorioDeGravacao.cs" />
     <Compile Include="data\IRepositorioDeLeitura.cs" />
     <Compile Include="data\IRepositorioGenerico.cs" />
+    <Compile Include="data\IRepositorioGenericoDeEnums.cs" />
     <Compile Include="data\IUnidadeDeTrabalho.cs" />
     <Compile Include="IAuthorizationServerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

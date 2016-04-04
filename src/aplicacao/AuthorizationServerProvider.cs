@@ -58,7 +58,7 @@ namespace br.com.klinderrh.social.aplicacao
 					// create identity
 
 
-					var claims = new List<Claim>()
+					var claims = new List<Claim>
 					{
 						new Claim("sub", context.UserName),
 						new Claim("role", "user")

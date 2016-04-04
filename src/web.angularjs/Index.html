@@ -1,50 +1,25 @@
 ﻿<!DOCTYPE html>
-<html lang="pt-br" ng-app="klinderrh.web.ui">
+<html lang="pt-br">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<title>KlinderRH - Social</title>
-	<link href="/Content/bootstrap.min.css" rel="stylesheet" />
-	<link href="/Content/Style.css" rel="stylesheet" />
-	<link href="/App/Modules/SideBar/SideBar.css" rel="stylesheet" />
-	<link href="/App/Modules/Nav/Nav.css" rel="stylesheet" />
-
+	<link href="Content/bootstrap.min.css" rel="stylesheet" />
+	<link href="Content/Style.css" rel="stylesheet" />
+	<link href="App/Directives/SideBar/SideBar.css" rel="stylesheet" />
+	<link href="App/Directives/Nav/Nav.css" rel="stylesheet" />
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-
+	<script data-main="App/Index" src="scripts/require.js"></script>
 </head>
 <body>
-
-	<div ng-if="(loggedUser != null)" app-navigator="/app/modules/nav/nav.html"></div>
-	<div ng-if="(loggedUser != null)" app-sidebar="/app/modules/sidebar/sidebar.html"></div>
-
+	<div ng-if="(loggedUser != null)" app-navigator="/app/directives/nav/nav.html"></div>
+	<div ng-if="(loggedUser != null)" app-sidebar="/app/directives/sidebar/sidebar.html"></div>
 	<div class="container body-content" ui-view></div>
-
-	<script src="/scripts/jquery-1.9.1.min.js"></script>
-	<script src="/scripts/bootstrap.min.js"></script>
-	<script src="/scripts/prototype.js"></script>
-	<script src="/scripts/storage.js"></script>
-
-	<script src="/scripts/angular.min.js"></script>
-	<script src="/scripts/angular-ui-router.min.js"></script>
-	<script src="/scripts/angular-messages.min.js"></script>
-	<script src="/scripts/angular-animate.min.js"></script>
-	<script src="/scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
-
-	<script src="/App/App.js"></script>
-
-	<script src="/App/Services/AuthInterceptorService.js" type="text/javascript"></script>
-
-	<script src="/App/Modules/Nav/Nav.js"></script>
-	<script src="/App/Modules/SideBar/SideBar.js"></script>
-	<script src="/App/Modules/Home/Home.js"></script>
-	<script src="/App/Modules/Auth/Login.js"></script>
-	<script src="/App/Modules/About/About.js"></script>
-
 </body>
 </html>

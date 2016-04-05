@@ -15,6 +15,14 @@ define(["require", "exports", "../../../enums/Enums"], function (require, export
                 _this.listaDeCargos = response;
             });
         };
+        CargoController.prototype.pesquisar = function (pesquisa) {
+            var _this = this;
+            this.http
+                .get(this.serviceUrl + "/" + pesquisa.texto)
+                .success(function (response) {
+                _this.listaDeCargos = response;
+            });
+        };
         CargoController.prototype.obterNiveisDosCargos = function () {
             var _this = this;
             this.http

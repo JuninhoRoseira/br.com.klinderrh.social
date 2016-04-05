@@ -34,6 +34,14 @@ export class CargoController implements Interfaces.ICargoController {
 			});
 	}
 
+	pesquisar(pesquisa): void {
+		this.http
+			.get(this.serviceUrl + "/" + pesquisa.texto)
+			.success((response: any) => {
+				this.listaDeCargos = response;
+			});
+	}
+
 	obterNiveisDosCargos(): void {
 		this.http
 			.get(this.serviceUrl + "obterniveis")

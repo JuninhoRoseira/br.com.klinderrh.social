@@ -26,6 +26,13 @@ namespace br.com.klinderrh.social.infra.data.entityframework
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
+			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+			modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+			modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+
+			modelBuilder.Properties<string>()
+				.Configure(p => p.HasColumnType("varchar"));
+
 			modelBuilder.Configurations.Add(new NivelDoCargoMap());
 			modelBuilder.Configurations.Add(new CargoMap());
 			modelBuilder.Configurations.Add(new CidadeMap());
@@ -33,19 +40,13 @@ namespace br.com.klinderrh.social.infra.data.entityframework
 			modelBuilder.Configurations.Add(new ContatoMap());
 			modelBuilder.Configurations.Add(new DepartamentoMap());
 			modelBuilder.Configurations.Add(new EmpresaMap());
+			modelBuilder.Configurations.Add(new UnidadeMap());
 			modelBuilder.Configurations.Add(new EnderecoMap());
 			modelBuilder.Configurations.Add(new TipoDeEnderecoMap());
 			modelBuilder.Configurations.Add(new PaisMap());
 			modelBuilder.Configurations.Add(new EstadoMap());
 			modelBuilder.Configurations.Add(new PessoaMap());
 			modelBuilder.Configurations.Add(new UsuarioMap());
-
-			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-			modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-			modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
-
-			modelBuilder.Properties<string>()
-				.Configure(p => p.HasColumnType("varchar"));
 
 		}
 
@@ -55,6 +56,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework
 		public IDbSet<Contato> Contatos { get; set; }
 		public IDbSet<Departamento> Departamentos { get; set; }
 		public IDbSet<Empresa> Empresas { get; set; }
+		public IDbSet<Unidade> Unidades { get; set; }
 		public IDbSet<Endereco> Enderecos { get; set; }
 		public IDbSet<Pais> Paises { get; set; }
 		public IDbSet<Estado> Estados { get; set; }

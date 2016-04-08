@@ -31,6 +31,13 @@
 				controller: "KlinderRH.Web.UI.Controllers.CargoController",
 				controllerAs: "cargoCtrl"
 			})
+			.state("departamentos",
+			{
+				url: "/departamentos",
+				templateUrl: "app/modules/cadastros/departamentos/departamentolista.html",
+				controller: "KlinderRH.Web.UI.Controllers.DepartamentoController",
+				controllerAs: "departamentoCtrl"
+			})
 			.state("about",
 			{
 				url: "/about",

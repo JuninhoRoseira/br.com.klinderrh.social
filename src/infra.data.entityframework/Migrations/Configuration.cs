@@ -90,11 +90,15 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
 
 			context.SaveChanges();
 
-			context.Departamentos.Add(new Departamento("Presidência")
-			{
-				Descricao = "Presidência",
-				Sigla = "PRES"
-			});
+			var empresa = context.Empresas.FirstOrDefault(e => e.Codigo == 1);
+
+			context.Unidades.Add(new Unidade("Klinder RH - Unidade I", "Klinder RH - Unidade I", "132456", "987654", empresa.Codigo));
+
+			context.SaveChanges();
+
+			var unidade = context.Unidades.FirstOrDefault(u => u.Codigo == 1);
+
+			context.Departamentos.Add(new Departamento("Presidência", "PRES", "Presidência", unidade.Codigo, null));
 
 			context.SaveChanges();
 

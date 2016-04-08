@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using br.com.klinderrh.social.dominio.entidades;
 using br.com.klinderrh.social.dominio.objetosdetransporte;
-using br.com.klinderrh.social.dominio.objetosdevalor;
 
 namespace br.com.klinderrh.social.infra.interfaces.aplicacao
 {
@@ -26,12 +25,23 @@ namespace br.com.klinderrh.social.infra.interfaces.aplicacao
 	{
 		Cargo Adicionar(CargoModelo cargo);
 		void Modificar(CargoModelo cargo);
-		void Excluir(int codigoo);
+		void Excluir(int codigo);
 		List<Cargo> ObterTodos();
 		List<Cargo> ObterTodosOsAtivos();
 		List<Cargo> ProcurarCargosPorTexto(string textoDaBusca);
 		Cargo ObterPorCodigo(int codigo);
 		List<NivelDoCargoEnum> ObterNiveis();
+	}
+
+	public interface IDepartamentoAplicacao
+	{
+		Departamento Adicionar(DepartamentoModelo departamento);
+		void Modificar(DepartamentoModelo departamento);
+		void Excluir(int codigo);
+		List<Departamento> ObterTodos();
+		List<Departamento> ObterTodosOsAtivos();
+		List<Departamento> ProcurarDepartamentosPorTexto(string textoDaBusca);
+		Departamento ObterPorCodigo(int codigo);
 	}
 
 }

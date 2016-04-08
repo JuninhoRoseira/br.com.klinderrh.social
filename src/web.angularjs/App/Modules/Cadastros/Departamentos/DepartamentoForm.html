@@ -1,0 +1,69 @@
+﻿<form class="form-horizontal" name="formdepartamento" ng-submit="departamentoPopupCtrl.ok()" rule="form">
+	<div class="modal-header">
+		<h3 class="modal-title">{{departamentoPopupCtrl.title}}</h3>
+	</div>
+	<div class="modal-body">
+		<div class="form-group">
+			<div class="col-sm-6">
+				<label for="nome">Nome</label>
+				<input class="form-control" id="nome" ng-model="departamentoPopupCtrl.departamento.nome" placeholder="nome do departamento" type="text" />
+			</div>
+			<div class="col-sm-3">
+				<label for="pai">Pai</label>
+				<select id="pai" class="form-control"
+						ng-model="departamentoPopupCtrl.departamento.codigoDoDepartamentoPai"
+						ng-options="pai.codigo as pai.nome for pai in departamentoPopupCtrl.departamentosPais"></select>
+			</div>
+			<div class="col-sm-3">
+				<label for="sigla">Sigla</label>
+				<input class="form-control" id="sigla" ng-model="departamentoPopupCtrl.departamento.sigla" placeholder="sigla do departamento" type="text"/>
+			</div>
+			<div class="col-sm-3">
+				<label for="unidade">Unidade</label>
+				<select id="unidade" class="form-control"
+						ng-model="departamentoPopupCtrl.departamento.codigoDaUnidade"
+						ng-options="unidade.codigo as unidade.nome for unidade in departamentoPopupCtrl.unidades"></select>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-12">
+				<label for="descricao">Descrição</label>
+				<textarea class="form-control" id="descricao" ng-model="departamentoPopupCtrl.departamento.descricao" placeholder="descrição do departamento"></textarea>
+			</div>
+		</div>
+		<div class="form-group" ng-show="(departamentoPopupCtrl.departamento.departamentosFilho.length > 0)">
+			<div class="col-sm-12">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Nome</th>
+							<th>Sigla</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="departamentoFilho in departamentoPopupCtrl.departamento.departamentosFilho">
+							<td>
+								{{departamentoFilho.codigo}}
+							</td>
+							<td>
+								{{departamentoFilho.nome}}
+							</td>
+							<td>
+								{{departamentoFilho.sigla}}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-warning" type="button" ng-click="departamentoPopupCtrl.cancel()">
+			Cancelar
+		</button>
+		<button type="submit" class="btn btn-success">
+			Salvar
+		</button>
+	</div>
+</form>

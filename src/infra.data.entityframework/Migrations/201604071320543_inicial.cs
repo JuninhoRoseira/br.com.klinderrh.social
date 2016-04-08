@@ -3,7 +3,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Enums2 : DbMigration
+    public partial class inicial : DbMigration
     {
         public override void Up()
         {
@@ -73,7 +73,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
                         Codigo = c.Int(nullable: false, identity: true),
                         Matricula = c.String(nullable: false, maxLength: 50, unicode: false),
                         CodigoDaPessoa = c.Int(nullable: false),
-                        CodigoDaEmpresa = c.Int(nullable: false),
+                        CodigoDaUnidade = c.Int(nullable: false),
                         CodigoDoDepartamento = c.Int(nullable: false),
                         CodigoDoCargo = c.Int(nullable: false),
                         DataDeCadastro = c.DateTime(),
@@ -82,11 +82,11 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
                 .PrimaryKey(t => t.Codigo)
                 .ForeignKey("dbo.Cargo", t => t.CodigoDoCargo)
                 .ForeignKey("dbo.Departamento", t => t.CodigoDoDepartamento)
-                .ForeignKey("dbo.Empresa", t => t.CodigoDaEmpresa)
                 .ForeignKey("dbo.Pessoa", t => t.CodigoDaPessoa)
+                .ForeignKey("dbo.Unidade", t => t.CodigoDaUnidade)
                 .Index(t => t.Matricula, unique: true, name: "IX_Funcionario_Matricula")
                 .Index(t => t.CodigoDaPessoa)
-                .Index(t => t.CodigoDaEmpresa)
+                .Index(t => t.CodigoDaUnidade)
                 .Index(t => t.CodigoDoDepartamento)
                 .Index(t => t.CodigoDoCargo);
             
@@ -99,12 +99,36 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
                         Sigla = c.String(maxLength: 10, unicode: false),
                         Descricao = c.String(maxLength: 500, unicode: false),
                         CodigoDoDepartamentoPai = c.Int(),
+                        CodigoDaUnidade = c.Int(nullable: false),
+                        DataDeCadastro = c.DateTime(),
+                        Ativo = c.Boolean(nullable: false),
+                        Unidade_Codigo = c.Int(),
+                    })
+                .PrimaryKey(t => t.Codigo)
+                .ForeignKey("dbo.Departamento", t => t.CodigoDoDepartamentoPai)
+                .ForeignKey("dbo.Unidade", t => t.Unidade_Codigo)
+                .Index(t => t.CodigoDoDepartamentoPai)
+                .Index(t => t.Unidade_Codigo);
+            
+            CreateTable(
+                "dbo.Unidade",
+                c => new
+                    {
+                        Codigo = c.Int(nullable: false, identity: true),
+                        RazaoSocial = c.String(nullable: false, maxLength: 100, unicode: false),
+                        NomeFantasia = c.String(maxLength: 50, unicode: false),
+                        CNPJ = c.String(nullable: false, maxLength: 8000, unicode: false),
+                        IE = c.String(nullable: false, maxLength: 8000, unicode: false),
+                        CodigoDaEmpresa = c.Int(nullable: false),
                         DataDeCadastro = c.DateTime(),
                         Ativo = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Codigo)
-                .ForeignKey("dbo.Departamento", t => t.CodigoDoDepartamentoPai)
-                .Index(t => t.CodigoDoDepartamentoPai);
+                .ForeignKey("dbo.Empresa", t => t.CodigoDaEmpresa)
+                .Index(t => t.RazaoSocial, name: "IX_Empresa_RazaoSocial")
+                .Index(t => t.NomeFantasia, name: "IX_Empresa_NomeFantasia")
+                .Index(t => t.CNPJ, unique: true, name: "IX_Empresa_CNPJ")
+                .Index(t => t.CodigoDaEmpresa);
             
             CreateTable(
                 "dbo.Empresa",
@@ -263,8 +287,10 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.Funcionario", "CodigoDaUnidade", "dbo.Unidade");
             DropForeignKey("dbo.Funcionario", "CodigoDaPessoa", "dbo.Pessoa");
-            DropForeignKey("dbo.Funcionario", "CodigoDaEmpresa", "dbo.Empresa");
+            DropForeignKey("dbo.Funcionario", "CodigoDoDepartamento", "dbo.Departamento");
+            DropForeignKey("dbo.Unidade", "CodigoDaEmpresa", "dbo.Empresa");
             DropForeignKey("dbo.EmpresasXEnderecos", "CodigoDoEndereco", "dbo.Endereco");
             DropForeignKey("dbo.EmpresasXEnderecos", "CodigoDaEmpresa", "dbo.Empresa");
             DropForeignKey("dbo.EmpresasXContatos", "CodigoDoContato", "dbo.Pessoa");
@@ -275,7 +301,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
             DropForeignKey("dbo.Endereco", "CodigoDaCidade", "dbo.Cidade");
             DropForeignKey("dbo.PessoasXContatos", "CodigoDoContato", "dbo.Contato");
             DropForeignKey("dbo.PessoasXContatos", "CodigoDaPessoa", "dbo.Pessoa");
-            DropForeignKey("dbo.Funcionario", "CodigoDoDepartamento", "dbo.Departamento");
+            DropForeignKey("dbo.Departamento", "Unidade_Codigo", "dbo.Unidade");
             DropForeignKey("dbo.Departamento", "CodigoDoDepartamentoPai", "dbo.Departamento");
             DropForeignKey("dbo.Funcionario", "CodigoDoCargo", "dbo.Cargo");
             DropForeignKey("dbo.Cidade", "CodigoDoEstado", "dbo.Estado");
@@ -296,10 +322,15 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
             DropIndex("dbo.Empresa", "IX_Empresa_CNPJ");
             DropIndex("dbo.Empresa", "IX_Empresa_NomeFantasia");
             DropIndex("dbo.Empresa", "IX_Empresa_RazaoSocial");
+            DropIndex("dbo.Unidade", new[] { "CodigoDaEmpresa" });
+            DropIndex("dbo.Unidade", "IX_Empresa_CNPJ");
+            DropIndex("dbo.Unidade", "IX_Empresa_NomeFantasia");
+            DropIndex("dbo.Unidade", "IX_Empresa_RazaoSocial");
+            DropIndex("dbo.Departamento", new[] { "Unidade_Codigo" });
             DropIndex("dbo.Departamento", new[] { "CodigoDoDepartamentoPai" });
             DropIndex("dbo.Funcionario", new[] { "CodigoDoCargo" });
             DropIndex("dbo.Funcionario", new[] { "CodigoDoDepartamento" });
-            DropIndex("dbo.Funcionario", new[] { "CodigoDaEmpresa" });
+            DropIndex("dbo.Funcionario", new[] { "CodigoDaUnidade" });
             DropIndex("dbo.Funcionario", new[] { "CodigoDaPessoa" });
             DropIndex("dbo.Funcionario", "IX_Funcionario_Matricula");
             DropIndex("dbo.Pais", "IX_Pais_Nome");
@@ -319,6 +350,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
             DropTable("dbo.Contato");
             DropTable("dbo.Pessoa");
             DropTable("dbo.Empresa");
+            DropTable("dbo.Unidade");
             DropTable("dbo.Departamento");
             DropTable("dbo.Funcionario");
             DropTable("dbo.Pais");

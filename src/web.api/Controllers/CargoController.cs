@@ -1,26 +1,41 @@
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Http.Description;
+using br.com.klinderrh.social.dominio.entidades;
 using br.com.klinderrh.social.dominio.objetosdetransporte;
 using br.com.klinderrh.social.infra.interfaces.aplicacao;
 
 namespace br.com.klinderrh.social.web.api.Controllers
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	[EnableCors("*", "*", "*")]
 	[RoutePrefix("cargos")]
 	public class CargoController : ApiController
 	{
 		private readonly ICargoAplicacao _cargoAplicacao;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="cargoAplicacao"></param>
 		public CargoController(ICargoAplicacao cargoAplicacao)
 		{
 			_cargoAplicacao = cargoAplicacao;
 		}
 
+		/// <summary>
+		/// Obtem os cargos ativos.
+		/// </summary>
+		/// <returns>Coleção de cargos ativos</returns>
 		[Authorize]
 		[Route]
+		[ResponseType(typeof(ICollection<Cargo>))]
 		public HttpResponseMessage Get()
 		{
 			try
@@ -37,6 +52,11 @@ namespace br.com.klinderrh.social.web.api.Controllers
 
 		}
 		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="codigo"></param>
+		/// <returns></returns>
 		[Authorize]
 		[Route("{codigo:int}")]
 		public HttpResponseMessage Get(int codigo)
@@ -55,6 +75,11 @@ namespace br.com.klinderrh.social.web.api.Controllers
 
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="textoDaBusca"></param>
+		/// <returns></returns>
 		[Authorize]
 		[Route("{textoDaBusca}")]
 		public HttpResponseMessage Get(string textoDaBusca)
@@ -73,6 +98,10 @@ namespace br.com.klinderrh.social.web.api.Controllers
 
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		[Authorize]
 		[Route("ObterNiveis")]
 		public HttpResponseMessage GetObterNiveis()
@@ -91,6 +120,11 @@ namespace br.com.klinderrh.social.web.api.Controllers
 
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="cargo"></param>
+		/// <returns></returns>
 		[Authorize]
 		[Route]
 		public HttpResponseMessage Post(CargoModelo cargo)
@@ -112,6 +146,11 @@ namespace br.com.klinderrh.social.web.api.Controllers
 
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="cargo"></param>
+		/// <returns></returns>
 		[Authorize]
 		[Route]
 		public HttpResponseMessage Put(CargoModelo cargo)
@@ -133,6 +172,11 @@ namespace br.com.klinderrh.social.web.api.Controllers
 
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="codigo"></param>
+		/// <returns></returns>
 		[Authorize]
 		[Route("{codigo:int}")]
 		public HttpResponseMessage Delete(int codigo)

@@ -8,18 +8,29 @@ using br.com.klinderrh.social.infra.interfaces.aplicacao;
 
 namespace br.com.klinderrh.social.web.api.Controllers
 {
-
+	/// <summary>
+	/// 
+	/// </summary>
 	[EnableCors("*", "*", "*")]
 	[RoutePrefix("funcionarios")]
 	public class FuncionarioController : ApiController
 	{
 		private readonly IFuncionarioAplicacao _funcionarioAplicacao;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="funcionarioAplicacao"></param>
 		public FuncionarioController(IFuncionarioAplicacao funcionarioAplicacao)
 		{
 			_funcionarioAplicacao = funcionarioAplicacao;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="funcionario"></param>
+		/// <returns></returns>
 		[Authorize]
 		[Route]
 		public HttpResponseMessage Post(FuncionarioModelo funcionario)

@@ -9,8 +9,18 @@ export interface IAboutScope extends ng.IScope {
 
 export interface ICargoController {
 	listarTodos(): void;
+	pesquisar(pesquisa): void;
 	adicionar(): void;
 	habilitarEdicao(cargo: any): void;
+	excluir($event, codigoDoCargo): void;
+}
+
+export interface IDepartamentoController {
+	listarTodos(): void;
+	pesquisar(pesquisa): void;
+	adicionar(): void;
+	habilitarEdicao(departamento: any): void;
+	excluir($event, codigoDoDepartamento): void;
 }
 
 export interface IHomeScope extends ng.IScope {

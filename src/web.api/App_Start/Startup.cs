@@ -10,12 +10,21 @@ using Owin;
 
 namespace br.com.klinderrh.social.web.api
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class Startup
 	{
-		// This code configures Web API. The Startup class is specified as a type
-		// parameter in the WebApp.Start method.
+
+		/// <summary>
+		/// This code configures Web API. The Startup class is specified as a type 
+		/// parameter in the WebApp.Start method.
+		/// </summary>
+		/// <param name="appBuilder"></param>
 		public void Configuration(IAppBuilder appBuilder)
 		{
+			appBuilder.UseCors(CorsOptions.AllowAll);
+
 			var dependencyResolver = new NinjectResolver(new IoC().Kernel);
 
 			dependencyResolver.Load(Assembly.GetExecutingAssembly());
@@ -36,7 +45,9 @@ namespace br.com.klinderrh.social.web.api
 				AllowInsecureHttp = true
 			});
 			appBuilder.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
-			appBuilder.UseCors(CorsOptions.AllowAll);
+
+			SwaggerConfig.Register(config);
+			
 			appBuilder.UseWebApi(config);
 
 		}

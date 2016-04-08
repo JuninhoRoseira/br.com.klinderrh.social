@@ -82,6 +82,18 @@ namespace br.com.klinderrh.social.infra.comum
 				Raise(args);
 		}
 
+		public static void IsGreaterTo(decimal value, decimal expected, params object[] args)
+		{
+			if (value <= expected)
+				Raise(args);
+		}
+
+		public static void IsNotGreaterTo(decimal value, decimal expected, params object[] args)
+		{
+			if (value > expected)
+				Raise(args);
+		}
+
 		public static void ShouldThrow<T>(Action action, params object[] args) where T : Exception
 		{
 			try

@@ -18,9 +18,9 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 				.WithMany()
 				.HasForeignKey(p => p.CodigoDaPessoa);
 
-			HasRequired(f => f.Empresa)
+			HasRequired(f => f.Unidade)
 				.WithMany(e => e.Funcionarios)
-				.HasForeignKey(f => f.CodigoDaEmpresa);
+				.HasForeignKey(f => f.CodigoDaUnidade);
 
 			HasRequired(f => f.Departamento)
 				.WithMany()
@@ -33,4 +33,5 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 		}
 
 	}
+
 }

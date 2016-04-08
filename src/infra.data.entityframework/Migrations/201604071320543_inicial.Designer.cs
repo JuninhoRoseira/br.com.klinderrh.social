@@ -7,13 +7,13 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Enums2 : IMigrationMetadata
+    public sealed partial class inicial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Enums2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(inicial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201604041514049_Enums2"; }
+            get { return "201604071320543_inicial"; }
         }
         
         string IMigrationMetadata.Source

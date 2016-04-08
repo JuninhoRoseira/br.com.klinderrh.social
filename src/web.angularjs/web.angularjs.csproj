@@ -61,8 +61,11 @@
     <TypeScriptCompile Include="App\Modules\About\AboutController.ts" />
     <Content Include="App\Modules\Cadastros\Cargos\CargoForm.html" />
     <Content Include="App\Modules\Cadastros\Cargos\CargoLista.html" />
+    <Content Include="App\Modules\Cadastros\Departamentos\DepartamentoForm.html" />
+    <Content Include="App\Modules\Cadastros\Departamentos\DepartamentoLista.html" />
     <Content Include="App\Modules\Login\Login.html" />
     <TypeScriptCompile Include="App\Modules\Cadastros\Cargos\CargoController.ts" />
+    <TypeScriptCompile Include="App\Modules\Cadastros\Departamentos\DepartamentoController.ts" />
     <TypeScriptCompile Include="App\Modules\Login\LoginController.ts" />
     <Content Include="App\Modules\Home\Home.html" />
     <TypeScriptCompile Include="App\Modules\Home\HomeController.ts" />

@@ -8,6 +8,7 @@ import AboutCtrl = require("Modules/About/AboutController");
 import LoginCtrl = require("Modules/Login/LoginController");
 import HomeCtrl = require("Modules/Home/HomeController");
 import CargoCtrl = require("Modules/Cadastros/Cargos/CargoController");
+import DepartamentoCtrl = require("Modules/Cadastros/Departamentos/DepartamentoController");
 
 export class KlinderRh {
 	"use strict";
@@ -28,6 +29,7 @@ export class KlinderRh {
 		app.controller("KlinderRH.Web.UI.Controllers.LoginController", LoginCtrl.LoginController);
 		app.controller("KlinderRH.Web.UI.Controllers.HomeController", HomeCtrl.HomeController);
 		app.controller("KlinderRH.Web.UI.Controllers.CargoController", CargoCtrl.CargoController);
+		app.controller("KlinderRH.Web.UI.Controllers.DepartamentoController", DepartamentoCtrl.DepartamentoController);
 		
 	}
 

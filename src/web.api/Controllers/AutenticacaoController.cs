@@ -8,17 +8,29 @@ using br.com.klinderrh.social.infra.interfaces.aplicacao;
 
 namespace br.com.klinderrh.social.web.api.Controllers
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	[EnableCors("*", "*", "*")]
 	[RoutePrefix("auth")]
 	public class AutenticacaoController : ApiController
 	{
 		private readonly IUsuarioAplicacao _usuarioAplicacao;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="usuarioAplicacao"></param>
 		public AutenticacaoController(IUsuarioAplicacao usuarioAplicacao)
 		{
 			_usuarioAplicacao = usuarioAplicacao;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="usuario"></param>
+		/// <returns></returns>
 		[Route]
 		public HttpResponseMessage Post(UsuarioModelo usuario)
 		{

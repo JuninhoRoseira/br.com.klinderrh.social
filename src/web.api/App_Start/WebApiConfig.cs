@@ -1,15 +1,20 @@
 ﻿using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
-using System.Web.Http.Controllers;
-using System.Web.Http.Routing;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace br.com.klinderrh.social.web.api
 {
+	/// <summary>
+	/// 
+	/// </summary>
     public static class WebApiConfig
     {
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="config"></param>
         public static void Register(HttpConfiguration config)
         {
 			// Web API configuration and services
@@ -37,27 +42,6 @@ namespace br.com.klinderrh.social.web.api
             );
 
 			config.EnableCors();
-
-		}
-
-	}
-
-	public class CentralizedPrefixProvider : DefaultDirectRouteProvider
-	{
-		private readonly string _centralizedPrefix;
-
-		public CentralizedPrefixProvider(string centralizedPrefix)
-		{
-			_centralizedPrefix = centralizedPrefix;
-		}
-
-		protected override string GetRoutePrefix(HttpControllerDescriptor controllerDescriptor)
-		{
-			var existingPrefix = base.GetRoutePrefix(controllerDescriptor);
-
-			return existingPrefix == null 
-				? _centralizedPrefix 
-				: $"{_centralizedPrefix}/{existingPrefix}";
 
 		}
 

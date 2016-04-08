@@ -5,26 +5,26 @@ using br.com.klinderrh.social.infra.recursos;
 
 namespace br.com.klinderrh.social.dominio.entidades
 {
-	public class Empresa : EntidadeBase
+	public class Unidade : EntidadeBase
 	{
-		protected Empresa()
+		protected Unidade()
 		{
-			Unidades = new List<Unidade>();
-			Enderecos = new List<Endereco>();
-			Contatos = new List<Pessoa>();
+			Departamentos = new List<Departamento>();
+			Funcionarios = new List<Funcionario>();
 		}
 
-		public Empresa(string razaoSocial, string nomeFantasia, string documento, string inscricao) : this()
+		public Unidade(string razaoSocial, string nomeFantasia, string documento, string inscricao, int codigoDaEmpresa) : this()
 		{
-			AlterarDados(razaoSocial, nomeFantasia, documento, inscricao);
+			AlterarDados(razaoSocial, nomeFantasia, documento, inscricao, codigoDaEmpresa);
 		}
 
-		private void AlterarDados(string razaoSocial, string nomeFantasia, string documento, string inscricao)
+		private void AlterarDados(string razaoSocial, string nomeFantasia, string documento, string inscricao, int codigoDaEmpresa)
 		{
 			RazaoSocial = razaoSocial;
 			NomeFantasia = nomeFantasia;
 			CNPJ = documento;
 			IE = inscricao;
+			CodigoDaEmpresa = codigoDaEmpresa;
 
 			Validar();
 
@@ -36,17 +36,19 @@ namespace br.com.klinderrh.social.dominio.entidades
 			Assertions<NullReferenceException>.IsNotNullOrEmpty(NomeFantasia, string.Format(Messages.NotBeEmpty, "Nome Fantasia"));
 			Assertions<NullReferenceException>.IsNotNullOrEmpty(CNPJ, string.Format(Messages.NotBeEmpty, "C.N.P.J."));
 			Assertions<NullReferenceException>.IsNotNullOrEmpty(IE, string.Format(Messages.NotBeEmpty, "Inscrição Estadual"));
+			Assertions<NullReferenceException>.IsGreaterOrEquasTo(CodigoDaEmpresa, 1, string.Format(Messages.NotGreaterOrEqualTo, "Empresa", "1"));
 		}
 
 		public string RazaoSocial { get; private set; }
 		public string NomeFantasia { get; private set; }
 		public string CNPJ { get; private set; }
 		public string IE { get; private set; }
-		public DateTime DataDeAdesao { get; set; }
 
-		public virtual ICollection<Unidade> Unidades { get; set; }
-		public virtual ICollection<Endereco> Enderecos { get; set; }
-		public virtual ICollection<Pessoa> Contatos { get; set; }
+		public int CodigoDaEmpresa { get; private set; }
+		public virtual Empresa Empresa { get; set; }
+
+		public virtual ICollection<Departamento> Departamentos { get; set; }
+		public virtual ICollection<Funcionario> Funcionarios { get; set; }
 
 	}
 

@@ -57,9 +57,10 @@
     <Compile Include="mapeamentos\PaisMap.cs" />
     <Compile Include="mapeamentos\PessoaMap.cs" />
     <Compile Include="mapeamentos\TipoDeEnderecoMap.cs" />
-    <Compile Include="Migrations\201604041514049_Enums2.cs" />
-    <Compile Include="Migrations\201604041514049_Enums2.Designer.cs">
-      <DependentUpon>201604041514049_Enums2.cs</DependentUpon>
+    <Compile Include="mapeamentos\UnidadeMap.cs" />
+    <Compile Include="Migrations\201604071320543_inicial.cs" />
+    <Compile Include="Migrations\201604071320543_inicial.Designer.cs">
+      <DependentUpon>201604071320543_inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\EnumSeeder.cs" />
@@ -84,8 +85,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604041514049_Enums2.resx">
-      <DependentUpon>201604041514049_Enums2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604071320543_inicial.resx">
+      <DependentUpon>201604071320543_inicial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

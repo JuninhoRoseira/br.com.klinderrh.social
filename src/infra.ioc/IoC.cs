@@ -42,6 +42,7 @@ namespace br.com.klinderrh.social.infra.ioc
 			Bind<IPessoaAplicacao>().To<PessoaAplicacao>();
 			Bind<IFuncionarioAplicacao>().To<FuncionarioAplicacao>();
 			Bind<ICargoAplicacao>().To<CargoAplicacao>();
+			Bind<IDepartamentoAplicacao>().To<DepartamentoAplicacao>();
 		}
 	}
 

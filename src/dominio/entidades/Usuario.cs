@@ -17,7 +17,7 @@ namespace br.com.klinderrh.social.dominio.entidades
 			Senha = string.Empty;
 		}
 
-		public Usuario(int codigo, string nome, string email) : base(codigo)
+		public Usuario(Guid id, string nome, string email) : base(id)
 		{
 			Nome = nome;
 			Email = email;
@@ -26,6 +26,7 @@ namespace br.com.klinderrh.social.dominio.entidades
 
 		public string Nome { get; private set; }
 		public string Email { get; private set; }
+		public bool EmailConfirmado { get; set; }
 		public string Senha { get; private set; }
 		public bool Valido { get; set; }
 

@@ -1,9 +1,9 @@
 ﻿using System;
 using br.com.klinderrh.social.dominio.entidades;
+using br.com.klinderrh.social.dominio.interfaces.aplicacao;
+using br.com.klinderrh.social.dominio.interfaces.dados;
 using br.com.klinderrh.social.dominio.objetosdetransporte;
 using br.com.klinderrh.social.infra.comunicacao;
-using br.com.klinderrh.social.infra.interfaces.aplicacao;
-using br.com.klinderrh.social.infra.interfaces.data;
 
 namespace br.com.klinderrh.social.aplicacao
 {

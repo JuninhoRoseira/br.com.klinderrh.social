@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http.Dependencies;
-using Ninject.Activation;
 using Ninject.Parameters;
 using Ninject.Syntax;
 
@@ -10,38 +9,39 @@ namespace br.com.klinderrh.social.infra.ioc
 {
 	public class NinjectScope : IDependencyScope
 	{
-		protected IResolutionRoot resolutionRoot;
+		protected IResolutionRoot ResolutionRoot;
 
 		public NinjectScope(IResolutionRoot kernel)
 		{
-			resolutionRoot = kernel;
+			ResolutionRoot = kernel;
 		}
 
 		public object GetService(Type serviceType)
 		{
-			IRequest request = resolutionRoot.CreateRequest(serviceType, null, new Parameter[0], true, true);
+			var request = ResolutionRoot.CreateRequest(serviceType, null, new Parameter[0], true, true);
 
-			return resolutionRoot.Resolve(request).SingleOrDefault();
+			return ResolutionRoot.Resolve(request).SingleOrDefault();
 
 		}
 
 		public IEnumerable<object> GetServices(Type serviceType)
 		{
-			IRequest request = resolutionRoot.CreateRequest(serviceType, null, new Parameter[0], true, true);
+			var request = ResolutionRoot.CreateRequest(serviceType, null, new Parameter[0], true, true);
 
-			return resolutionRoot.Resolve(request).ToList();
+			return ResolutionRoot.Resolve(request).ToList();
 
 		}
 
 		public void Dispose()
 		{
-			IDisposable disposable = (IDisposable)resolutionRoot;
+			var disposable = (IDisposable)ResolutionRoot;
 
-			if (disposable != null) disposable.Dispose();
+			disposable?.Dispose();
 
-			resolutionRoot = null;
+			ResolutionRoot = null;
 
 		}
 
 	}
+
 }

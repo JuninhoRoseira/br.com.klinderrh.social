@@ -3,8 +3,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using br.com.klinderrh.social.dominio.interfaces.aplicacao;
 using br.com.klinderrh.social.dominio.objetosdetransporte;
-using br.com.klinderrh.social.infra.interfaces.aplicacao;
 
 namespace br.com.klinderrh.social.web.api.Controllers
 {
@@ -51,15 +51,15 @@ namespace br.com.klinderrh.social.web.api.Controllers
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="codigo"></param>
+		/// <param name="id"></param>
 		/// <returns></returns>
 		[Authorize]
-		[Route("{codigo:int}")]
-		public HttpResponseMessage Get(int codigo)
+		[Route("{id:guid}")]
+		public HttpResponseMessage Get(Guid id)
 		{
 			try
 			{
-				var departamento = _departamentoAplicacao.ObterPorCodigo(codigo);
+				var departamento = _departamentoAplicacao.ObterPorId(id);
 
 				return Request.CreateResponse(HttpStatusCode.OK, departamento);
 
@@ -149,15 +149,15 @@ namespace br.com.klinderrh.social.web.api.Controllers
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="codigo"></param>
+		/// <param name="id"></param>
 		/// <returns></returns>
 		[Authorize]
-		[Route("{codigo:int}")]
-		public HttpResponseMessage Delete(int codigo)
+		[Route("{id:guid}")]
+		public HttpResponseMessage Delete(Guid id)
 		{
 			try
 			{
-				_departamentoAplicacao.Excluir(codigo);
+				_departamentoAplicacao.Excluir(id);
 
 				return Request.CreateResponse(HttpStatusCode.OK, "Departamento excluído com sucesso.");
 

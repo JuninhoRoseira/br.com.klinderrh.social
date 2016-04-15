@@ -15,15 +15,15 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 
 			HasOptional(p => p.Usuario)
 				.WithMany()
-				.HasForeignKey(p => p.CodigoDoUsuario);
+				.HasForeignKey(p => p.UsuarioId);
 
 			HasMany(p => p.Enderecos)
 				.WithMany()
 				.Map(mc =>
 				{
 					mc.ToTable("PessoasXEnderecos");
-					mc.MapLeftKey("CodigoDaPessoa");
-					mc.MapRightKey("CodigoDoEndereco");
+					mc.MapLeftKey("PessoaId");
+					mc.MapRightKey("EnderecoId");
 				});
 
 			HasMany(p => p.Contatos)
@@ -31,8 +31,8 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 				.Map(mc =>
 				{
 					mc.ToTable("PessoasXContatos");
-					mc.MapLeftKey("CodigoDaPessoa");
-					mc.MapRightKey("CodigoDoContato");
+					mc.MapLeftKey("PessoaId");
+					mc.MapRightKey("ContatoId");
 				});
 
 		}

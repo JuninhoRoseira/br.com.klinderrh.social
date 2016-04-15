@@ -21,6 +21,8 @@ define(["require", "exports", "../../../enums/Enums"], function (require, export
                 .get(this.serviceUrl + "/" + pesquisa.texto)
                 .success(function (response) {
                 _this.listaDeCargos = response;
+            }).error(function (a, b, c, d) {
+                alert(a);
             });
         };
         CargoController.prototype.obterNiveisDosCargos = function () {
@@ -31,8 +33,8 @@ define(["require", "exports", "../../../enums/Enums"], function (require, export
                 _this.listaDeNiveisDosCargos = response;
             });
         };
-        CargoController.prototype.obterNomeDoNivel = function (codigoDoNivel) {
-            return Enums.NivelDoCargo[codigoDoNivel];
+        CargoController.prototype.obterNomeDoNivel = function (nivelId) {
+            return Enums.NivelDoCargo[nivelId];
         };
         CargoController.prototype.adicionar = function () {
             var _this = this;
@@ -43,11 +45,11 @@ define(["require", "exports", "../../../enums/Enums"], function (require, export
                 resolve: {
                     title: function () { return "Novo Cargo"; },
                     cargo: function () { return ({
-                        codigo: 0,
+                        id: "",
                         nome: "",
                         sigla: "",
                         descricao: "",
-                        nivel: 0
+                        nivel: ""
                     }); },
                     niveis: function () { return _this.listaDeNiveisDosCargos; }
                 }
@@ -72,7 +74,7 @@ define(["require", "exports", "../../../enums/Enums"], function (require, export
                 resolve: {
                     title: function () { return "Editar Cargo"; },
                     cargo: function () { return ({
-                        codigo: cargo.codigo,
+                        id: cargo.id,
                         nome: cargo.nome,
                         sigla: cargo.sigla,
                         descricao: cargo.descricao,
@@ -92,7 +94,7 @@ define(["require", "exports", "../../../enums/Enums"], function (require, export
                 });
             });
         };
-        CargoController.prototype.excluir = function ($event, codigoDoCargo) {
+        CargoController.prototype.excluir = function ($event, cargoId) {
             var _this = this;
             $event.stopPropagation();
             var modalTemplate = "<div class='modal-header'><h3 class='modal-title'>Exclusão</h3></div>" +
@@ -107,7 +109,7 @@ define(["require", "exports", "../../../enums/Enums"], function (require, export
             });
             modalInstance.result.then(function () {
                 _this.http
-                    .delete(_this.serviceUrl + "/" + codigoDoCargo)
+                    .delete(_this.serviceUrl + "/" + cargoId)
                     .success(function () {
                     _this.listarTodos();
                 })

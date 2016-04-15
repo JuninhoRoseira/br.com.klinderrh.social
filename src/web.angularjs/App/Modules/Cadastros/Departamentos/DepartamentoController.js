@@ -31,11 +31,11 @@ define(["require", "exports"], function (require, exports) {
                 resolve: {
                     title: function () { return "Novo Departamento"; },
                     departamento: function () { return ({
-                        codigo: 0,
+                        id: "",
                         nome: "",
                         sigla: "",
                         descricao: "",
-                        codigoDoDepartamentoPai: 0,
+                        departamentoPaiId: "",
                         departamentosFilho: []
                     }); },
                     pais: function () { return _this.listaDosDepartamentos; }
@@ -61,11 +61,11 @@ define(["require", "exports"], function (require, exports) {
                 resolve: {
                     title: function () { return "Editar Departamento"; },
                     departamento: function () { return ({
-                        codigo: departamento.codigo,
+                        id: departamento.id,
                         nome: departamento.nome,
                         sigla: departamento.sigla,
                         descricao: departamento.descricao,
-                        codigoDoDepartamentoPai: departamento.codigoDoDepartamentoPai,
+                        departamentoPaiId: departamento.departamentoPaiId,
                         departamentosFilho: departamento.departamentosFilho
                     }); },
                     pais: function () { return _this.listaDosDepartamentos; }
@@ -82,7 +82,7 @@ define(["require", "exports"], function (require, exports) {
                 });
             });
         };
-        DepartamentoController.prototype.excluir = function ($event, codigoDoDepartamento) {
+        DepartamentoController.prototype.excluir = function ($event, departamentoId) {
             var _this = this;
             $event.stopPropagation();
             var modalTemplate = "<div class='modal-header'><h3 class='modal-title'>Exclusão</h3></div>" +
@@ -97,7 +97,7 @@ define(["require", "exports"], function (require, exports) {
             });
             modalInstance.result.then(function () {
                 _this.http
-                    .delete(_this.serviceUrl + "/" + codigoDoDepartamento)
+                    .delete(_this.serviceUrl + "/" + departamentoId)
                     .success(function () {
                     _this.listarTodos();
                 })
@@ -119,7 +119,7 @@ define(["require", "exports"], function (require, exports) {
             this.pais = pais;
             this.departamentosPais = [];
             pais.forEach(function (el, i) {
-                if (el.codigo !== departamento.codigo && el.codigoDoDepartamentoPai !== departamento.codigo) {
+                if (el.id !== departamento.id && el.departamentoPaiId !== departamento.id) {
                     _this.departamentosPais.push(el);
                 }
             });

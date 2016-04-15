@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Web.Http;
-using br.com.klinderrh.social.infra.interfaces;
+using br.com.klinderrh.social.dominio.interfaces.dados;
 using br.com.klinderrh.social.infra.ioc;
 using Microsoft.Owin;
 using Microsoft.Owin.Cors;

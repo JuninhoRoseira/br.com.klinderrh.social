@@ -8,8 +8,8 @@
 		public string CPF { get; set; }
 		public string DataDeNascimento { get; set; }
 		public string Matricula { get; set; }
-		public string CodigoDaEmpresa { get; set; }
-		public string CodigoDoDepartamento { get; set; }
-		public string CodigoDoCargo { get; set; }
+		public string EmpresaId { get; set; }
+		public string DepartamentoId { get; set; }
+		public string CargoId { get; set; }
 	}
 }

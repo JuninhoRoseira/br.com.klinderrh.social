@@ -2,11 +2,11 @@
 {
 	public class DepartamentoModelo
 	{
-		public string Codigo { get; set; }
+		public string Id { get; set; }
 		public string Nome { get; set; }
 		public string Sigla { get; set; }
 		public string Descricao { get; set; }
-		public string CodigoDoDepartamentoPai { get; set; }
-		public string CodigoDaUnidade { get; set; }
+		public string DepartamentoPaiId { get; set; }
+		public string UnidadeId { get; set; }
 	}
 }

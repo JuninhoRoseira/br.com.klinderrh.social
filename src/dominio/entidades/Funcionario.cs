@@ -9,18 +9,18 @@ namespace br.com.klinderrh.social.dominio.entidades
 
 		protected Funcionario() { }
 
-		public Funcionario(string matricula, int codigoDaPessoa, int codigoDaUnidade, int codigoDoDepartamento, int codigoDoCargo) : this()
+		public Funcionario(string matricula, Guid pessoaId, Guid unidadeId, Guid departamentoId, Guid cargoId) : this()
 		{
-			AlterarDados(matricula, codigoDaPessoa, codigoDaUnidade, codigoDoDepartamento, codigoDoCargo);
+			AlterarDados(matricula, pessoaId, unidadeId, departamentoId, cargoId);
 		}
 
-		private void AlterarDados(string matricula, int codigoDaPessoa, int codigoDaUnidade, int codigoDoDepartamento, int codigoDoCargo)
+		private void AlterarDados(string matricula, Guid pessoaId, Guid unidadeId, Guid departamentoId, Guid cargoId)
 		{
 			Matricula = matricula;
-			CodigoDaPessoa = codigoDaPessoa;
-			CodigoDaUnidade = codigoDaUnidade;
-			CodigoDoDepartamento = codigoDoDepartamento;
-			CodigoDoCargo = codigoDoCargo;
+			PessoaId = pessoaId;
+			UnidadeId = unidadeId;
+			DepartamentoId = departamentoId;
+			CargoId = cargoId;
 
 			Validar();
 
@@ -29,24 +29,24 @@ namespace br.com.klinderrh.social.dominio.entidades
 		private void Validar()
 		{
 			Assertions<NullReferenceException>.IsNotNullOrEmpty(Matricula, string.Format(Messages.NotBeEmpty, "Matricula"));
-			Assertions<NullReferenceException>.IsGreaterOrEquasTo(CodigoDaPessoa, 1, string.Format(Messages.NotGreaterOrEqualTo, "Pessoa", "1"));
-			Assertions<NullReferenceException>.IsGreaterOrEquasTo(CodigoDaUnidade, 1,  string.Format(Messages.NotGreaterOrEqualTo, "Unidade", "1"));
-			Assertions<NullReferenceException>.IsGreaterOrEquasTo(CodigoDoDepartamento, 1, string.Format(Messages.NotGreaterOrEqualTo, "Departamento", "1"));
-			Assertions<NullReferenceException>.IsGreaterOrEquasTo(CodigoDoCargo, 1, string.Format(Messages.NotGreaterOrEqualTo, "Cargo", "1"));
+			//Assertions<NullReferenceException>.IsGreaterOrEquasTo(PessoaId, 1, string.Format(Messages.NotGreaterOrEqualTo, "Pessoa", "1"));
+			//Assertions<NullReferenceException>.IsGreaterOrEquasTo(UnidadeId, 1,  string.Format(Messages.NotGreaterOrEqualTo, "Unidade", "1"));
+			//Assertions<NullReferenceException>.IsGreaterOrEquasTo(DepartamentoId, 1, string.Format(Messages.NotGreaterOrEqualTo, "Departamento", "1"));
+			//Assertions<NullReferenceException>.IsGreaterOrEquasTo(CargoId, 1, string.Format(Messages.NotGreaterOrEqualTo, "Cargo", "1"));
 		}
 
 		public string Matricula { get; private set; }
 
-		public int CodigoDaPessoa { get; private set; }
+		public Guid PessoaId { get; private set; }
 		public Pessoa Pessoa { get; set; }
 
-		public int CodigoDaUnidade { get; private set; }
+		public Guid UnidadeId { get; private set; }
 		public virtual Unidade Unidade { get; set; }
 
-		public int CodigoDoDepartamento { get; private set; }
+		public Guid DepartamentoId { get; private set; }
 		public virtual Departamento Departamento { get; set; }
 
-		public int CodigoDoCargo { get; private set; }
+		public Guid CargoId { get; private set; }
 		public virtual Cargo Cargo { get; set; }
 
 	}

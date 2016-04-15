@@ -30,7 +30,6 @@
 <table class="table table-hover">
 	<thead>
 		<tr>
-			<th>#</th>
 			<th>Nome</th>
 			<th>Depto. Pai</th>
 			<th>Sigla</th>
@@ -40,9 +39,6 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="departamento in departamentoCtrl.listaDosDepartamentos" ng-click="departamentoCtrl.habilitarEdicao(departamento)">
-			<td>
-				{{departamento.codigo}}
-			</td>
 			<td>
 				{{departamento.nome}}
 			</td>
@@ -56,7 +52,7 @@
 				{{departamento.descricao}}
 			</td>
 			<td>
-				<button type="button" class="btn btn-danger" ng-click="departamentoCtrl.excluir($event, departamento.codigo)">
+				<button type="button" class="btn btn-danger" ng-click="departamentoCtrl.excluir($event, departamento.id)">
 					<i class="fa fa-trash"></i>
 					Excluir
 				</button>

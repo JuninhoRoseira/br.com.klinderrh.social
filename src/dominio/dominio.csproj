@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>br.com.klinderrh.social.dominio</RootNamespace>
     <AssemblyName>br.com.klinderrh.social.dominio</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,6 +54,13 @@
     <Compile Include="entidades\TipoDeEnderecoEnum.cs" />
     <Compile Include="entidades\Unidade.cs" />
     <Compile Include="entidades\Usuario.cs" />
+    <Compile Include="interfaces\aplicacao\IAplicacao.cs" />
+    <Compile Include="interfaces\dados\IAuthorizationServerProvider.cs" />
+    <Compile Include="interfaces\dados\IUnidadeDeTrabalho.cs" />
+    <Compile Include="interfaces\dados\repositorios\IRepositorioDeGravacao.cs" />
+    <Compile Include="interfaces\dados\repositorios\IRepositorioDeLeitura.cs" />
+    <Compile Include="interfaces\dados\repositorios\IRepositorioGenerico.cs" />
+    <Compile Include="interfaces\dados\repositorios\IRepositorioGenericoDeEnums.cs" />
     <Compile Include="objetosdetransporte\CargoModelo.cs" />
     <Compile Include="objetosdetransporte\DepartamentoModelo.cs" />
     <Compile Include="objetosdetransporte\FuncionarioModelo.cs" />

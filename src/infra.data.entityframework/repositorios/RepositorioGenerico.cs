@@ -3,7 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using br.com.klinderrh.social.dominio.entidades;
-using br.com.klinderrh.social.infra.interfaces.data;
+using br.com.klinderrh.social.dominio.interfaces.dados.repositorios;
 
 namespace br.com.klinderrh.social.infra.data.entityframework.repositorios
 {
@@ -38,9 +38,9 @@ namespace br.com.klinderrh.social.infra.data.entityframework.repositorios
 			throw new NotImplementedException();
 		}
 
-		public T ObterPorCodigo(int codigo)
+		public T ObterPorId(Guid id)
 		{
-			return _dbSet.FirstOrDefault(s => s.Codigo == codigo);
+			return _dbSet.FirstOrDefault(s => s.Id == id);
 		}
 
 		public IQueryable<T> ObterPor(Expression<Func<T, bool>> condicao = null,

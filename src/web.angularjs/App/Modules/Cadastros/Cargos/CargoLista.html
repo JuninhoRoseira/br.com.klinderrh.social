@@ -30,7 +30,6 @@
 <table class="table table-hover">
 	<thead>
 		<tr>
-			<th>#</th>
 			<th>Nome</th>
 			<th>Nível</th>
 			<th>Sigla</th>
@@ -40,9 +39,6 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="cargo in cargoCtrl.listaDeCargos" ng-click="cargoCtrl.habilitarEdicao(cargo)">
-			<td>
-				{{cargo.codigo}}
-			</td>
 			<td>
 				{{cargo.nome}}
 			</td>
@@ -56,7 +52,7 @@
 				{{cargo.descricao}}
 			</td>
 			<td>
-				<button type="button" class="btn btn-danger" ng-click="cargoCtrl.excluir($event, cargo.codigo)">
+				<button type="button" class="btn btn-danger" ng-click="cargoCtrl.excluir($event, cargo.id)">
 					<i class="fa fa-trash"></i>
 					Excluir
 				</button>

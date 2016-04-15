@@ -10,9 +10,9 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 		{
 			ToTable("TipoDeEnderecoEnum");
 
-			HasKey(te => te.Codigo);
+			HasKey(te => te.Id);
 
-			Property(te => te.Codigo).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+			Property(te => te.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 			Property(te => te.Nome).HasMaxLength(100).IsRequired();
 			
 		}

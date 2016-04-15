@@ -6,6 +6,7 @@ define(["require", "exports", "Routes", "Runs", "Services/AuthInterceptorService
             app.run(AppRuns.Runs.execute);
             app.directive("appNavigator", NavDir.NavDirective.create);
             app.directive("appSidebar", SideBarDir.SideBarDirective.create);
+            //app.directive("appPopup", PopupDir.PopupDirective.create);
             app.factory("KlinderRH.Web.UI.Services.AuthInterceptorService", Services.AuthInterceptorService.create);
             app.controller("KlinderRH.Web.UI.Controllers.AboutController", AboutCtrl.AboutController);
             app.controller("KlinderRH.Web.UI.Controllers.LoginController", LoginCtrl.LoginController);

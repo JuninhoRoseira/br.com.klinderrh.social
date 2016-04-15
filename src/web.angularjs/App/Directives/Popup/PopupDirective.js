@@ -4,6 +4,7 @@ define(["require", "exports"], function (require, exports) {
         }
         PopupDirective.create = function () {
             return {
+                //replace: true,
                 restrict: "EA",
                 templateUrl: "/App/Directives/Popup/Alert.html"
             };

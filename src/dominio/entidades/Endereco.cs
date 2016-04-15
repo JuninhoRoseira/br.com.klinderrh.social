@@ -1,4 +1,5 @@
-﻿using br.com.klinderrh.social.dominio.objetosdevalor;
+﻿using System;
+using br.com.klinderrh.social.dominio.objetosdevalor;
 
 namespace br.com.klinderrh.social.dominio.entidades
 {
@@ -15,8 +16,7 @@ namespace br.com.klinderrh.social.dominio.entidades
 		public string Complemento { get; set; }
 		public string CEP { get; set; }
 		public string Bairro { get; set; }
-
-		public int CodigoDaCidade { get; set; }
+		public Guid CidadeId { get; set; }
 		public virtual Cidade Cidade { get; set; }
 
 	}

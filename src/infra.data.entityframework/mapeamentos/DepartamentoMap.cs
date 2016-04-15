@@ -14,7 +14,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 
 			HasOptional(d => d.DepartamentoPai)
 				.WithMany(d => d.DepartamentosFilho)
-				.HasForeignKey(d => d.CodigoDoDepartamentoPai);
+				.HasForeignKey(d => d.DepartamentoPaiId);
 
 		}
 

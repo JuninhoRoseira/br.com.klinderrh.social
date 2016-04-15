@@ -44,11 +44,11 @@ export class DepartamentoController implements Interfaces.IDepartamentoControlle
 			resolve: {
 				title: () => "Novo Departamento",
 				departamento: () => ({
-					codigo: 0,
+					id: "",
 					nome: "",
 					sigla: "",
 					descricao: "",
-					codigoDoDepartamentoPai: 0,
+					departamentoPaiId: "",
 					departamentosFilho: []
 				}),
 				pais:() => this.listaDosDepartamentos
@@ -76,11 +76,11 @@ export class DepartamentoController implements Interfaces.IDepartamentoControlle
 			resolve: {
 				title: () => "Editar Departamento",
 				departamento: () => ({
-					codigo: departamento.codigo,
+					id: departamento.id,
 					nome: departamento.nome,
 					sigla: departamento.sigla,
 					descricao: departamento.descricao,
-					codigoDoDepartamentoPai: departamento.codigoDoDepartamentoPai,
+					departamentoPaiId: departamento.departamentoPaiId,
 					departamentosFilho: departamento.departamentosFilho
 				}),
 				pais: () => this.listaDosDepartamentos
@@ -100,7 +100,7 @@ export class DepartamentoController implements Interfaces.IDepartamentoControlle
 
 	}
 
-	excluir($event, codigoDoDepartamento): void {
+	excluir($event, departamentoId): void {
 		$event.stopPropagation();
 
 		var modalTemplate = "<div class='modal-header'><h3 class='modal-title'>Exclusão</h3></div>" +
@@ -117,7 +117,7 @@ export class DepartamentoController implements Interfaces.IDepartamentoControlle
 
 		modalInstance.result.then(() => {
 			this.http
-				.delete(this.serviceUrl + "/" + codigoDoDepartamento)
+				.delete(this.serviceUrl + "/" + departamentoId)
 				.success(() => {
 					this.listarTodos();
 				})
@@ -144,7 +144,7 @@ export class PopupDepartamentoController {
 		this.departamentosPais = [];
 
 		pais.forEach((el, i) => {
-			if (el.codigo !== departamento.codigo && el.codigoDoDepartamentoPai !== departamento.codigo) {
+			if (el.id !== departamento.id && el.departamentoPaiId !== departamento.id) {
 				this.departamentosPais.push(el);
 			}
 		});

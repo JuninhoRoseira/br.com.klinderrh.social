@@ -5,16 +5,16 @@ namespace br.com.klinderrh.social.dominio.entidades
 {
 	public class EntidadeBase
 	{
-		protected EntidadeBase() : this(0) { }
+		protected EntidadeBase() : this(Guid.NewGuid()) { }
 
-		public EntidadeBase(int codigo)
+		public EntidadeBase(Guid id)
 		{
-			Codigo = codigo;
+			Id = id;
 			DataDeCadastro = DateTime.Now;
 			Ativo = true;
 		}
 
-		public int Codigo { get; private set; }
+		public Guid Id { get; private set; }
 		public DateTime DataDeCadastro { get; private set; }
 		public bool Ativo { get; set; }
 

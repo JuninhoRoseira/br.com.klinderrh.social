@@ -1,27 +1,28 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using br.com.klinderrh.social.dominio.entidades;
-using br.com.klinderrh.social.dominio.objetosdetransporte;
-using br.com.klinderrh.social.infra.interfaces;
-using br.com.klinderrh.social.infra.interfaces.aplicacao;
+using br.com.klinderrh.social.dominio.interfaces.dados;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 
-namespace br.com.klinderrh.social.aplicacao
+namespace br.com.klinderrh.social.infra.data.entityframework.identity
 {
 	public class AuthorizationServerProvider : OAuthAuthorizationServerProvider, IAuthorizationServerProvider
 	{
-		private readonly IUsuarioAplicacao _usuarioAplicacao;
 
-		public AuthorizationServerProvider(IUsuarioAplicacao usuarioAplicacao)
+		private readonly ApplicationUserManager _userManager;
+
+		public AuthorizationServerProvider(ApplicationUserManager userManager)
 		{
-			_usuarioAplicacao = usuarioAplicacao;
+			_userManager = userManager;
 		}
 
 		public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
 		{
 			context.Validated();
+
+			await Task.FromResult<object>(null);
+
 		}
 
 		public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
@@ -29,16 +30,11 @@ namespace br.com.klinderrh.social.aplicacao
 
 			context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
-			Usuario user;
+			ApplicationUser usuario;
 
 			try
 			{
-				//user = await userManager.FindAsync(context.UserName, context.Password);
-				user = _usuarioAplicacao.Autenticar(new UsuarioModelo
-				{
-					Email = context.UserName,
-					Senha = context.Password
-				});
+				usuario = await _userManager.FindAsync(context.UserName, context.Password);
 			}
 			catch
 			{
@@ -50,14 +46,13 @@ namespace br.com.klinderrh.social.aplicacao
 				return;
 			}
 
-			if (user != null)
+			if (usuario != null)
 			{
 				try
 				{
 					// User is found. Signal this by calling context.Validated
+					
 					// create identity
-
-
 					var claims = new List<Claim>
 					{
 						new Claim("sub", context.UserName),
@@ -70,11 +65,9 @@ namespace br.com.klinderrh.social.aplicacao
 
 					var props = new AuthenticationProperties(new Dictionary<string, string>
 					{
-						{"codigo", user.Codigo.ToString()},
-						{"nome", user.Nome},
-						{"dataDeCadastro", user.DataDeCadastro.ToString("dd-MM-yyyy HH:ss")},
-						{"ativo", user.Ativo.ToString().ToLower()},
-						{"email", user.Email}
+						{"id", usuario.Id.ToString()},
+						{"nome", usuario.Name},
+						{"email", usuario.Email}
 					});
 
 					var ticket = new AuthenticationTicket(id, props);
@@ -92,10 +85,7 @@ namespace br.com.klinderrh.social.aplicacao
 			else
 			{
 				// The resource owner credentials are invalid or resource owner does not exist.
-				context.SetError(
-					"access_denied",
-					"The resource owner credentials are invalid or resource owner does not exist.");
-
+				context.SetError("access_denied", "The resource owner credentials are invalid or resource owner does not exist.");
 				context.Rejected();
 			}
 
@@ -103,7 +93,7 @@ namespace br.com.klinderrh.social.aplicacao
 
 		public override Task TokenEndpoint(OAuthTokenEndpointContext context)
 		{
-			foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
+			foreach (var property in context.Properties.Dictionary)
 			{
 				context.AdditionalResponseParameters.Add(property.Key, property.Value);
 			}
@@ -113,4 +103,5 @@ namespace br.com.klinderrh.social.aplicacao
 		}
 
 	}
+
 }

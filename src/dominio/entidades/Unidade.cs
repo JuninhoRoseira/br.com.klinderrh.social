@@ -13,18 +13,18 @@ namespace br.com.klinderrh.social.dominio.entidades
 			Funcionarios = new List<Funcionario>();
 		}
 
-		public Unidade(string razaoSocial, string nomeFantasia, string documento, string inscricao, int codigoDaEmpresa) : this()
+		public Unidade(string razaoSocial, string nomeFantasia, string documento, string inscricao, Guid empresaId) : this()
 		{
-			AlterarDados(razaoSocial, nomeFantasia, documento, inscricao, codigoDaEmpresa);
+			AlterarDados(razaoSocial, nomeFantasia, documento, inscricao, empresaId);
 		}
 
-		private void AlterarDados(string razaoSocial, string nomeFantasia, string documento, string inscricao, int codigoDaEmpresa)
+		private void AlterarDados(string razaoSocial, string nomeFantasia, string documento, string inscricao, Guid empresaId)
 		{
 			RazaoSocial = razaoSocial;
 			NomeFantasia = nomeFantasia;
 			CNPJ = documento;
 			IE = inscricao;
-			CodigoDaEmpresa = codigoDaEmpresa;
+			EmpresaId = empresaId;
 
 			Validar();
 
@@ -36,7 +36,7 @@ namespace br.com.klinderrh.social.dominio.entidades
 			Assertions<NullReferenceException>.IsNotNullOrEmpty(NomeFantasia, string.Format(Messages.NotBeEmpty, "Nome Fantasia"));
 			Assertions<NullReferenceException>.IsNotNullOrEmpty(CNPJ, string.Format(Messages.NotBeEmpty, "C.N.P.J."));
 			Assertions<NullReferenceException>.IsNotNullOrEmpty(IE, string.Format(Messages.NotBeEmpty, "Inscrição Estadual"));
-			Assertions<NullReferenceException>.IsGreaterOrEquasTo(CodigoDaEmpresa, 1, string.Format(Messages.NotGreaterOrEqualTo, "Empresa", "1"));
+			// Assertions<NullReferenceException>.IsGreaterOrEquasTo(EmpresaId, 1, string.Format(Messages.NotGreaterOrEqualTo, "Empresa", "1"));
 		}
 
 		public string RazaoSocial { get; private set; }
@@ -44,7 +44,7 @@ namespace br.com.klinderrh.social.dominio.entidades
 		public string CNPJ { get; private set; }
 		public string IE { get; private set; }
 
-		public int CodigoDaEmpresa { get; private set; }
+		public Guid EmpresaId { get; private set; }
 		public virtual Empresa Empresa { get; set; }
 
 		public virtual ICollection<Departamento> Departamentos { get; set; }

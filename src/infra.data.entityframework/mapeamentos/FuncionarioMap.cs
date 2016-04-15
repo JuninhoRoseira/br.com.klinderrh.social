@@ -16,19 +16,19 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 
 			HasRequired(p => p.Pessoa)
 				.WithMany()
-				.HasForeignKey(p => p.CodigoDaPessoa);
+				.HasForeignKey(p => p.PessoaId);
 
 			HasRequired(f => f.Unidade)
 				.WithMany(e => e.Funcionarios)
-				.HasForeignKey(f => f.CodigoDaUnidade);
+				.HasForeignKey(f => f.UnidadeId);
 
 			HasRequired(f => f.Departamento)
 				.WithMany()
-				.HasForeignKey(f => f.CodigoDoDepartamento);
+				.HasForeignKey(f => f.DepartamentoId);
 
 			HasRequired(f => f.Cargo)
 				.WithMany()
-				.HasForeignKey(f => f.CodigoDoCargo);
+				.HasForeignKey(f => f.CargoId);
 
 		}
 

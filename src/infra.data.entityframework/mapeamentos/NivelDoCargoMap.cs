@@ -10,9 +10,9 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 		{
 			ToTable("NivelDoCargoEnum");
 
-			HasKey(nc => nc.Codigo);
+			HasKey(nc => nc.Id);
 
-			Property(nc => nc.Codigo).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+			Property(nc => nc.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 			Property(nc => nc.Nome).HasMaxLength(100).IsRequired();
 
 		}

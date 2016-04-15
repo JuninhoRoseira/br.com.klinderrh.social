@@ -13,30 +13,30 @@ namespace br.com.klinderrh.social.dominio.entidades
 			DepartamentosFilho = new List<Departamento>();
 		}
 
-		public Departamento(string nome, string sigla, string descricao, int codigoDaUnidade, int? codigoDoDepartamentoPai) : this()
+		public Departamento(string nome, string sigla, string descricao, Guid unidadeId, Guid? departamentoPaiId) : this()
 		{
-			AlterarDados(nome, sigla, descricao, codigoDaUnidade, codigoDoDepartamentoPai);
+			AlterarDados(nome, sigla, descricao, unidadeId, departamentoPaiId);
 		}
 
 		public string Nome { get; private set; }
 		public string Sigla { get; private set; }
 		public string Descricao { get; private set; }
 
-		public int? CodigoDoDepartamentoPai { get; private set; }
+		public Guid? DepartamentoPaiId { get; private set; }
 		public virtual Departamento DepartamentoPai { get; set; }
 
-		public int CodigoDaUnidade { get; private set; }
+		public Guid UnidadeId { get; private set; }
 		public virtual Unidade Unidade { get; set; }
 
 		public virtual ICollection<Departamento> DepartamentosFilho { get; set; }
 
-		public void AlterarDados(string nome, string sigla, string descricao, int codigoDaUnidade, int? codigoDoDepartamentoPai)
+		public void AlterarDados(string nome, string sigla, string descricao, Guid unidadeId, Guid? departamentoPaiId)
 		{
 			Nome = nome;
 			Sigla = sigla;
 			Descricao = descricao;
-			CodigoDaUnidade = codigoDaUnidade;
-			CodigoDoDepartamentoPai = codigoDoDepartamentoPai;
+			UnidadeId = unidadeId;
+			DepartamentoPaiId = departamentoPaiId;
 
 			Validar();
 
@@ -47,7 +47,7 @@ namespace br.com.klinderrh.social.dominio.entidades
 			Assertions<NullReferenceException>.IsNotNullOrEmpty(Nome, string.Format(Messages.NotBeEmpty, "Nome"));
 			Assertions<NullReferenceException>.IsNotNullOrEmpty(Sigla, string.Format(Messages.NotBeEmpty, "Sigla"));
 			Assertions<NullReferenceException>.IsNotNullOrEmpty(Descricao, string.Format(Messages.NotBeEmpty, "Descricao"));
-			Assertions<NullReferenceException>.IsGreaterOrEquasTo(CodigoDaUnidade, 1, string.Format(Messages.NotGreaterOrEqualTo, "Unidade", "1"));
+			//Assertions<NullReferenceException>.IsGreaterOrEquasTo(UnidadeId, 1, string.Format(Messages.NotGreaterOrEqualTo, "Unidade", "1"));
 		}
 
 	}

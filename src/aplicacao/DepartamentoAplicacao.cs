@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using br.com.klinderrh.social.dominio.entidades;
+using br.com.klinderrh.social.dominio.interfaces.aplicacao;
+using br.com.klinderrh.social.dominio.interfaces.dados;
 using br.com.klinderrh.social.dominio.objetosdetransporte;
+using br.com.klinderrh.social.infra.comum;
 using br.com.klinderrh.social.infra.comunicacao;
-using br.com.klinderrh.social.infra.interfaces.aplicacao;
-using br.com.klinderrh.social.infra.interfaces.data;
 
 namespace br.com.klinderrh.social.aplicacao
 {
@@ -28,23 +28,12 @@ namespace br.com.klinderrh.social.aplicacao
 			{
 				transacaoAbertaAqui = _unidadeDeTrabalho.IniciarTransacao();
 
-				int? codigoDoDepartamentoPai = null;
-
-				if (!string.IsNullOrWhiteSpace(departamento.CodigoDoDepartamentoPai))
-				{
-					codigoDoDepartamentoPai = int.Parse(departamento.CodigoDoDepartamentoPai);
-				}
-
-				int codigoDaUnidade;
-
-				int.TryParse(departamento.CodigoDaUnidade, out codigoDaUnidade);
-
 				var departamentoNovo = new Departamento(
 					departamento.Nome,
 					departamento.Sigla,
 					departamento.Descricao,
-					codigoDaUnidade,
-					codigoDoDepartamentoPai);
+					departamento.UnidadeId.ToGuid(),
+					departamento.DepartamentoPaiId.ToNulleableGuid());
 
 				var repositorioDeDepartamentos = _unidadeDeTrabalho.ObterRepositorio<Departamento>();
 
@@ -79,32 +68,17 @@ namespace br.com.klinderrh.social.aplicacao
 			{
 				transacaoAbertaAqui = _unidadeDeTrabalho.IniciarTransacao();
 
-				int codigo;
-
-				int.TryParse(departamento.Codigo, out codigo);
-
 				var repositorioDeDepartamentos = _unidadeDeTrabalho.ObterRepositorio<Departamento>();
-				var departamentoAlterado = repositorioDeDepartamentos.ObterPorCodigo(codigo);
+				var departamentoAlterado = repositorioDeDepartamentos.ObterPorId(departamento.Id.ToGuid());
 
 				if (departamentoAlterado == null) return;
-
-				int? codigoDoDepartamentoPai = null;
-
-				if (!string.IsNullOrWhiteSpace(departamento.CodigoDoDepartamentoPai))
-				{
-					codigoDoDepartamentoPai = int.Parse(departamento.CodigoDoDepartamentoPai);
-				}
-
-				int codigoDaUnidade;
-
-				int.TryParse(departamento.CodigoDaUnidade, out codigoDaUnidade);
 
 				departamentoAlterado.AlterarDados(
 					departamento.Nome,
 					departamento.Sigla,
 					departamento.Descricao,
-					codigoDaUnidade,
-					codigoDoDepartamentoPai);
+					departamento.UnidadeId.ToGuid(),
+					departamento.DepartamentoPaiId.ToNulleableGuid());
 
 				_unidadeDeTrabalho.Salvar();
 
@@ -125,7 +99,7 @@ namespace br.com.klinderrh.social.aplicacao
 
 		}
 
-		public void Excluir(int codigo)
+		public void Excluir(Guid id)
 		{
 			var transacaoAbertaAqui = false;
 
@@ -134,7 +108,7 @@ namespace br.com.klinderrh.social.aplicacao
 				transacaoAbertaAqui = _unidadeDeTrabalho.IniciarTransacao();
 
 				var repositorioDeDepartamentos = _unidadeDeTrabalho.ObterRepositorio<Departamento>();
-				var departamentoExcluido = repositorioDeDepartamentos.ObterPorCodigo(codigo);
+				var departamentoExcluido = repositorioDeDepartamentos.ObterPorId(id);
 
 				if (departamentoExcluido == null) return;
 
@@ -222,7 +196,7 @@ namespace br.com.klinderrh.social.aplicacao
 			}
 		}
 
-		public Departamento ObterPorCodigo(int codigo)
+		public Departamento ObterPorId(Guid id)
 		{
 			var transacaoAbertaAqui = false;
 
@@ -231,7 +205,7 @@ namespace br.com.klinderrh.social.aplicacao
 				transacaoAbertaAqui = _unidadeDeTrabalho.IniciarTransacao();
 
 				var repositorioDeDepartamentos = _unidadeDeTrabalho.ObterRepositorio<Departamento>();
-				var departamento = repositorioDeDepartamentos.ObterPor(c => c.Codigo == codigo).FirstOrDefault();
+				var departamento = repositorioDeDepartamentos.ObterPor(c => c.Id == id).FirstOrDefault();
 
 				return departamento;
 

@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Data.Entity;
 using br.com.klinderrh.social.dominio.entidades;
+using br.com.klinderrh.social.dominio.interfaces.dados;
+using br.com.klinderrh.social.dominio.interfaces.dados.repositorios;
 using br.com.klinderrh.social.infra.data.entityframework.repositorios;
-using br.com.klinderrh.social.infra.interfaces.data;
 
 namespace br.com.klinderrh.social.infra.data.entityframework
 {

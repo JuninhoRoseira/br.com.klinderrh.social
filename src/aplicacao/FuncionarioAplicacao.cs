@@ -1,9 +1,10 @@
 ﻿using System;
 using br.com.klinderrh.social.dominio.entidades;
+using br.com.klinderrh.social.dominio.interfaces.aplicacao;
+using br.com.klinderrh.social.dominio.interfaces.dados;
 using br.com.klinderrh.social.dominio.objetosdetransporte;
+using br.com.klinderrh.social.infra.comum;
 using br.com.klinderrh.social.infra.comunicacao;
-using br.com.klinderrh.social.infra.interfaces.aplicacao;
-using br.com.klinderrh.social.infra.interfaces.data;
 
 namespace br.com.klinderrh.social.aplicacao
 {
@@ -35,20 +36,14 @@ namespace br.com.klinderrh.social.aplicacao
 					DataDeNascimento = funcionarioModelo.DataDeNascimento
 				});
 
-				int codigoDaEmpresa, codigoDoDepartamento, codigoDoCargo;
-
-				int.TryParse(funcionarioModelo.CodigoDaEmpresa, out codigoDaEmpresa);
-				int.TryParse(funcionarioModelo.CodigoDoDepartamento, out codigoDoDepartamento);
-				int.TryParse(funcionarioModelo.CodigoDoCargo, out codigoDoCargo);
+				var repositorioDeFuncionarios = _unidadeDeTrabalho.ObterRepositorio<Funcionario>();
 
 				var funcionario = new Funcionario(
 					funcionarioModelo.Matricula,
-					pessoaNova.Codigo,
-					codigoDaEmpresa,
-					codigoDoDepartamento,
-					codigoDoCargo);
-
-				var repositorioDeFuncionarios = _unidadeDeTrabalho.ObterRepositorio<Funcionario>();
+					pessoaNova.Id,
+					funcionarioModelo.EmpresaId.ToGuid(),
+					funcionarioModelo.DepartamentoId.ToGuid(),
+					funcionarioModelo.CargoId.ToGuid());
 
 				repositorioDeFuncionarios.Incluir(funcionario);
 

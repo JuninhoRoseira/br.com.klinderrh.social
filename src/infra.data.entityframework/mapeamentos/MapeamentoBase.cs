@@ -9,9 +9,9 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 	{
 		public MapeamentoBase()
 		{
-			HasKey(t => t.Codigo);
+			HasKey(t => t.Id);
 
-			Property(t => t.Codigo).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity).IsRequired();
+			Property(t => t.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity).IsRequired();
 			Property(t => t.Ativo);
 			Property(t => t.DataDeCadastro).IsOptional();
 

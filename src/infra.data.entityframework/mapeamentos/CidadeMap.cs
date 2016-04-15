@@ -13,7 +13,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 
 			HasRequired(c => c.Estado)
 				.WithMany(e => e.Cidades)
-				.HasForeignKey(c => c.CodigoDoEstado);
+				.HasForeignKey(c => c.EstadoId);
 
 		}
 

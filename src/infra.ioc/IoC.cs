@@ -1,8 +1,8 @@
 ﻿using br.com.klinderrh.social.aplicacao;
+using br.com.klinderrh.social.dominio.interfaces.aplicacao;
+using br.com.klinderrh.social.dominio.interfaces.dados;
 using br.com.klinderrh.social.infra.data.entityframework;
-using br.com.klinderrh.social.infra.interfaces;
-using br.com.klinderrh.social.infra.interfaces.aplicacao;
-using br.com.klinderrh.social.infra.interfaces.data;
+using br.com.klinderrh.social.infra.data.entityframework.identity;
 using Ninject;
 using Ninject.Modules;
 using Ninject.Web.Common;
@@ -29,9 +29,14 @@ namespace br.com.klinderrh.social.infra.ioc
 		public override void Load()
 		{
 			Bind<Contexto>().ToSelf().InSingletonScope();
+			Bind<ApplicationUserManager>().ToSelf().InSingletonScope();
+
+			Bind<IAppUserStore>().To<ApplicationUserStore>().InRequestScope();
 			Bind<IUnidadeDeTrabalho>().To<UnidadeDeTrabalho>().InRequestScope();
 			Bind<IAuthorizationServerProvider>().To<AuthorizationServerProvider>();
+
 		}
+
 	}
 
 	public class ApplicationBindings : NinjectModule

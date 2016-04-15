@@ -23,7 +23,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 
 			HasRequired(u => u.Empresa)
 				.WithMany(e => e.Unidades)
-				.HasForeignKey(u => u.CodigoDaEmpresa);
+				.HasForeignKey(u => u.EmpresaId);
 
 		}
 

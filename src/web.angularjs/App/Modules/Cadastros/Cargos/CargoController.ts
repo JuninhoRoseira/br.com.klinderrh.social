@@ -39,6 +39,8 @@ export class CargoController implements Interfaces.ICargoController {
 			.get(this.serviceUrl + "/" + pesquisa.texto)
 			.success((response: any) => {
 				this.listaDeCargos = response;
+			}).error((a, b, c, d) => {
+				alert(a);
 			});
 	}
 
@@ -50,8 +52,8 @@ export class CargoController implements Interfaces.ICargoController {
 			});
 	}
 
-	obterNomeDoNivel(codigoDoNivel): string {
-		return Enums.NivelDoCargo[codigoDoNivel];
+	obterNomeDoNivel(nivelId): string {
+		return Enums.NivelDoCargo[nivelId];
 	}
 
 	adicionar(): void {
@@ -62,11 +64,11 @@ export class CargoController implements Interfaces.ICargoController {
 			resolve: {
 				title: () => "Novo Cargo",
 				cargo: () => ({
-					codigo: 0,
+					id: "",
 					nome: "",
 					sigla: "",
 					descricao: "",
-					nivel: 0
+					nivel: ""
 				}),
 				niveis: () => this.listaDeNiveisDosCargos
 			}
@@ -93,7 +95,7 @@ export class CargoController implements Interfaces.ICargoController {
 			resolve: {
 				title: () => "Editar Cargo",
 				cargo: () => ({
-					codigo: cargo.codigo,
+					id: cargo.id,
 					nome: cargo.nome,
 					sigla: cargo.sigla,
 					descricao: cargo.descricao,
@@ -116,7 +118,7 @@ export class CargoController implements Interfaces.ICargoController {
 
 	}
 
-	excluir($event, codigoDoCargo): void {
+	excluir($event, cargoId): void {
 		$event.stopPropagation();
 
 		var modalTemplate = "<div class='modal-header'><h3 class='modal-title'>Exclusão</h3></div>" +
@@ -133,7 +135,7 @@ export class CargoController implements Interfaces.ICargoController {
 
 		modalInstance.result.then(() => {
 			this.http
-				.delete(this.serviceUrl + "/" + codigoDoCargo)
+				.delete(this.serviceUrl + "/" + cargoId)
 				.success(() => {
 					this.listarTodos();
 				})

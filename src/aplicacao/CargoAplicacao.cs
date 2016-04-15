@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using br.com.klinderrh.social.dominio.entidades;
+using br.com.klinderrh.social.dominio.interfaces.aplicacao;
+using br.com.klinderrh.social.dominio.interfaces.dados;
 using br.com.klinderrh.social.dominio.objetosdetransporte;
 using br.com.klinderrh.social.dominio.objetosdevalor;
+using br.com.klinderrh.social.infra.comum;
 using br.com.klinderrh.social.infra.comunicacao;
-using br.com.klinderrh.social.infra.interfaces.aplicacao;
-using br.com.klinderrh.social.infra.interfaces.data;
 
 namespace br.com.klinderrh.social.aplicacao
 {
@@ -69,12 +70,8 @@ namespace br.com.klinderrh.social.aplicacao
 			{
 				transacaoAbertaAqui = _unidadeDeTrabalho.IniciarTransacao();
 
-				int codigo;
-
-				int.TryParse(cargo.Codigo, out codigo);
-
 				var repositorioDeCargos = _unidadeDeTrabalho.ObterRepositorio<Cargo>();
-				var cargoAlterado = repositorioDeCargos.ObterPorCodigo(codigo);
+				var cargoAlterado = repositorioDeCargos.ObterPorId(cargo.Id.ToGuid());
 
 				if (cargoAlterado == null) return;
 
@@ -101,7 +98,7 @@ namespace br.com.klinderrh.social.aplicacao
 
 		}
 
-		public void Excluir(int codigo)
+		public void Excluir(Guid id)
 		{
 			var transacaoAbertaAqui = false;
 
@@ -110,7 +107,7 @@ namespace br.com.klinderrh.social.aplicacao
 				transacaoAbertaAqui = _unidadeDeTrabalho.IniciarTransacao();
 
 				var repositorioDeCargos = _unidadeDeTrabalho.ObterRepositorio<Cargo>();
-				var cargoexcluido = repositorioDeCargos.ObterPorCodigo(codigo);
+				var cargoexcluido = repositorioDeCargos.ObterPorId(id);
 
 				if (cargoexcluido == null) return;
 
@@ -193,7 +190,7 @@ namespace br.com.klinderrh.social.aplicacao
 			}
 		}
 
-		public Cargo ObterPorCodigo(int codigo)
+		public Cargo ObterPorId(Guid id)
 		{
 			var transacaoAbertaAqui = false;
 
@@ -202,7 +199,7 @@ namespace br.com.klinderrh.social.aplicacao
 				transacaoAbertaAqui = _unidadeDeTrabalho.IniciarTransacao();
 
 				var repositorioDeCargos = _unidadeDeTrabalho.ObterRepositorio<Cargo>();
-				var cargo = repositorioDeCargos.ObterPor(c => c.Codigo == codigo).FirstOrDefault();
+				var cargo = repositorioDeCargos.ObterPor(c => c.Id == id).FirstOrDefault();
 
 				return cargo;
 

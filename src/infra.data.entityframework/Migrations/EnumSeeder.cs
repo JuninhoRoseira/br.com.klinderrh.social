@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data.Entity;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
 {
@@ -33,7 +31,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
 		]
 		public static void Seed<TEnum>(
 			this DbContext context,
-			string idField = "Codigo",
+			string idField = "Id",
 			string descriptionField = "Nome",
 			string tableName = null)
 		{
@@ -45,7 +43,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
 			var commandBuilder = new StringBuilder();
 
 			commandBuilder.AppendFormat("CREATE TABLE #EnumValues (\n" +
-				"Codigo {0} NOT NULL PRIMARY KEY,\n" +
+				"Id {0} NOT NULL PRIMARY KEY,\n" +
 				"Nome NVARCHAR(50))\n\n", GetIdType<TEnum>());
 
 			AddValues<TEnum>(commandBuilder);
@@ -64,10 +62,10 @@ namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
 			commandBuilder.AppendFormat(CultureInfo.InvariantCulture,
 				"MERGE {0} dst\n" +
 				"USING #EnumValues src\n" +
-				"ON (src.Codigo = dst.{1})\n" +
+				"ON (src.Id = dst.{1})\n" +
 				"{2}" +
 				"WHEN NOT MATCHED THEN\n" +
-				"INSERT ({1}{3}) VALUES (src.Codigo{4})\n" +
+				"INSERT ({1}{3}) VALUES (src.Id{4})\n" +
 				"WHEN NOT MATCHED BY SOURCE THEN DELETE;\n\n",
 				tableName, idField, descriptionUpdate, descriptionInFieldList, descriptionInsert);
 

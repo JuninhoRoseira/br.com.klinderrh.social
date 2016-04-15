@@ -6,8 +6,8 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using br.com.klinderrh.social.dominio.entidades;
+using br.com.klinderrh.social.dominio.interfaces.aplicacao;
 using br.com.klinderrh.social.dominio.objetosdetransporte;
-using br.com.klinderrh.social.infra.interfaces.aplicacao;
 
 namespace br.com.klinderrh.social.web.api.Controllers
 {
@@ -55,15 +55,15 @@ namespace br.com.klinderrh.social.web.api.Controllers
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="codigo"></param>
+		/// <param name="id"></param>
 		/// <returns></returns>
 		[Authorize]
-		[Route("{codigo:int}")]
-		public HttpResponseMessage Get(int codigo)
+		[Route("{id:guid}")]
+		public HttpResponseMessage Get(Guid id)
 		{
 			try
 			{
-				var cargo = _cargoAplicacao.ObterPorCodigo(codigo);
+				var cargo = _cargoAplicacao.ObterPorId(id);
 
 				return Request.CreateResponse(HttpStatusCode.OK, cargo);
 
@@ -175,15 +175,15 @@ namespace br.com.klinderrh.social.web.api.Controllers
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="codigo"></param>
+		/// <param name="id"></param>
 		/// <returns></returns>
 		[Authorize]
-		[Route("{codigo:int}")]
-		public HttpResponseMessage Delete(int codigo)
+		[Route("{id:guid}")]
+		public HttpResponseMessage Delete(Guid id)
 		{
 			try
 			{
-				_cargoAplicacao.Excluir(codigo);
+				_cargoAplicacao.Excluir(id);
 
 				return Request.CreateResponse(HttpStatusCode.OK, "Cargo excluído com sucesso.");
 

@@ -11,8 +11,8 @@
 			<div class="col-sm-3">
 				<label for="pai">Pai</label>
 				<select id="pai" class="form-control"
-						ng-model="departamentoPopupCtrl.departamento.codigoDoDepartamentoPai"
-						ng-options="pai.codigo as pai.nome for pai in departamentoPopupCtrl.departamentosPais"></select>
+						ng-model="departamentoPopupCtrl.departamento.departamentoPaiId"
+						ng-options="pai.id as pai.nome for pai in departamentoPopupCtrl.departamentosPais"></select>
 			</div>
 			<div class="col-sm-3">
 				<label for="sigla">Sigla</label>
@@ -21,8 +21,8 @@
 			<div class="col-sm-3">
 				<label for="unidade">Unidade</label>
 				<select id="unidade" class="form-control"
-						ng-model="departamentoPopupCtrl.departamento.codigoDaUnidade"
-						ng-options="unidade.codigo as unidade.nome for unidade in departamentoPopupCtrl.unidades"></select>
+						ng-model="departamentoPopupCtrl.departamento.unidadeId"
+						ng-options="unidade.id as unidade.nome for unidade in departamentoPopupCtrl.unidades"></select>
 			</div>
 		</div>
 		<div class="form-group">
@@ -44,7 +44,7 @@
 					<tbody>
 						<tr ng-repeat="departamentoFilho in departamentoPopupCtrl.departamento.departamentosFilho">
 							<td>
-								{{departamentoFilho.codigo}}
+								{{departamentoFilho.id}}
 							</td>
 							<td>
 								{{departamentoFilho.nome}}

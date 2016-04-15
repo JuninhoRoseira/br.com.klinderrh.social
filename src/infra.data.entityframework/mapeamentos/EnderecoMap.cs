@@ -13,11 +13,11 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 			Property(e => e.Complemento).HasMaxLength(50).IsOptional();
 			Property(e => e.Logradouro).HasMaxLength(50).IsOptional();
 			Property(e => e.Numero).HasMaxLength(50).IsOptional();
-			Property(e => e.TipoDeEndereco).HasColumnName("CodigoDoTipoDeEndereco").IsRequired();
+			Property(e => e.TipoDeEndereco).HasColumnName("TipoDeEnderecoId").IsRequired();
 
 			HasRequired(e => e.Cidade)
 				.WithMany()
-				.HasForeignKey(e => e.CodigoDaCidade);
+				.HasForeignKey(e => e.CidadeId);
 
 		}
 

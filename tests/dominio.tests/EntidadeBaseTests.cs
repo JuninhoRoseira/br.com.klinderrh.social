@@ -16,7 +16,7 @@ namespace br.com.klinderrh.social.dominio.tests
 		[Test]
 		public void DeveRetornarObjetoJSON()
 		{
-			var entidadeBase = new EntidadeBase(0);
+			var entidadeBase = new EntidadeBase(Guid.NewGuid());
 
 			var valorDoObjeto = entidadeBase.ToJson();
 

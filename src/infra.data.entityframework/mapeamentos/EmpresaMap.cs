@@ -17,9 +17,12 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 				.IsOptional()
 				.HasColumnAnnotation("Index", NovoIndice("IX_Empresa_NomeFantasia"));
 			Property(e => e.CNPJ)
+				.HasMaxLength(20)
 				.IsRequired()
 				.HasColumnAnnotation("Index", NovoIndiceUnico("IX_Empresa_CNPJ"));
-			Property(e => e.IE).IsRequired();
+			Property(e => e.IE)
+				.HasMaxLength(20)
+				.IsRequired();
 			Property(e => e.DataDeAdesao).IsRequired();
 
 			HasMany(p => p.Enderecos)
@@ -27,8 +30,8 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 				.Map(mc =>
 				{
 					mc.ToTable("EmpresasXEnderecos");
-					mc.MapLeftKey("CodigoDaEmpresa");
-					mc.MapRightKey("CodigoDoEndereco");
+					mc.MapLeftKey("EmpresaId");
+					mc.MapRightKey("EnderecoId");
 				});
 
 			HasMany(p => p.Contatos)
@@ -36,8 +39,8 @@ namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
 				.Map(mc =>
 				{
 					mc.ToTable("EmpresasXContatos");
-					mc.MapLeftKey("CodigoDaEmpresa");
-					mc.MapRightKey("CodigoDoContato");
+					mc.MapLeftKey("EmpresaId");
+					mc.MapRightKey("ContatoId");
 				});
 
 		}

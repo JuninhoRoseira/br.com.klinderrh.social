@@ -1,21 +1,21 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Diagnostics;
 using br.com.klinderrh.social.dominio.entidades;
+using br.com.klinderrh.social.infra.data.entityframework.identity;
 using br.com.klinderrh.social.infra.data.entityframework.mapeamentos;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace br.com.klinderrh.social.infra.data.entityframework
 {
-	public class Contexto : DbContext
+
+	public class Contexto : IdentityDbContext<ApplicationUser, ApplicationRole, Guid, ApplicationUserLogin, ApplicationUserRole, ApplicationUserClaim>
 	{
-		//private static Contexto _contexto;
 
-		//public static Contexto Instancia => _contexto ?? (_contexto = new Contexto());
-
-		public Contexto()
-			: base("name=KinderRHSocialDB")
+		public Contexto() : base("name=KinderRHSocialDB")
 		{
-			// Database.SetInitializer<DevStoreDataContext>(new DevStoreDataContextInitializer());
+			Database.SetInitializer<Contexto>(null); // Remove default initializer
 
 			Configuration.LazyLoadingEnabled = false; // Para senários com dominios compexos.
 			Configuration.ProxyCreationEnabled = false; // Para uma serialização mais suave.
@@ -30,8 +30,7 @@ namespace br.com.klinderrh.social.infra.data.entityframework
 			modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 			modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
-			modelBuilder.Properties<string>()
-				.Configure(p => p.HasColumnType("varchar"));
+			modelBuilder.Properties<string>().Configure(p => p.HasColumnType("varchar"));
 
 			modelBuilder.Configurations.Add(new NivelDoCargoMap());
 			modelBuilder.Configurations.Add(new CargoMap());
@@ -48,7 +47,15 @@ namespace br.com.klinderrh.social.infra.data.entityframework
 			modelBuilder.Configurations.Add(new PessoaMap());
 			modelBuilder.Configurations.Add(new UsuarioMap());
 
+			// Asp.Net Identity
+			modelBuilder.Entity<ApplicationRole>().HasKey(r => r.Id);
+			modelBuilder.Entity<ApplicationUserClaim>().HasKey(uc => uc.Id);
+			modelBuilder.Entity<ApplicationUserRole>().HasKey(ur => new { ur.RoleId, ur.UserId });
+			modelBuilder.Entity<ApplicationUserLogin>().HasKey(ul => new { ul.UserId, ul.LoginProvider, ul.ProviderKey });
+
 		}
+
+		#region DbSet Collections
 
 		public IDbSet<Cargo> Cargos { get; set; }
 		public IDbSet<Cidade> Cidades { get; set; }
@@ -62,6 +69,8 @@ namespace br.com.klinderrh.social.infra.data.entityframework
 		public IDbSet<Estado> Estados { get; set; }
 		public IDbSet<Pessoa> Pessoas { get; set; }
 		public IDbSet<Usuario> Usuarios { get; set; }
+
+		#endregion
 
 	}
 

@@ -12,7 +12,7 @@ export interface ICargoController {
 	pesquisar(pesquisa): void;
 	adicionar(): void;
 	habilitarEdicao(cargo: any): void;
-	excluir($event, codigoDoCargo): void;
+	excluir($event, cargoId): void;
 }
 
 export interface IDepartamentoController {
@@ -20,7 +20,7 @@ export interface IDepartamentoController {
 	pesquisar(pesquisa): void;
 	adicionar(): void;
 	habilitarEdicao(departamento: any): void;
-	excluir($event, codigoDoDepartamento): void;
+	excluir($event, departamentoId): void;
 }
 
 export interface IHomeScope extends ng.IScope {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace br.com.klinderrh.social.dominio.entidades
+namespace KlinderRH.Social.Dominio.Entidades
 {
 	public class EntidadeBase
 	{

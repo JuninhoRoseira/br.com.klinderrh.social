@@ -1,4 +1,5 @@
 define(["require", "exports"], function (require, exports) {
+    "use strict";
     var HomeController = (function () {
         function HomeController($scope, $http) {
             this.serviceUrl = "http://localhost:22149/api/";
@@ -28,7 +29,7 @@ define(["require", "exports"], function (require, exports) {
         }
         HomeController.$inject = ["$scope", '$http'];
         return HomeController;
-    })();
+    }());
     exports.HomeController = HomeController;
 });
 //# sourceMappingURL=HomeController.js.map

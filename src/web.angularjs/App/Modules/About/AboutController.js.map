@@ -1,1 +1,1 @@
-{"version":3,"file":"AboutController.js","sourceRoot":"","sources":["AboutController.ts"],"names":["AboutController","AboutController.constructor"],"mappings":";IAEA;QAKCA,yBAAYA,MAA8BA;QAC1CC,CAACA;QAHMD,uBAAOA,GAAGA,CAACA,QAAQA,CAACA,CAACA;QAK7BA,sBAACA;IAADA,CAACA,AARD,IAQC;IARY,uBAAe,kBAQ3B,CAAA"}
+{"version":3,"file":"AboutController.js","sourceRoot":"","sources":["AboutController.ts"],"names":[],"mappings":";;IAEA;QAKC,yBAAY,MAA8B;QAC1C,CAAC;QAHM,uBAAO,GAAG,CAAC,QAAQ,CAAC,CAAC;QAK7B,sBAAC;IAAD,CAAC,AARD,IAQC;IARY,uBAAe,kBAQ3B,CAAA"}

@@ -1,12 +1,12 @@
 using System;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using br.com.klinderrh.social.dominio.entidades;
-using br.com.klinderrh.social.dominio.objetosdevalor;
-using br.com.klinderrh.social.infra.data.entityframework.identity;
+using KlinderRH.Social.Dominio.Entidades;
+using KlinderRH.Social.Dominio.ObjetosDeValor;
+using KlinderRH.Social.Infra.Data.EntityFramework.Identity;
 using Microsoft.AspNet.Identity;
 
-namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
+namespace KlinderRH.Social.Infra.Data.EntityFramework.Migrations
 {
 	internal sealed class Configuration : DbMigrationsConfiguration<Contexto>
 	{

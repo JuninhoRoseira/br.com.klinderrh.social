@@ -7,8 +7,8 @@
     <ProjectGuid>{3A391B3D-D977-44F7-813A-B903DB0EE072}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>br.com.klinderrh.social.dominio</RootNamespace>
-    <AssemblyName>br.com.klinderrh.social.dominio</AssemblyName>
+    <RootNamespace>KlinderRH.Social.Dominio</RootNamespace>
+    <AssemblyName>KlinderRH.Social.Dominio</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

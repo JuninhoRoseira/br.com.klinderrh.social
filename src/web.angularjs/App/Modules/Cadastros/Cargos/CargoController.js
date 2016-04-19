@@ -1,4 +1,5 @@
 define(["require", "exports", "../../../enums/Enums"], function (require, exports, Enums) {
+    "use strict";
     var CargoController = (function () {
         function CargoController($http, $uibModal) {
             this.serviceUrl = "http://localhost:22149/api/cargos/";
@@ -120,7 +121,7 @@ define(["require", "exports", "../../../enums/Enums"], function (require, export
         };
         CargoController.$inject = ["$http", "$uibModal"];
         return CargoController;
-    })();
+    }());
     exports.CargoController = CargoController;
     var PopupCargoController = (function () {
         function PopupCargoController($uibModalInstance, title, cargo, niveis) {
@@ -137,7 +138,7 @@ define(["require", "exports", "../../../enums/Enums"], function (require, export
         };
         PopupCargoController.$inject = ["$uibModalInstance", "title", "cargo", "niveis"];
         return PopupCargoController;
-    })();
+    }());
     exports.PopupCargoController = PopupCargoController;
     var PopupDeleteCargoController = (function () {
         function PopupDeleteCargoController($uibModalInstance) {
@@ -151,7 +152,7 @@ define(["require", "exports", "../../../enums/Enums"], function (require, export
         };
         PopupDeleteCargoController.$inject = ["$uibModalInstance"];
         return PopupDeleteCargoController;
-    })();
+    }());
     exports.PopupDeleteCargoController = PopupDeleteCargoController;
 });
 //# sourceMappingURL=CargoController.js.map

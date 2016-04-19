@@ -1,4 +1,5 @@
 define(["require", "exports"], function (require, exports) {
+    "use strict";
     (function (NivelDoCargo) {
         NivelDoCargo[NivelDoCargo["Nenhum"] = 1] = "Nenhum";
         NivelDoCargo[NivelDoCargo["Estagiario"] = 2] = "Estagiario";

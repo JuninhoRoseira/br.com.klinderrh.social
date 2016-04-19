@@ -1,6 +1,6 @@
 using System;
 
-namespace br.com.klinderrh.social.dominio.entidades
+namespace KlinderRH.Social.Dominio.Entidades
 {
 	public class Cidade : EntidadeBase
 	{

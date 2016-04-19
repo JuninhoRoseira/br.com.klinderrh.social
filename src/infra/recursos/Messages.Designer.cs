@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace br.com.klinderrh.social.infra.recursos {
+namespace KlinderRH.Social.Infra.Recursos {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace br.com.klinderrh.social.infra.recursos {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("br.com.klinderrh.social.infra.recursos.Messages", typeof(Messages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("KlinderRH.Social.Infra.Recursos.Messages", typeof(Messages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

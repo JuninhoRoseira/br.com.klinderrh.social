@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("br.com.klinderrh.social.infra.data.entityframework")]
+[assembly: AssemblyTitle("KlinderRH.Social.Infra.Data.EntityFramework")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("br.com.klinderrh.social.infra.data.entityframework")]
+[assembly: AssemblyProduct("KlinderRH.Social.Infra.Data.EntityFramework")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

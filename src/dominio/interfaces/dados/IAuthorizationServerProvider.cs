@@ -1,4 +1,4 @@
-﻿namespace br.com.klinderrh.social.dominio.interfaces.dados
+﻿namespace KlinderRH.Social.Dominio.Interfaces.Dados
 {
 	public interface IAuthorizationServerProvider
 	{

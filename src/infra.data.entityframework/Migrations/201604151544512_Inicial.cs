@@ -1,4 +1,4 @@
-namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
+namespace KlinderRH.Social.Infra.Data.EntityFramework.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

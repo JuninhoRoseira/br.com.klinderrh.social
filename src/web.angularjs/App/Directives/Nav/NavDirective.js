@@ -1,4 +1,5 @@
 define(["require", "exports"], function (require, exports) {
+    "use strict";
     var NavDirective = (function () {
         function NavDirective() {
         }
@@ -15,7 +16,7 @@ define(["require", "exports"], function (require, exports) {
             };
         };
         return NavDirective;
-    })();
+    }());
     exports.NavDirective = NavDirective;
 });
 //# sourceMappingURL=NavDirective.js.map

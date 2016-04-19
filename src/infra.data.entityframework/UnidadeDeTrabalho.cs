@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Data.Entity;
-using br.com.klinderrh.social.dominio.entidades;
-using br.com.klinderrh.social.dominio.interfaces.dados;
-using br.com.klinderrh.social.dominio.interfaces.dados.repositorios;
-using br.com.klinderrh.social.infra.data.entityframework.repositorios;
+using KlinderRH.Social.Dominio.Entidades;
+using KlinderRH.Social.Dominio.Interfaces.Dados;
+using KlinderRH.Social.Dominio.Interfaces.Dados.Repositorios;
+using KlinderRH.Social.Infra.Data.EntityFramework.Repositorios;
 
-namespace br.com.klinderrh.social.infra.data.entityframework
+namespace KlinderRH.Social.Infra.Data.EntityFramework
 {
 	public class UnidadeDeTrabalho : IUnidadeDeTrabalho
 	{

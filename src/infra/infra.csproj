@@ -7,8 +7,8 @@
     <ProjectGuid>{03F77373-A3B1-4C3A-9B6E-8044BACB9E4C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>br.com.klinderrh.social.infra</RootNamespace>
-    <AssemblyName>br.com.klinderrh.social.infra</AssemblyName>
+    <RootNamespace>KlinderRH.Social.Infra</RootNamespace>
+    <AssemblyName>KlinderRH.Social.Infra</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

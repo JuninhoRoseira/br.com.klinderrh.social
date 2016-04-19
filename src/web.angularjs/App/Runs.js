@@ -1,4 +1,5 @@
 define(["require", "exports", "Util/Storage"], function (require, exports, Util) {
+    "use strict";
     var Runs = (function () {
         function Runs() {
         }
@@ -20,7 +21,7 @@ define(["require", "exports", "Util/Storage"], function (require, exports, Util)
         };
         Runs.$inject = ["$rootScope", "$state", "$http"];
         return Runs;
-    })();
+    }());
     exports.Runs = Runs;
 });
 //# sourceMappingURL=Runs.js.map

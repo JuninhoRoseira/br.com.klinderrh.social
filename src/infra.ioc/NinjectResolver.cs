@@ -2,7 +2,7 @@ using System.Reflection;
 using System.Web.Http.Dependencies;
 using Ninject;
 
-namespace br.com.klinderrh.social.infra.ioc
+namespace KlinderRH.Social.Infra.IoC
 {
 	public class NinjectResolver : NinjectScope, IDependencyResolver
 	{

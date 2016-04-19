@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Threading;
 
-namespace br.com.klinderrh.social.infra.recursos
+namespace KlinderRH.Social.Infra.Recursos
 {
     public static class Culture
     {

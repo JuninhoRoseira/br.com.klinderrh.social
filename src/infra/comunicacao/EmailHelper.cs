@@ -2,7 +2,7 @@
 using System.Net;
 using System.Net.Mail;
 
-namespace br.com.klinderrh.social.infra.comunicacao
+namespace KlinderRH.Social.Infra.Comunicacao
 {
 	public static class EmailHelper
 	{

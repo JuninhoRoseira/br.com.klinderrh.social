@@ -1,4 +1,5 @@
 define(["require", "exports"], function (require, exports) {
+    "use strict";
     var Storage = (function () {
         function Storage() {
         }
@@ -29,7 +30,7 @@ define(["require", "exports"], function (require, exports) {
             localStorage.clear();
         };
         return Storage;
-    })();
+    }());
     exports.Storage = Storage;
 });
 //# sourceMappingURL=Storage.js.map

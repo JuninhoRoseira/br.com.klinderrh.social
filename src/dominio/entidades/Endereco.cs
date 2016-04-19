@@ -1,7 +1,7 @@
 ﻿using System;
-using br.com.klinderrh.social.dominio.objetosdevalor;
+using KlinderRH.Social.Dominio.ObjetosDeValor;
 
-namespace br.com.klinderrh.social.dominio.entidades
+namespace KlinderRH.Social.Dominio.Entidades
 {
 	public class Endereco : EntidadeBase
 	{

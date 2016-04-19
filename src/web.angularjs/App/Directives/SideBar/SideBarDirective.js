@@ -1,4 +1,5 @@
 define(["require", "exports"], function (require, exports) {
+    "use strict";
     var SideBarDirective = (function () {
         function SideBarDirective() {
         }
@@ -29,7 +30,7 @@ define(["require", "exports"], function (require, exports) {
             //////});
         };
         return SideBarDirective;
-    })();
+    }());
     exports.SideBarDirective = SideBarDirective;
 });
 //# sourceMappingURL=SideBarDirective.js.map

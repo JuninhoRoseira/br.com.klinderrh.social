@@ -1,4 +1,5 @@
 define(["require", "exports", "Routes", "Runs", "Services/AuthInterceptorService", "Directives/Nav/NavDirective", "Directives/SideBar/SideBarDirective", "Modules/About/AboutController", "Modules/Login/LoginController", "Modules/Home/HomeController", "Modules/Cadastros/Cargos/CargoController", "Modules/Cadastros/Departamentos/DepartamentoController"], function (require, exports, AppConfig, AppRuns, Services, NavDir, SideBarDir, AboutCtrl, LoginCtrl, HomeCtrl, CargoCtrl, DepartamentoCtrl) {
+    "use strict";
     var KlinderRh = (function () {
         function KlinderRh() {
             var app = angular.module("KlinderRH.Web.UI", ["ui.bootstrap", "ngAnimate", "ui.router", "ngMessages"]);
@@ -15,7 +16,7 @@ define(["require", "exports", "Routes", "Runs", "Services/AuthInterceptorService
             app.controller("KlinderRH.Web.UI.Controllers.DepartamentoController", DepartamentoCtrl.DepartamentoController);
         }
         return KlinderRh;
-    })();
+    }());
     exports.KlinderRh = KlinderRh;
 });
 //# sourceMappingURL=Modules.js.map

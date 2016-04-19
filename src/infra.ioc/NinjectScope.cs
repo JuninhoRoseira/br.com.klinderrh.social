@@ -5,7 +5,7 @@ using System.Web.Http.Dependencies;
 using Ninject.Parameters;
 using Ninject.Syntax;
 
-namespace br.com.klinderrh.social.infra.ioc
+namespace KlinderRH.Social.Infra.IoC
 {
 	public class NinjectScope : IDependencyScope
 	{

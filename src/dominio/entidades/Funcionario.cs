@@ -1,8 +1,8 @@
 ﻿using System;
-using br.com.klinderrh.social.infra.comum;
-using br.com.klinderrh.social.infra.recursos;
+using KlinderRH.Social.Infra.Comum;
+using KlinderRH.Social.Infra.Recursos;
 
-namespace br.com.klinderrh.social.dominio.entidades
+namespace KlinderRH.Social.Dominio.Entidades
 {
 	public class Funcionario : EntidadeBase
 	{

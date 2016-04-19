@@ -7,8 +7,8 @@
     <ProjectGuid>{8E839000-9CBF-4C60-AE06-D879FACC6420}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>br.com.klinderrh.social.infra.ioc</RootNamespace>
-    <AssemblyName>br.com.klinderrh.social.infra.ioc</AssemblyName>
+    <RootNamespace>KlinderRH.Social.Infra.IoC</RootNamespace>
+    <AssemblyName>KlinderRH.Social.Infra.IoC</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

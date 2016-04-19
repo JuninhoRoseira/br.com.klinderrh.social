@@ -3,10 +3,10 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using br.com.klinderrh.social.dominio.interfaces.aplicacao;
-using br.com.klinderrh.social.dominio.objetosdetransporte;
+using KlinderRH.Social.Dominio.Interfaces.Aplicacao;
+using KlinderRH.Social.Dominio.ObjetosDeTransporte;
 
-namespace br.com.klinderrh.social.web.api.Controllers
+namespace KlinderRH.Social.Web.Api.Controllers
 {
 	/// <summary>
 	/// 

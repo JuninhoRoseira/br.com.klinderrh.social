@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using br.com.klinderrh.social.dominio.entidades;
+using KlinderRH.Social.Dominio.Entidades;
 
-namespace br.com.klinderrh.social.dominio.interfaces.dados.repositorios
+namespace KlinderRH.Social.Dominio.Interfaces.Dados.Repositorios
 {
 	public interface IRepositorioDeLeitura<T> where T : EntidadeBase
 	{

@@ -7,8 +7,8 @@
     <ProjectGuid>{065778E5-7FB8-47D9-8F1F-770223975B6D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>br.com.klinderrh.social.infra.data.entityframework</RootNamespace>
-    <AssemblyName>br.com.klinderrh.social.infra.data.entityframework</AssemblyName>
+    <RootNamespace>KlinderRH.Social.Infra.Data.EntityFramework</RootNamespace>
+    <AssemblyName>KlinderRH.Social.Infra.Data.EntityFramework</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

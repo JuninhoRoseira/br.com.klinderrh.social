@@ -2,9 +2,9 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using br.com.klinderrh.social.dominio.interfaces.dados.repositorios;
+using KlinderRH.Social.Dominio.Interfaces.Dados.Repositorios;
 
-namespace br.com.klinderrh.social.infra.data.entityframework.repositorios
+namespace KlinderRH.Social.Infra.Data.EntityFramework.Repositorios
 {
 	public class RepositorioGenericoDeEnums<T> : IRepositorioGenericoDeEnums<T> where T : class
 	{

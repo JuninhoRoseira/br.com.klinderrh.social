@@ -1,13 +1,13 @@
-﻿using br.com.klinderrh.social.aplicacao;
-using br.com.klinderrh.social.dominio.interfaces.aplicacao;
-using br.com.klinderrh.social.dominio.interfaces.dados;
-using br.com.klinderrh.social.infra.data.entityframework;
-using br.com.klinderrh.social.infra.data.entityframework.identity;
+﻿using KlinderRH.Social.Aplicacao;
+using KlinderRH.Social.Dominio.Interfaces.Aplicacao;
+using KlinderRH.Social.Dominio.Interfaces.Dados;
+using KlinderRH.Social.Infra.Data.EntityFramework;
+using KlinderRH.Social.Infra.Data.EntityFramework.Identity;
 using Ninject;
 using Ninject.Modules;
 using Ninject.Web.Common;
 
-namespace br.com.klinderrh.social.infra.ioc
+namespace KlinderRH.Social.Infra.IoC
 {
 	// GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(kernel);
 

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using br.com.klinderrh.social.dominio.entidades;
-using br.com.klinderrh.social.dominio.interfaces.aplicacao;
-using br.com.klinderrh.social.dominio.interfaces.dados;
-using br.com.klinderrh.social.dominio.objetosdetransporte;
-using br.com.klinderrh.social.dominio.objetosdevalor;
-using br.com.klinderrh.social.infra.comum;
-using br.com.klinderrh.social.infra.comunicacao;
+using KlinderRH.Social.Dominio.Entidades;
+using KlinderRH.Social.Dominio.Interfaces.Aplicacao;
+using KlinderRH.Social.Dominio.Interfaces.Dados;
+using KlinderRH.Social.Dominio.ObjetosDeTransporte;
+using KlinderRH.Social.Dominio.ObjetosDeValor;
+using KlinderRH.Social.Infra.Comum;
+using KlinderRH.Social.Infra.Comunicacao;
 
-namespace br.com.klinderrh.social.aplicacao
+namespace KlinderRH.Social.Aplicacao
 {
 	public class CargoAplicacao : ICargoAplicacao
 	{

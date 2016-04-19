@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace br.com.klinderrh.social.infra.seguranca
+namespace KlinderRH.Social.Infra.Seguranca
 {
 	public class Criptografia
 	{

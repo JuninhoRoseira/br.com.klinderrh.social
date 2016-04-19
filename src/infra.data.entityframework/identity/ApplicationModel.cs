@@ -2,7 +2,7 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace br.com.klinderrh.social.infra.data.entityframework.identity
+namespace KlinderRH.Social.Infra.Data.EntityFramework.Identity
 {
 
 	public class ApplicationUser : IdentityUser<Guid, ApplicationUserLogin, ApplicationUserRole, ApplicationUserClaim>, IUser<Guid>

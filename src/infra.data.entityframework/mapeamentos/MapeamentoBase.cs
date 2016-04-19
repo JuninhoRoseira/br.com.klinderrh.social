@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Infrastructure.Annotations;
 using System.Data.Entity.ModelConfiguration;
-using br.com.klinderrh.social.dominio.entidades;
+using KlinderRH.Social.Dominio.Entidades;
 
-namespace br.com.klinderrh.social.infra.data.entityframework.mapeamentos
+namespace KlinderRH.Social.Infra.Data.EntityFramework.Mapeamentos
 {
 	public class MapeamentoBase<T> : EntityTypeConfiguration<T> where T : EntidadeBase
 	{

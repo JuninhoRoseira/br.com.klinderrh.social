@@ -1,4 +1,5 @@
 define(["require", "exports"], function (require, exports) {
+    "use strict";
     var PopupDirective = (function () {
         function PopupDirective() {
         }
@@ -10,7 +11,7 @@ define(["require", "exports"], function (require, exports) {
             };
         };
         return PopupDirective;
-    })();
+    }());
     exports.PopupDirective = PopupDirective;
 });
 //# sourceMappingURL=PopupDirective.js.map

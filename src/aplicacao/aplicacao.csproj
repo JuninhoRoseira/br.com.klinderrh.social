@@ -7,8 +7,8 @@
     <ProjectGuid>{7EC9AA82-1377-443F-B7C1-128175B2CE81}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>br.com.klinderrh.social.aplicacao</RootNamespace>
-    <AssemblyName>br.com.klinderrh.social.aplicacao</AssemblyName>
+    <RootNamespace>KlinderRH.Social.Aplicacao</RootNamespace>
+    <AssemblyName>KlinderRH.Social.Aplicacao</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

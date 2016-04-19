@@ -1,7 +1,7 @@
-using br.com.klinderrh.social.dominio.entidades;
-using br.com.klinderrh.social.dominio.interfaces.dados.repositorios;
+using KlinderRH.Social.Dominio.Entidades;
+using KlinderRH.Social.Dominio.Interfaces.Dados.Repositorios;
 
-namespace br.com.klinderrh.social.dominio.interfaces.dados
+namespace KlinderRH.Social.Dominio.Interfaces.Dados
 {
 	public interface IUnidadeDeTrabalho // : IDisposable
 	{

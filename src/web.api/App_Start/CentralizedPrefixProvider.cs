@@ -1,7 +1,7 @@
 using System.Web.Http.Controllers;
 using System.Web.Http.Routing;
 
-namespace br.com.klinderrh.social.web.api
+namespace KlinderRH.Social.Web.Api
 {
 	/// <summary>
 	/// 

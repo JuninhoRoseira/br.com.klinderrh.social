@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace br.com.klinderrh.social.infra.comum
+namespace KlinderRH.Social.Infra.Comum
 {
 	public static class Assertions<TException> where TException : Exception
 	{

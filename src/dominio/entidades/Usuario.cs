@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
-using br.com.klinderrh.social.infra.comum;
-using br.com.klinderrh.social.infra.recursos;
-using br.com.klinderrh.social.infra.seguranca;
+using KlinderRH.Social.Infra.Comum;
+using KlinderRH.Social.Infra.Recursos;
+using KlinderRH.Social.Infra.Seguranca;
 
-namespace br.com.klinderrh.social.dominio.entidades
+namespace KlinderRH.Social.Dominio.Entidades
 {
 	public class Usuario : EntidadeBase
 	{

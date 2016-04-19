@@ -4,7 +4,7 @@ using System.Web.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace br.com.klinderrh.social.web.api
+namespace KlinderRH.Social.Web.Api
 {
 	/// <summary>
 	/// 

@@ -1,4 +1,5 @@
 define(["require", "exports", "../../Util/Storage"], function (require, exports, Util) {
+    "use strict";
     var LoginController = (function () {
         function LoginController($scope, $http, $rootScope, $location) {
             var _this = this;
@@ -24,7 +25,7 @@ define(["require", "exports", "../../Util/Storage"], function (require, exports,
         }
         LoginController.$inject = ["$scope", "$http", "$rootScope", "$location"];
         return LoginController;
-    })();
+    }());
     exports.LoginController = LoginController;
 });
 //# sourceMappingURL=LoginController.js.map

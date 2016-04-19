@@ -1,4 +1,5 @@
 define(["require", "exports"], function (require, exports) {
+    "use strict";
     var Routes = (function () {
         function Routes() {
         }
@@ -45,7 +46,7 @@ define(["require", "exports"], function (require, exports) {
         };
         Routes.$inject = ["$urlRouterProvider", "$stateProvider", "$httpProvider"];
         return Routes;
-    })();
+    }());
     exports.Routes = Routes;
 });
 //# sourceMappingURL=Routes.js.map

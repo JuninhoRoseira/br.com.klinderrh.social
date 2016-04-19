@@ -1,4 +1,5 @@
 define(["require", "exports", "../Util/Storage"], function (require, exports, Util) {
+    "use strict";
     var AuthInterceptorService = (function () {
         function AuthInterceptorService() {
         }
@@ -22,7 +23,7 @@ define(["require", "exports", "../Util/Storage"], function (require, exports, Ut
         };
         AuthInterceptorService.$inject = ["$q", "$location"];
         return AuthInterceptorService;
-    })();
+    }());
     exports.AuthInterceptorService = AuthInterceptorService;
 });
 //# sourceMappingURL=AuthInterceptorService.js.map

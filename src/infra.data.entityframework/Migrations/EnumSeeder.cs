@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace br.com.klinderrh.social.infra.data.entityframework.Migrations
+namespace KlinderRH.Social.Infra.Data.EntityFramework.Migrations
 {
 	public static class EnumSeeder
 	{

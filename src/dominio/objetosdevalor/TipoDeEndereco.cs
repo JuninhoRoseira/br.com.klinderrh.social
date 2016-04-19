@@ -1,4 +1,4 @@
-﻿namespace br.com.klinderrh.social.dominio.objetosdevalor
+﻿namespace KlinderRH.Social.Dominio.ObjetosDeValor
 {
 	public enum TipoDeEndereco
 	{

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Reflection;
 using System.Web.Http;
-using br.com.klinderrh.social.dominio.interfaces.dados;
-using br.com.klinderrh.social.infra.ioc;
+using KlinderRH.Social.Dominio.Interfaces.Dados;
+using KlinderRH.Social.Infra.IoC;
 using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 
-namespace br.com.klinderrh.social.web.api
+namespace KlinderRH.Social.Web.Api
 {
 	/// <summary>
 	/// 

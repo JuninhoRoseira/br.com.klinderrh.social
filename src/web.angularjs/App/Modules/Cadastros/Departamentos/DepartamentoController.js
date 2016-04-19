@@ -1,4 +1,5 @@
 define(["require", "exports"], function (require, exports) {
+    "use strict";
     var DepartamentoController = (function () {
         function DepartamentoController($http, $uibModal) {
             this.serviceUrl = "http://localhost:22149/api/departamentos/";
@@ -108,7 +109,7 @@ define(["require", "exports"], function (require, exports) {
         };
         DepartamentoController.$inject = ["$http", "$uibModal"];
         return DepartamentoController;
-    })();
+    }());
     exports.DepartamentoController = DepartamentoController;
     var PopupDepartamentoController = (function () {
         function PopupDepartamentoController($uibModalInstance, title, departamento, pais) {
@@ -132,7 +133,7 @@ define(["require", "exports"], function (require, exports) {
         };
         PopupDepartamentoController.$inject = ["$uibModalInstance", "title", "departamento", "pais"];
         return PopupDepartamentoController;
-    })();
+    }());
     exports.PopupDepartamentoController = PopupDepartamentoController;
     var PopupDeleteDepartamentoController = (function () {
         function PopupDeleteDepartamentoController($uibModalInstance) {
@@ -146,7 +147,7 @@ define(["require", "exports"], function (require, exports) {
         };
         PopupDeleteDepartamentoController.$inject = ["$uibModalInstance"];
         return PopupDeleteDepartamentoController;
-    })();
+    }());
     exports.PopupDeleteDepartamentoController = PopupDeleteDepartamentoController;
 });
 //# sourceMappingURL=DepartamentoController.js.map

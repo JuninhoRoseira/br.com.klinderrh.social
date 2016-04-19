@@ -1,7 +1,7 @@
-﻿using br.com.klinderrh.social.dominio.entidades;
+﻿using KlinderRH.Social.Dominio.Entidades;
 using NUnit.Framework;
 
-namespace br.com.klinderrh.social.dominio.tests
+namespace  KlinderRH.Social.Dominio.Tests
 {
 	[TestFixture]
 	public class UsuarioTests

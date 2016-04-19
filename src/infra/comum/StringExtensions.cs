@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace br.com.klinderrh.social.infra.comum
+namespace KlinderRH.Social.Infra.Comum
 {
 	public static class StringExtensions
 	{

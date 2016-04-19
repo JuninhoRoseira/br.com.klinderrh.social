@@ -2,12 +2,12 @@
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Diagnostics;
-using br.com.klinderrh.social.dominio.entidades;
-using br.com.klinderrh.social.infra.data.entityframework.identity;
-using br.com.klinderrh.social.infra.data.entityframework.mapeamentos;
+using KlinderRH.Social.Dominio.Entidades;
+using KlinderRH.Social.Infra.Data.EntityFramework.Identity;
+using KlinderRH.Social.Infra.Data.EntityFramework.Mapeamentos;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace br.com.klinderrh.social.infra.data.entityframework
+namespace KlinderRH.Social.Infra.Data.EntityFramework
 {
 
 	public class Contexto : IdentityDbContext<ApplicationUser, ApplicationRole, Guid, ApplicationUserLogin, ApplicationUserRole, ApplicationUserClaim>

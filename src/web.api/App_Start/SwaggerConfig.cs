@@ -3,7 +3,7 @@ using Swashbuckle.Application;
 
 //[assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
-namespace br.com.klinderrh.social.web.api
+namespace KlinderRH.Social.Web.Api
 {
     /// <summary>
     /// 
@@ -38,7 +38,7 @@ namespace br.com.klinderrh.social.web.api
                         // hold additional metadata for an API. Version and title are required but you can also provide
                         // additional fields by chaining methods off SingleApiVersion.
                         //
-                        c.SingleApiVersion("v1", "br.com.klinderrh.social.web.api");
+                        c.SingleApiVersion("v1", "KlinderRH.Social.Web.Api");
 
                         // If your API has multiple versions, use "MultipleApiVersions" instead of "SingleApiVersion".
                         // In this case, you must provide a lambda that tells Swashbuckle which actions should be
@@ -234,7 +234,7 @@ namespace br.com.klinderrh.social.web.api
 
 	    private static string GetXmlCommentsPath()
 	    {
-		    return $"{System.AppDomain.CurrentDomain.BaseDirectory}bin\\br.com.klinderrh.social.web.api.XML";
+		    return $"{System.AppDomain.CurrentDomain.BaseDirectory}bin\\KlinderRH.Social.Web.Api.XML";
 	    }
 
     }

@@ -1,7 +1,7 @@
 ﻿using System;
-using br.com.klinderrh.social.dominio.entidades;
+using KlinderRH.Social.Dominio.Entidades;
 
-namespace br.com.klinderrh.social.dominio.interfaces.dados.repositorios
+namespace KlinderRH.Social.Dominio.Interfaces.Dados.Repositorios
 {
 	public interface IRepositorioDeGravacao<T> where T : EntidadeBase
 	{

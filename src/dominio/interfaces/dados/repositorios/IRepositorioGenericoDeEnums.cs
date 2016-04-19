@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace br.com.klinderrh.social.dominio.interfaces.dados.repositorios
+namespace KlinderRH.Social.Dominio.Interfaces.Dados.Repositorios
 {
 	public interface IRepositorioGenericoDeEnums<T> where T : class
 	{

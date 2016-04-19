@@ -1,4 +1,4 @@
-namespace br.com.klinderrh.social.dominio.objetosdetransporte
+namespace KlinderRH.Social.Dominio.ObjetosDeTransporte
 {
 	public class PessoaModelo
 	{

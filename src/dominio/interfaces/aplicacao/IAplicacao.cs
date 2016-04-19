@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using br.com.klinderrh.social.dominio.entidades;
-using br.com.klinderrh.social.dominio.objetosdetransporte;
+using KlinderRH.Social.Dominio.Entidades;
+using KlinderRH.Social.Dominio.ObjetosDeTransporte;
 
-namespace br.com.klinderrh.social.dominio.interfaces.aplicacao
+namespace KlinderRH.Social.Dominio.Interfaces.Aplicacao
 {
 
 	public interface IUsuarioAplicacao

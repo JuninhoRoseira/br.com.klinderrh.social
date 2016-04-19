@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using br.com.klinderrh.social.dominio.interfaces.dados;
+using KlinderRH.Social.Dominio.Interfaces.Dados;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 
-namespace br.com.klinderrh.social.infra.data.entityframework.identity
+namespace KlinderRH.Social.Infra.Data.EntityFramework.Identity
 {
 	public class AuthorizationServerProvider : OAuthAuthorizationServerProvider, IAuthorizationServerProvider
 	{

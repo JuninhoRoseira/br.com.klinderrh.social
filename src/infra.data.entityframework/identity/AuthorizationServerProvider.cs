@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using KlinderRH.Social.Dominio.Interfaces.Dados;
@@ -27,68 +29,58 @@ namespace KlinderRH.Social.Infra.Data.EntityFramework.Identity
 
 		public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
 		{
+			var header = context.OwinContext.Response.Headers.SingleOrDefault(h => h.Key == "Access-Control-Allow-Origin");
 
-			context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
-
-			ApplicationUser usuario;
+			if (header.Equals(default(KeyValuePair<string, string[]>)))
+			{
+				context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+			}
 
 			try
 			{
-				usuario = await _userManager.FindAsync(context.UserName, context.Password);
-			}
-			catch
-			{
-				// Could not retrieve the user.
-				context.SetError("server_error");
-				context.Rejected();
+				var usuario = await _userManager.FindAsync(context.UserName, context.Password);
 
-				// Return here so that we don't process further. Not ideal but needed to be done here.
-				return;
-			}
-
-			if (usuario != null)
-			{
-				try
+				if (usuario == null)
 				{
-					// User is found. Signal this by calling context.Validated
-					
-					// create identity
-					var claims = new List<Claim>
+					context.SetError("invalid_grant", $"Usuário {context.UserName} não encontrado. {context.Password}");
+					context.Rejected();
+
+					return;
+
+				}
+
+				// create identity
+				var claims = new List<Claim>
 					{
 						new Claim("sub", context.UserName),
 						new Claim("role", "user")
 					};
 
-					var id = new ClaimsIdentity(context.Options.AuthenticationType);
+				var id = new ClaimsIdentity(context.Options.AuthenticationType);
 
-					id.AddClaims(claims);
+				id.AddClaims(claims);
 
-					var props = new AuthenticationProperties(new Dictionary<string, string>
+				var props = new AuthenticationProperties(new Dictionary<string, string>
 					{
 						{"id", usuario.Id.ToString()},
 						{"nome", usuario.Name},
 						{"email", usuario.Email}
 					});
 
-					var ticket = new AuthenticationTicket(id, props);
+				var ticket = new AuthenticationTicket(id, props);
 
-					context.Validated(ticket);
+				// User is found. Signal this by calling context.Validated
+				context.Validated(ticket);
 
-				}
-				catch
-				{
-					// The ClaimsIdentity could not be created by the UserManager.
-					context.SetError("server_error");
-					context.Rejected();
-				}
 			}
-			else
+			catch (Exception ex)
 			{
-				// The resource owner credentials are invalid or resource owner does not exist.
-				context.SetError("access_denied", "The resource owner credentials are invalid or resource owner does not exist.");
+				// Could not retrieve the user.
+				context.SetError("server_error", ex.Message);
 				context.Rejected();
+				
 			}
-
+			
 		}
 
 		public override Task TokenEndpoint(OAuthTokenEndpointContext context)

@@ -1,21 +1,13 @@
-﻿using System;
-using System.Reflection;
-using System.Web.Http;
-using KlinderRH.Social.Dominio.Interfaces.Dados;
-using KlinderRH.Social.Infra.IoC;
-using Microsoft.Owin;
-using Microsoft.Owin.Cors;
-using Microsoft.Owin.Security.OAuth;
+﻿using Microsoft.Owin.Cors;
 using Owin;
 
 namespace KlinderRH.Social.Web.Api
 {
 	/// <summary>
-	/// 
+	/// Configurações gerais do API.
 	/// </summary>
 	public class Startup
 	{
-
 		/// <summary>
 		/// This code configures Web API. The Startup class is specified as a type 
 		/// parameter in the WebApp.Start method.
@@ -23,31 +15,12 @@ namespace KlinderRH.Social.Web.Api
 		/// <param name="appBuilder"></param>
 		public void Configuration(IAppBuilder appBuilder)
 		{
-			appBuilder.UseCors(CorsOptions.AllowAll);
-
-			var dependencyResolver = new NinjectResolver(new IoC().Kernel);
-
-			dependencyResolver.Load(Assembly.GetExecutingAssembly());
-
-			// Configure Web API for self-host. 
-			var config = new HttpConfiguration
-			{
-				DependencyResolver = dependencyResolver
-			};
-
-			WebApiConfig.Register(config);
-
-			appBuilder.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions
-			{
-				TokenEndpointPath = new PathString("/api/auth"),
-				Provider = (IOAuthAuthorizationServerProvider)dependencyResolver.Get<IAuthorizationServerProvider>(), 
-				AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
-				AllowInsecureHttp = true
-			});
-			appBuilder.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
-
-			SwaggerConfig.Register(config);
+			var config = DependencyResolverConfig.Register(appBuilder);
 			
+			WebApiConfig.Register(config);
+			SwaggerConfig.Register(config);
+
+			appBuilder.UseCors(CorsOptions.AllowAll);
 			appBuilder.UseWebApi(config);
 
 		}

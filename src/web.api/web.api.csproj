@@ -135,10 +135,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\CentralizedPrefixProvider.cs" />
+    <Compile Include="App_Start\DependencyResolverConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AutenticacaoController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\CargoController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
@@ -146,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FileSystem.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

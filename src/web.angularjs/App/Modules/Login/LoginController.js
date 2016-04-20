@@ -23,6 +23,7 @@ define(["require", "exports", "../../Util/Storage"], function (require, exports,
                 });
             };
         }
+        //private serviceUrl = "http://localhost/KlinderRHSocial/api/";
         LoginController.$inject = ["$scope", "$http", "$rootScope", "$location"];
         return LoginController;
     }());

@@ -16,7 +16,7 @@ namespace KlinderRH.Social.Infra.Data.EntityFramework.Identity
 		}
 
 		public string Name { get; set; }
-
+		
 	}
 
 	public class ApplicationUserLogin : IdentityUserLogin<Guid>

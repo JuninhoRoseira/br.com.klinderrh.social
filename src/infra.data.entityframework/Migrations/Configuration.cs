@@ -3,7 +3,6 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using KlinderRH.Social.Dominio.Entidades;
 using KlinderRH.Social.Dominio.ObjetosDeValor;
-using KlinderRH.Social.Infra.Data.EntityFramework.Identity;
 using Microsoft.AspNet.Identity;
 
 namespace KlinderRH.Social.Infra.Data.EntityFramework.Migrations
@@ -21,24 +20,21 @@ namespace KlinderRH.Social.Infra.Data.EntityFramework.Migrations
 			context.Seed<TipoDeEndereco>();
 			context.Seed<NivelDoCargo>();
 
-			var usuario = new Usuario("Wilson", "juninhoroseira@gmail.com");
+			// Roles
+			context.AppRoleManager.CreateRole("Administradores");
+			context.AppRoleManager.CreateRole("Usuarios");
 
-			usuario.AtribuirSenha("123456", "123456");
+			// Users
+			context.AppUserManager.CreateUser("juninhoroseira@gmail.com", "Wilson José Pinto Júnior", "juninhoroseira", "Teste@123");
 
-			context.Usuarios.Add(usuario);
+			var user = context.Users.FirstOrDefault(u => u.UserName == "juninhoroseira");
 
-			context.SaveChanges();
-
-			var userManager = new ApplicationUserManager(new ApplicationUserStore(context));
-			var result = userManager.Create(new ApplicationUser
+			if (user != null)
 			{
-				Email = "juninhoroseira@gmail.com",
-				Name = "Wilson José Pinto Júnior",
-				UserName = "juninhoroseira"
-			}, "123456");
+				context.AppUserManager.AddToRoles(user.Id, new[] {"Administradores", "Usuarios"});
+			}
 
-			Console.WriteLine("Usuário criado? {0}", result.Succeeded);
-			
+			// Países
 			context.Paises.AddOrUpdate(
 				new Pais("Brasil"),
 				new Pais("Argentina"),

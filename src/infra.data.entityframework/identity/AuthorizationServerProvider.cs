@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using KlinderRH.Core.Seguranca;
 using KlinderRH.Social.Dominio.Interfaces.Dados;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
+using Newtonsoft.Json;
 
 namespace KlinderRH.Social.Infra.Data.EntityFramework.Identity
 {
@@ -13,7 +15,7 @@ namespace KlinderRH.Social.Infra.Data.EntityFramework.Identity
 	{
 
 		private readonly ApplicationUserManager _userManager;
-
+		
 		public AuthorizationServerProvider(ApplicationUserManager userManager)
 		{
 			_userManager = userManager;
@@ -50,28 +52,34 @@ namespace KlinderRH.Social.Infra.Data.EntityFramework.Identity
 				}
 
 				// create identity
-				var claims = new List<Claim>
+				var id = await _userManager.CreateIdentityAsync(usuario, context.Options.AuthenticationType);
+
+				id.AddClaims(new List<Claim>
 					{
 						new Claim("sub", context.UserName),
-						new Claim("role", "user")
-					};
-
-				var id = new ClaimsIdentity(context.Options.AuthenticationType);
-
-				id.AddClaims(claims);
-
-				var props = new AuthenticationProperties(new Dictionary<string, string>
-					{
-						{"id", usuario.Id.ToString()},
-						{"nome", usuario.Name},
-						{"email", usuario.Email}
+						new Claim("role", "User")
 					});
 
-				var ticket = new AuthenticationTicket(id, props);
+				// base64-encode this data.
+				var protectedText = Criptografia.Encrypt(
+					JsonConvert.SerializeObject(new
+					{
+						usuario.Id,
+						usuario.Name,
+						context.UserName,
+						usuario.Email,
+						Roles = id.Claims.Where(c => c.Type == ClaimTypes.Role).Select(r => r.Value)
+					}),
+					context.UserName);
 
+				var props = new AuthenticationProperties(new Dictionary<string, string>
+				{
+					{"content", protectedText}
+				});
+				
 				// User is found. Signal this by calling context.Validated
-				context.Validated(ticket);
-
+				context.Validated(new AuthenticationTicket(id, props));
+				
 			}
 			catch (Exception ex)
 			{

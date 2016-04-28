@@ -1,6 +1,6 @@
 ﻿using System;
+using KlinderRH.Core.Comum;
 using KlinderRH.Social.Dominio.ObjetosDeValor;
-using KlinderRH.Social.Infra.Comum;
 using KlinderRH.Social.Infra.Recursos;
 
 namespace KlinderRH.Social.Dominio.Entidades

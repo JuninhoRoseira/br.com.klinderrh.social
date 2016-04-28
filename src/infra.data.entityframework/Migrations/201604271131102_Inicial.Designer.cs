@@ -13,7 +13,7 @@ namespace KlinderRH.Social.Infra.Data.EntityFramework.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201604151544512_Inicial"; }
+            get { return "201604271131102_Inicial"; }
         }
         
         string IMigrationMetadata.Source

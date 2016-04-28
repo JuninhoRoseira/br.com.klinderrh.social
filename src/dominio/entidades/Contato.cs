@@ -1,5 +1,5 @@
 using System;
-using KlinderRH.Social.Infra.Comum;
+using KlinderRH.Core.Comum;
 using KlinderRH.Social.Infra.Recursos;
 
 namespace KlinderRH.Social.Dominio.Entidades

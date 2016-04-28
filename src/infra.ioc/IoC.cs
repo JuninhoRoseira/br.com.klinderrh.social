@@ -29,6 +29,7 @@ namespace KlinderRH.Social.Infra.IoC
 		public override void Load()
 		{
 			Bind<Contexto>().ToSelf().InSingletonScope();
+			Bind<ApplicationRoleManager>().ToSelf().InSingletonScope();
 			Bind<ApplicationUserManager>().ToSelf().InSingletonScope();
 
 			Bind<IAppUserStore>().To<ApplicationUserStore>().InRequestScope();

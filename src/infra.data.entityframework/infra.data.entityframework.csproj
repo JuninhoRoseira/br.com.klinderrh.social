@@ -39,6 +39,9 @@
       <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="KlinderRH.Core">
+      <HintPath>..\..\references\KlinderRH.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <Private>True</Private>
@@ -74,8 +77,8 @@
   <ItemGroup>
     <Compile Include="Contexto.cs" />
     <Compile Include="identity\ApplicationModel.cs" />
-    <Compile Include="identity\ApplicationUserManager.cs" />
-    <Compile Include="identity\ApplicationUserStore.cs" />
+    <Compile Include="identity\ApplicationManager.cs" />
+    <Compile Include="identity\ApplicationStore.cs" />
     <Compile Include="identity\AuthorizationServerProvider.cs" />
     <Compile Include="identity\IAppUserStore.cs" />
     <Compile Include="mapeamentos\CargoMap.cs" />
@@ -92,9 +95,9 @@
     <Compile Include="mapeamentos\PessoaMap.cs" />
     <Compile Include="mapeamentos\TipoDeEnderecoMap.cs" />
     <Compile Include="mapeamentos\UnidadeMap.cs" />
-    <Compile Include="Migrations\201604151544512_Inicial.cs" />
-    <Compile Include="Migrations\201604151544512_Inicial.Designer.cs">
-      <DependentUpon>201604151544512_Inicial.cs</DependentUpon>
+    <Compile Include="Migrations\201604271131102_Inicial.cs" />
+    <Compile Include="Migrations\201604271131102_Inicial.Designer.cs">
+      <DependentUpon>201604271131102_Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\EnumSeeder.cs" />
@@ -109,14 +112,18 @@
       <Project>{3a391b3d-d977-44f7-813a-b903db0ee072}</Project>
       <Name>dominio</Name>
     </ProjectReference>
+    <ProjectReference Include="..\infra\infra.csproj">
+      <Project>{03F77373-A3B1-4C3A-9B6E-8044BACB9E4C}</Project>
+      <Name>infra</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604151544512_Inicial.resx">
-      <DependentUpon>201604151544512_Inicial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604271131102_Inicial.resx">
+      <DependentUpon>201604271131102_Inicial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

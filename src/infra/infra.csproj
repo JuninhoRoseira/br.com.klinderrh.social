@@ -35,9 +35,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="comum\Assertions.cs" />
-    <Compile Include="comum\StringExtensions.cs" />
-    <Compile Include="comunicacao\EmailHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="recursos\Culture.cs" />
     <Compile Include="recursos\Messages.Designer.cs">
@@ -55,7 +52,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.es.resx</DependentUpon>
     </Compile>
-    <Compile Include="seguranca\Criptografia.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="recursos\Messages.en-us.resx">

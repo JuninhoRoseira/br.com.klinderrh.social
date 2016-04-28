@@ -20,9 +20,29 @@ namespace KlinderRH.Social.Infra.Data.EntityFramework
 			Configuration.LazyLoadingEnabled = false; // Para senários com dominios compexos.
 			Configuration.ProxyCreationEnabled = false; // Para uma serialização mais suave.
 
+			CreateIdentityManagers();
+
 			Database.Log = s => Debug.WriteLine(s);
 
 		}
+
+		private void CreateIdentityManagers()
+		{
+			AppRoleManager = new ApplicationRoleManager(new ApplicationRoleStore(this));
+			AppUserManager = new ApplicationUserManager(new ApplicationUserStore(this));
+		}
+
+		#region :: Properties
+
+		#region :: Asp.Net Identity
+
+		public ApplicationRoleManager AppRoleManager { get; set; }
+		public ApplicationUserManager AppUserManager { get; private set; }
+
+		#endregion
+
+		#endregion
+
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{

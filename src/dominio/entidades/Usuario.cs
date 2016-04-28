@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using KlinderRH.Social.Infra.Comum;
+using KlinderRH.Core.Comum;
+using KlinderRH.Core.Seguranca;
 using KlinderRH.Social.Infra.Recursos;
-using KlinderRH.Social.Infra.Seguranca;
 
 namespace KlinderRH.Social.Dominio.Entidades
 {

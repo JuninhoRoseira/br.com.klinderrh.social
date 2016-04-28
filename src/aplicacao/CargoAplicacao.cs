@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using KlinderRH.Core.Comum;
+using KlinderRH.Core.Comunicacao;
 using KlinderRH.Social.Dominio.Entidades;
 using KlinderRH.Social.Dominio.Interfaces.Aplicacao;
 using KlinderRH.Social.Dominio.Interfaces.Dados;
 using KlinderRH.Social.Dominio.ObjetosDeTransporte;
 using KlinderRH.Social.Dominio.ObjetosDeValor;
-using KlinderRH.Social.Infra.Comum;
-using KlinderRH.Social.Infra.Comunicacao;
 
 namespace KlinderRH.Social.Aplicacao
 {

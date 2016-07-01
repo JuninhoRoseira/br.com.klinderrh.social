@@ -4,8 +4,8 @@ import Util = require("../../Util/Storage");
 export class LoginController {
 	'use strict';
 
-	private serviceUrl = "http://localhost:22149/api/";
-	//private serviceUrl = "http://localhost/KlinderRHSocial/api/";
+	//private serviceUrl = "http://localhost:22149/api/";
+	private serviceUrl = "http://localhost/KlinderRHSocial/api/";
 	
 	static $inject = ["$scope", "$http", "$rootScope", "$location"];
 
